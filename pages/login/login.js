@@ -11,8 +11,8 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+    wx.reLaunch({
+      url: '/pages/home/homePage/homePage',
     })
   },
   onLoad: function () {
@@ -42,6 +42,10 @@ Page({
         }
       })
     }
+
+    wx.reLaunch({
+      url: '/pages/home/homePage/homePage',
+    })
   },
   getUserInfo: function(e) {
     console.log(e)

@@ -1,12 +1,66 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/login/login",
+    "pages/home/homePage/homePage",
+    "pages/device/bindDevice/bindDevice",
+    "pages/baby/babyBadge/babyBadge",
+    "pages/music/musicHot/musicHot",
+    "pages/music/musicList/musicList",
+    "pages/chat/chatRoom/chatRoom",
+    "pages/book/bookHot/bookHot",
+    "pages/book/bookList/bookList",
+    "pages/user/userCenter/userCenter",
+    "pages/user/collectionMusics/collectionMusics",
+    "pages/user/collectionBooks/collectionBooks"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+    "navigationBarBackgroundColor": "#00d2ff",
+    "navigationBarTitleText": "绘本精灵",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#00d2ff",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/home/homePage/homePage",
+        "text": "小精灵",
+        "iconPath": "images/icon_intro.png",
+        "selectedIconPath": "images/icon_intro.png"
+      },
+      {
+        "pagePath": "pages/music/musicHot/musicHot",
+        "text": "听一听",
+        "iconPath": "images/icon_intro.png",
+        "selectedIconPath": "images/icon_intro.png"
+      },
+      {
+        "pagePath": "pages/chat/chatRoom/chatRoom",
+        "iconPath": "images/icon_intro.png",
+        "selectedIconPath": "images/icon_intro.png"
+      },
+      {
+        "pagePath": "pages/book/bookHot/bookHot",
+        "text": "绘本城",
+        "iconPath": "images/icon_intro.png",
+        "selectedIconPath": "images/icon_intro.png"
+      },
+      {
+        "pagePath": "pages/user/userCenter/userCenter",
+        "text": "我的",
+        "iconPath": "images/icon_intro.png",
+        "selectedIconPath": "images/icon_intro.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

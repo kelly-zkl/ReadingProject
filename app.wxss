@@ -1,10 +1,271 @@
 /**app.wxss**/
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+@import 'weui.wxss';
+@import 'zanui.wxss';
+
+/**整体页面的颜色值*/
+page{
+  background: #efefef
+}
+
+/**导航栏颜色*/
+.weui-navbar{
+  background: #fff;
+  border-bottom: 1rpx solid #E5E5E5
+}
+/**导航栏字体颜色*/
+.weui-navbar__item.weui-bar__item_on{color:#00d2ff}
+/**导航栏下划线颜色*/
+.weui-navbar__slider{background-color:#00d2ff}
+
+/**列表上下去掉灰色线条*/
+.weui-cells:after,.weui-cells:before{display: none}
+/**列表箭头颜色*/
+.weui-cell__ft_in-access:after{
+  border-color:#00d2ff
+}
+/**列表的item之间的分隔线--left:15px*/
+.weui-cell:before{
+  height: 1rpx;
+  border-color: #E5E5E5
+}
+/**列表的item之间的分隔线--left:15px*/
+.weui-cell.line:before{height: 1rpx;left: 0;border-color: #E5E5E5}
+/**列表每列的高度*/
+.weui-cell{
+  height:28px;
+  min-height:28px;
+  line-height:28px
+}
+/**列表中含有input的高度*/
+.weui-cell_input{
+  height:50px;
+  min-height:50px;
+  line-height:50px
+}
+/**列表图片大小*/
+.cell-icon-size{
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+  display: flex;  
+  align-items: center;  
+  justify-content: center;
+}
+
+/**fixed底部的时候bottom应为0*/
+.weui-footer_fixed-bottom{
+  bottom: 0
+}
+
+.weui-media-box__thumb{
+  width: 60px;
+  height: 60px;
+  border-radius: 10rpx;
+  vertical-align:center;
+}
+/**大图片大小为80px*/
+.weui-media-box__thumb.b{
+  width: 80px;
+  height: 80px;
+  vertical-align:center;
+}
+.weui-media-box__hd_in-appmsg.b{
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  margin-right:.4em;
+}
+
+.weui-panel:before{
+  display: none
+}
+
+/**多个标签之间的间隔10px*/
+.zan-tag + .zan-tag,.zan-tag:first-child{
+  margin-right: 10px;
+}
+.zan-tag:last-child{
+  margin-right: 0px;
+}
+
+/**弹框的大小，圆角*/
+.popup-example--bottom .zan-popup__container {
+  left: 0;
+  right: 0;
+}
+.popup-example--center {
+  border-radius: 4px;
+  /* width: 80%; */
+}
+.popup-width{
+  padding-top: 20rpx
+}
+
+/**按钮button去掉border*/
+button::after{
+  border-bottom: none;
+  border-top: none;
+  border-radius: 0;
+}
+
+/**单选button group形式*/
+.tui-tabbar-group{
+  border: 1rpx #00d2ff solid;
+  border-radius: 3px;
+  overflow: hidden;
+  display: table;
+  table-layout: fixed;
+  color: #00d2ff;
+  text-align: center;
+}
+.tui-tabbar-cell{
+  display: table-cell;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  text-align: center;
+}
+.tui-tabbar-cell:not(:last-child){border-right: 1rpx solid #00d2ff;}
+.tui-tabbar-cell.tui-active{background-color: #00d2ff;color: #fff;}
+
+/**单选button形式*/
+.view-radio-btn{
+  display: inline-block;
+  margin: 0 10px 10px 0;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  text-align: center;
+  border: 1rpx solid #00d2ff;
+  border-radius: 3px;
+  color: #00d2ff
+}
+.view-radio-btn.tui-active{background-color: #00d2ff;color: #fff;}
+
+/**checkbox样式*/
+.tui-tabbar-group.box{
+  border: none;
+  border-radius: none;
+  overflow: hidden;
+  display: inline-block;
+  color: #00d2ff;
+}
+.tui-tabbar-cell.box{
+  display: inline-block;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 14px;
+  border: 1rpx #00d2ff solid;
+  border-radius: 3px;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  text-align: center;
+}
+.tui-tabbar-cell.box:not(:last-child){margin-right: 30rpx}
+.tui-tabbar-cell.box.tui-active{background-color: #00d2ff;color: #fff}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+   border-radius: 4px;/* 圆角 */
+   width: 20px; /* 背景的宽 */
+   height: 20px; /* 背景的高 */
+   border: 1px #00d2ff solid;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+   background: #00d2ff;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+   border-radius: 4px;/* 圆角 */
+   width: 22px;/* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 22px;/* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 22px;
+   text-align: center;
+   font-size:16px; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/*  重写 radio 样式  */
+/* 未选中的 背景样式 */
+radio .wx-radio-input{
+   border-radius: 50%;/* 圆角 */
+   width: 20px;
+   height: 20px;
+   border: 1px #00d2ff solid;
+}
+/* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked{
+   background: #00d2ff;
+}
+/* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+   border-radius: 50%;/* 圆角 */
+   width: 22px; /* 选中后对勾大小，不要超过背景的尺寸 */
+   height: 22px; /* 选中后对勾大小，不要超过背景的尺寸 */
+   line-height: 22px;
+   text-align: center;
+   font-size:16px; /* 对勾大小 30rpx */
+   color:#fff; /* 对勾颜色 白色 */
+   background: transparent;
+   transform:translate(-50%, -50%) scale(1);
+   -webkit-transform:translate(-50%, -50%) scale(1);
+}
+
+/**数字加减输入框*/
+.tui-gallery-list{
+  color: #555;
+  font-size: 35rpx;
+  position: relative;
+}
+.tui-number-group{
+  display: table;
+  table-layout: fixed;
+  width: 300rpx;
+  text-align: center;
+  border-radius: 4px;
+  border: 1rpx solid #bbb;
+  overflow: hidden;
+}
+.tui-number-cell{
+  display: table-cell;
+  height:30px;
+  line-height: 30px;
+  border-radius: 0;
+  text-align: center;
+  font-size: 18px;
+}
+.tui-number-cell.in{
+  height:30px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  border-left: 1rpx solid #bbb;
+  border-right: 1rpx solid #bbb;
+}
+/**字体大小*/
+.txt-12{font-size: 12px}
+.txt-13{font-size: 13px}
+.txt-14{font-size: 14px}
+.txt-15{font-size: 15px}
+.txt-16{font-size: 16px}
+.txt-17{font-size: 17px}
+.txt-18{font-size: 18px}
+/**字体颜色*/
+.txt-color-active{color: #00d2ff}
+.txt-color-black{color: #333}
+.txt-color-white{color: #fff}
+.txt-color-gray{color: #999}
+/**背景颜色*/
+.bg-color-active{background: #00d2ff}
+.bg-color-white{background: #fff}
+.bg-color-gray{background: #999}

@@ -1,0 +1,21 @@
+
+.bg-color-active{
+  height: 260rpx
+}
+
+.view-baby{
+  background: #fff;
+  margin: -30px 15px 15px 15px;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.10);
+}
+.baby-title{
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 100%;
+  color: #00d2ff;
+  font-size: 15px;
+  text-align: center;
+  border-bottom: 1rpx #e5e5e5 solid
+}
+.weui-media-box:before{display: none}
