@@ -12,10 +12,10 @@
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
         <view class="weui-cell__ft" style='position: absolute;top:15px;right:0' bindtap='gotoSet'>
-          <image src="../../../images/icon_setting.png" style='width:30px;height:30px'></image>
+          <image src="../../../images/icon_change.png" style='width:30px;height:30px'></image>
         </view>
       </view>
-      <view class="weui-flex bg-white-corner" style='padding:10px;background:#55ffffff'>
+      <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_power.png"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>99%</view>
@@ -39,7 +39,7 @@
       </view>
     </view>
     <view class='bg-white-shadow-corner' style='margin-top:30rpx'>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:30rpx' bindtap='gotoBaby'>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:30rpx'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
           <image class="weui-media-box__thumb m" src="../../../images/icon_baby.png"
             style='border-radius:50%'/>
@@ -49,8 +49,11 @@
           <view class="weui-media-box__desc" style='display: flex;align-items: center;margin-top:5px'>
             <view style='display:inline-block;margin-right:5px'>3岁4个月</view>
             <image style='display:inline-block;width:18px;height:18px' 
-            src="../../../images/icon_intro.png"></image>
+            src="{{sex==0?'../../../images/icon_female.png':'../../../images/icon_male.png'}}"></image>
           </view>
+          <view class="weui-cell__ft" style='position: absolute;top:10px;right:15px' bindtap='gotoBaby'>
+          <image src="../../../images/icon_edit.png" style='width:30px;height:30px'></image>
+        </view>
         </view>
       </view>
       <view class='weui-flex' style='border-top:1rpx #F2F2F2 solid;padding:20rpx 30rpx'>
@@ -70,33 +73,33 @@
     <view class='bg-white-shadow-corner'>
       <view class='weui-flex'>
         <navigator url="/pages/device/bindDevice/bindDevice" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
+          <image class="weui-grid__icon img" src="../../../images/icon_collect_net.png" />
           <view class="weui-grid__label" style='color:#666'>设备联网</view>
         </navigator>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
+          <image class="weui-grid__icon img" src="../../../images/icon_set_clock.png" />
           <view class="weui-grid__label" style='color:#666'>设备闹钟</view>
         </navigator>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
-          <view class="weui-grid__label" style='color:#666'>作息设置</view>
+          <image class="weui-grid__icon img" src="../../../images/icon_language.png" />
+          <view class="weui-grid__label" style='color:#666'>语言模式</view>
         </navigator>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
-          <view class="weui-grid__label" style='color:#666'>语言模式</view>
+          <image class="weui-grid__icon img" src="../../../images/icon_set_rest.png" />
+          <view class="weui-grid__label" style='color:#666'>作息设置</view>
         </navigator>
       </view>
       <view class='weui-flex'>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
+          <image class="weui-grid__icon img" src="../../../images/icon_save.png" />
           <view class="weui-grid__label" style='color:#666'>防沉迷</view>
         </navigator>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
+          <image class="weui-grid__icon img" src="../../../images/icom_update.png" />
           <view class="weui-grid__label" style='color:#666'>固件升级</view>
         </navigator>
         <navigator url="" class="weui-flex__item" style='padding:30rpx 0px'>
-          <image class="weui-grid__icon img" src="../../../images/icon_intro.png" />
+          <image class="weui-grid__icon img" src="../../../images/icon_unbind.png" />
           <view class="weui-grid__label" style='color:#666'>解除绑定</view>
         </navigator>
         <view class='weui-flex__item' style='padding:30rpx 0px'></view>

@@ -6,6 +6,7 @@ Page({
    */
   data: {
     deviceW: 0,
+    sex:0
   },
 
   /**

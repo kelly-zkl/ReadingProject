@@ -29,7 +29,7 @@
           <image src="../../../images/icon_setting.png" style='width:30px;height:30px'></image>
         </view>
       </view>
-      <view class="weui-flex bg-white-corner" style='padding:10px;background:#55ffffff'>
+      <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_power.png"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>99%</view>
