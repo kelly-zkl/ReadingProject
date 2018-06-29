@@ -1,2 +1,30 @@
-<!--pages/device/bindDevice/bindDevice.wxml-->
-<text>pages/device/bindDevice/bindDevice.wxml</text>
+<view class='page'>
+  <view class='page__bd' style='paddint-top:20rpx'>
+    <view class='weui-grid__label txt-color-white'>已连接</view>
+    <view class='weui-grid__label txt-color-white txt-16'>C34D_0090</view>
+    <view class='bg-white-corner'>
+      <view class="weui-cells weui-cells_after-title txt-14" style='margin-top:20rpx'>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">WIFI</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入WIFI" confirm-type="done" bindinput="inputName"/>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">密码</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入密码" confirm-type="done" bindinput="inputName"/>
+          </view>
+        </view>
+      </view>
+      <view class='btn-save' bindtap='createQrcode'>生成二维码</view>
+    </view>
+    <text class="view-msg">步骤\n1.在上方输入框里填写正确的WIFI账号与密码，并生成二维码（请确保小精灵当前位置可搜索到此WIFI）\n2.点击小精灵联网按钮后，确认小精灵进入 网络扫描功能\n3.将二维码平放于桌面，离小精灵5厘米左右\n4.联网成功后，设备将发出成功提示\n5.联网未成功，请检查放置的位置、网络状态、用户名与密码输入是否有误
+    </text>
+  </view>
+</view>

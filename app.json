@@ -3,7 +3,9 @@
     "pages/login/login",
     "pages/home/homePage/homePage",
     "pages/device/bindDevice/bindDevice",
+    "pages/device/deviceSet/deviceSet",
     "pages/baby/babyBadge/babyBadge",
+    "pages/baby/babyFile/babyFile",
     "pages/music/musicHot/musicHot",
     "pages/music/musicList/musicList",
     "pages/chat/chatRoom/chatRoom",
@@ -28,31 +30,31 @@
       {
         "pagePath": "pages/home/homePage/homePage",
         "text": "小精灵",
-        "iconPath": "images/icon_intro.png",
-        "selectedIconPath": "images/icon_intro.png"
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_selected.png"
       },
       {
         "pagePath": "pages/music/musicHot/musicHot",
         "text": "听一听",
-        "iconPath": "images/icon_intro.png",
-        "selectedIconPath": "images/icon_intro.png"
+        "iconPath": "images/icon_listen.png",
+        "selectedIconPath": "images/icon_listen_selected.png"
       },
       {
         "pagePath": "pages/chat/chatRoom/chatRoom",
-        "iconPath": "images/icon_intro.png",
-        "selectedIconPath": "images/icon_intro.png"
+        "iconPath": "images/icon_chat.png",
+        "selectedIconPath": "images/icon_chat.png"
       },
       {
         "pagePath": "pages/book/bookHot/bookHot",
         "text": "绘本城",
-        "iconPath": "images/icon_intro.png",
-        "selectedIconPath": "images/icon_intro.png"
+        "iconPath": "images/icon_books.png",
+        "selectedIconPath": "images/icon_books_selected.png"
       },
       {
         "pagePath": "pages/user/userCenter/userCenter",
         "text": "我的",
-        "iconPath": "images/icon_intro.png",
-        "selectedIconPath": "images/icon_intro.png"
+        "iconPath": "images/icon_mine.png",
+        "selectedIconPath": "images/icon_mine_selected.png"
       }
     ]
   },

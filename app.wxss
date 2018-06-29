@@ -4,13 +4,13 @@
 
 /**整体页面的颜色值*/
 page{
-  background: #efefef
+  background: #F2F2F2
 }
 
 /**导航栏颜色*/
 .weui-navbar{
   background: #fff;
-  border-bottom: 1rpx solid #E5E5E5
+  border-bottom: 1rpx solid #F2F2F2
 }
 /**导航栏字体颜色*/
 .weui-navbar__item.weui-bar__item_on{color:#00d2ff}
@@ -26,10 +26,10 @@ page{
 /**列表的item之间的分隔线--left:15px*/
 .weui-cell:before{
   height: 1rpx;
-  border-color: #E5E5E5
+  border-color: #F2F2F2
 }
 /**列表的item之间的分隔线--left:15px*/
-.weui-cell.line:before{height: 1rpx;left: 0;border-color: #E5E5E5}
+.weui-cell.line:before{height: 1rpx;left: 0;border-color: #F2F2F2}
 /**列表每列的高度*/
 .weui-cell{
   height:28px;
@@ -74,6 +74,18 @@ page{
   width: 80px;
   height: 80px;
   line-height: 80px;
+  margin-right:.4em;
+}
+/**大图片大小为70px*/
+.weui-media-box__thumb.m{
+  width: 70px;
+  height: 70px;
+  vertical-align:center;
+}
+.weui-media-box__hd_in-appmsg.m{
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
   margin-right:.4em;
 }
 

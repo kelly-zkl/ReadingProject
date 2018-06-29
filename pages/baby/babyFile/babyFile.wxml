@@ -1,0 +1,52 @@
+<view class='page'>
+  <view class='page__bd' style='padding-top:30rpx'>
+    <view class='bg-white-corner'>
+      <image src="../../../images/icon_baby.png" class='baby-img' mode="aspectFill" bindtap="togglePopup"></image>
+      <view class='weui-flex' style='margin-top:40rpx'>
+        <view class='weui-flex__item' style='display: flex;justify-content:center'>
+          <view class='baby-girl {{sex==0?"active":""}}' bindtap='sexChange' id="0">女宝</view>
+          <view class='baby-boy {{sex==1?"active":""}}' bindtap='sexChange' id="1">男宝</view>
+        </view>
+      </view>
+      <view class="weui-cells weui-cells_after-title txt-14" style="margin:30rpx 0">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">昵称</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入宝宝昵称" confirm-type="done" bindinput="inputName"/>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生日</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="date" start="1970-01-01" end="{{date}}" value="{{date}}" bindchange="bindDateChange">
+              <view class="picker">{{date}}</view>
+            </picker>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+        <view class="weui-cell weui-cell_input" bindtap="showArea" hover-class="weui-cell_active">
+          <view class="weui-cell__hd">
+            <view class="weui-label">地区</view>
+          </view>
+          <view class="weui-cell__bd">{{province}} {{city}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+      <view class='btn-save' bindtap='saveData'>保存</view>
+    </view>
+  </view>
+  <import src="../../../template/area/area.wxml"/>
+  <template is="areaData" data="{{...item}}"/>
+  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="togglePopup"></view>
+    <view class="zan-popup__container">
+      <view class='weui-grid__label' id="1" bindtap="popuChange" style="padding:20rpx">从相册选择图片</view>
+      <view class='weui-grid__label' id="2" bindtap="popuChange" style="padding:20rpx;border-top:1rpx #f2f2f2 solid">拍摄图片</view>
+      <view class='weui-grid__label' id="3" bindtap="popuChange" style="padding:20rpx;border-top:20rpx #f2f2f2 solid">取消</view>
+    </view>
+  </view>
+</view>

@@ -1,4 +1,3 @@
-/* model.wxss */
 
 picker-view{
   background-color: white;
@@ -11,7 +10,7 @@ picker-view{
 
 .pick-select-view{
   height: 40px !important;
-  color: #66CC99 !important;
+  color: #00d2ff !important;
   font-size: 26px !important;
 }
 
@@ -54,7 +53,7 @@ picker-view-column view{
 }
 
 .animation-element text{
-  color: #66CC99;
+  color: #00d2ff;
   display: inline-flex;  
   position: fixed;
   margin-top: 20rpx;

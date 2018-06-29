@@ -1,1 +1,56 @@
-/* pages/device/bindDevice/bindDevice.wxss */
+page{
+  background: linear-gradient(#00d2ff , #00eaff) no-repeat fixed;
+}
+
+/**白色圆角外边框*/
+.bg-white-corner{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:3px 3px 6px rgba(0,0,0,.1);
+  margin:40rpx;
+  padding:30rpx;
+}
+
+/**输入框外形*/
+.weui-cell{
+  height:40px;
+  min-height:40px;
+  line-height:40px;
+  border: 1rpx #00d2ff solid;
+  border-radius: 20px;
+  margin-bottom: 20rpx;
+}
+.weui-cell_input{
+  height:40px;
+  min-height:40px;
+  line-height:40px
+}
+.weui-cell:before{
+  display: none
+}
+.weui-label{
+  width: 50px;
+  padding-left: 30rpx;
+  color: #00d2ff
+}
+/**保存按钮*/
+.btn-save{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(to right, #00d2ff , #00eaff);
+  margin: 50rpx 0 20rpx 0;
+}
+
+/**说明文字*/
+.view-msg{
+  padding: 0 40rpx 40rpx 40rpx;
+  display:block;
+  white-space:pre-line;
+  color: #fff;
+  font-size: 14px;
+}

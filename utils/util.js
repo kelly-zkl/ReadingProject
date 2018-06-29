@@ -58,7 +58,7 @@ function getNowTime() {
   return formatDate;
 } 
 module.exports = {
-  formatDateTime: formatDateTime,
+  formatDateTime: formatTime,
   formatTime: formatTime,
   getNowDate: getNowDate,
   getNowTime: getNowTime

@@ -1,0 +1,42 @@
+/**绑定图片大小为100px*/
+.weui-media-box__thumb.bind{
+  width: 150px;
+  height: 150px;
+  vertical-align:center;
+}
+.weui-media-box__hd_in-appmsg.bind{
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  margin-right:40px;
+}
+.bg-white-corner{
+  background: #fff;
+  border-radius: 10px;
+}
+.bg-white-shadow-corner{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:3px 3px 6px rgba(0,0,0,.1);
+  margin:0 30rpx 30rpx 30rpx;
+}
+.icon-user{
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  margin:0 auto
+}
+.user-btn{
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1rpx #00d2ff solid;
+  border-radius: 30rpx;
+  color:#00d2ff;
+  font-size: 14px;
+  text-align: center
+}
+.weui-grid__icon.img{
+  width: 45px;
+  height: 45px
+}

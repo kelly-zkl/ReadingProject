@@ -1,21 +1,18 @@
 
-.bg-color-active{
-  height: 260rpx
-}
-
-.view-baby{
-  background: #fff;
-  margin: -30px 15px 15px 15px;
-  border-radius: 15px;
-  box-shadow: 0 3px 6px 0 rgba(0,0,0,0.10);
-}
-.baby-title{
-  height: 90rpx;
-  line-height: 90rpx;
-  width: 100%;
-  color: #00d2ff;
-  font-size: 15px;
+.text-book{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  align-content: center;
+  font-size: 14px;
   text-align: center;
-  border-bottom: 1rpx #e5e5e5 solid
+}
+.txt-num{
+  display: flex;  
+  align-items: center;  
+  font-size: 15px;
 }
 .weui-media-box:before{display: none}

@@ -16,51 +16,34 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
   
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  /**跳转我的身份页面*/
+  gotoIdentity:function(){
+    wx.navigateTo({
+      url: '',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  /**跳转已绑定设备页面*/
+  gotoMyDevice:function(){
+    wx.navigateTo({
+      url: '',
+    })
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  /**跳转我的专辑页面*/
+  gotoMyMusics: function () {
+    wx.navigateTo({
+      url: '',
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  /**跳转我的绘本页面*/
+  gotoMyBooks: function () {
+    wx.navigateTo({
+      url: '',
+    })
   }
 })

@@ -1,28 +1,32 @@
 <view class='page'>
   <view class='page__bd' style='padding-bottom:30rpx'>
     <view class='bg-color-active'>
-
-    </view>
-    <view class='view-baby'>
-      <view class='baby-title'>宝宝档案</view>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:15px 30px'>
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg b">
-          <image class="weui-media-box__thumb b" src="../../../images/icon_intro.png" 
-            style='border-radius:50%'/>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:30px'>
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
+          <image class="weui-media-box__thumb m" src="../../../images/icon_intro.png" 
+            style='border-radius:50%' bindtap='gotoIdentity'/>
         </view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px'>
-          <view class="weui-media-box__title txt-15">宝宝名称</view>
-          <view class="weui-media-box__desc" style='display: flex;align-items: center'>
-            <view style='display:inline-block;margin-right:5px'>3岁4个月</view>
-            <image style='display:inline-block;width:18px;height:18px' 
-            src="../../../images/icon_intro.png"></image>
-          </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px' bindtap='gotoMyDevice'>
+          <view class="weui-media-box__title txt-15 txt-color-white">微信昵称</view>
+          <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>已添加2个设备</view>
         </view>
       </view>
     </view>
-    <view class='view-baby' style='height: 150rpx;margin:10px 15px 20px 15px'>
+    <view class='weui-flex' style="background:#fff;padding:15px 20px">
+      <view class='weui-flex__item' bindtap='gotoMyMusics'>
+        <text class='text-book'>收藏\n专辑</text>
+      </view>
+      <view class='weui-flex__item txt-num' bindtap='gotoMyMusics'>
+        <view class='txt-num' style='text-align:left'>9999</view>
+      </view>
+      <view class='weui-flex__item' bindtap='gotoMyBooks'>
+        <text class='text-book'>收藏\n绘本</text>
+      </view>
+      <view class='weui-flex__item txt-num' bindtap='gotoMyBooks'>
+        <view class='txt-num' style='text-align:left'>9999</view>
+      </view>
     </view>
-    <view class="weui-cells weui-cells_in-small-appmsg txt-14">
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
@@ -30,6 +34,17 @@
         <view class="weui-cell__bd weui-cell_primary">通知</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
+    </view>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+        </view>
+        <view class="weui-cell__bd weui-cell_primary">账号安全</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+    </view>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
