@@ -10,19 +10,19 @@
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title btn-bind-dev" bindtap='bindDevice'>添加设备</view>
           <view class="weui-media-box__desc txt-color-white" bindtap='scanCode'
-            style='position: absolute;bottom:20px;right:0'>扫一扫 加入家庭成员</view>
+            style='position: absolute;bottom:0;right:0'>扫一扫 加入家庭成员</view>
         </view>
       </view>
     </view>
     <view style='padding:0 10px 30rpx 10px' wx:else>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0 0 10rpx 0'>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
           style='width:{{bindW*0.7}}px;height:{{bindW}}px;line-height:{{bindW}}px'>
           <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
             style='width:{{bindW*0.7}}px;height:{{bindW}}px'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title txt-15 txt-color-white">宝宝的小精灵</view>
+          <view class="weui-media-box__title txt-16 txt-color-white">宝宝的小精灵</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
         <view class="weui-cell__ft" style='position: absolute;top:15px;right:0' bindtap='gotoSet'>

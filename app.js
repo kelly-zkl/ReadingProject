@@ -5,7 +5,14 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.globalData.homeWidth['imgWidth']=((res.windowWidth - 76) / 3) + 'px';
+        that.globalData.homeWidth['bindW']= (res.windowHeight * 0.26);
+        that.globalData.homeWidth['unbindW']= (res.windowHeight * 0.40)
+      }
+    });
     // 登录
     wx.login({
       success: res => {
@@ -34,6 +41,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    homeWidth:{}
   }
 })

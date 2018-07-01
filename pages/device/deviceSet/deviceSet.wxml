@@ -1,14 +1,14 @@
 <view class='page'>
   <view class='page__bd'>
-    <view style='padding:0 10px 30rpx 10px;background: linear-gradient(#00d2ff , #00eaff)'>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0 0 10rpx 0'>
+    <view style='padding:0 30rpx 100rpx 30rpx;background: linear-gradient(#00d2ff , #00eaff)'>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
           style='width:{{deviceW*0.7}}px;height:{{deviceW}}px;line-height:{{deviceW}}px'>
           <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
             style='width:{{deviceW*0.7}}px;height:{{deviceW}}px'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title txt-15 txt-color-white">宝宝的小精灵</view>
+          <view class="weui-media-box__title txt-16 txt-color-white">宝宝的小精灵</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
         <view class="weui-cell__ft" style='position: absolute;top:15px;right:0' bindtap='gotoSet'>
@@ -38,7 +38,7 @@
         </view>
       </view>
     </view>
-    <view class='bg-white-shadow-corner' style='margin-top:30rpx'>
+    <view class='bg-white-shadow-corner' style='margin-top:-70rpx'>
       <view class="weui-media-box weui-media-box_appmsg" style='padding:30rpx'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
           <image class="weui-media-box__thumb m" src="../../../images/icon_baby.png"

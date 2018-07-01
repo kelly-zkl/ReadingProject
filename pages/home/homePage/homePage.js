@@ -1,4 +1,8 @@
-// pages/home/homePage/homePage.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**
@@ -17,17 +21,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          imgWidth: ((res.windowWidth - 76) / 3)+'px',
-          bindW: (res.windowHeight*0.28),
-          unbindW: (res.windowHeight * 0.42),
-        })
-      }
+    that.setData({
+      imgWidth: app.globalData.homeWidth.imgWidth,
+      bindW: app.globalData.homeWidth.bindW,
+      unbindW: app.globalData.homeWidth.unbindW,
     });
-  
   },
 
   /**

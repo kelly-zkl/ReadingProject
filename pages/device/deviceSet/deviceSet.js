@@ -1,4 +1,8 @@
-// pages/device/deviceSet/deviceSet.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**
@@ -15,12 +19,8 @@ Page({
   onLoad: function (options) {
     var that = this;
 
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          deviceW: (res.windowHeight * 0.28)
-        })
-      }
+    that.setData({
+      deviceW: app.globalData.homeWidth.bindW
     });
   },
 

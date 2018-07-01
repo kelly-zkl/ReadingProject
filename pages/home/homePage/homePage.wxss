@@ -3,14 +3,13 @@ page{
 }
 
 .btn-bind-dev{
-  height: 66rpx;
-  width: 100%;
-  line-height: 66rpx;
-  border-radius: 35rpx;
-  border: 4rpx #fff solid;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 18px;
+  border: 2px #fff solid;
   color: #fff;
   font-size: 16px;
-  text-align: center;
+  text-align: center
 }
 
 /**绑定图片大小为100px*/
