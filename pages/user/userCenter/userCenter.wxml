@@ -27,7 +27,7 @@
       </view>
     </view>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
-      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/user/systemMsg/systemMsg" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
         </view>

@@ -1,0 +1,61 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:50rpx'>
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">添加成员</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </navigator>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='scan'>
+        <view class="weui-cell__bd weui-cell_primary">扫一扫</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+
+    <view class="weui-panel weui-panel_access line">
+      <view class="weui-panel__hd">管理员</view>
+      <view class="weui-panel__bd" wx:for="0" wx:key="*this">
+        <view hover-class="weui-cell_active" class="weui-media-box weui-media-box_appmsg" bindtap='togglePopup'>
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{item.thumbUrl?item.thumbUrl:'../../../images/icon_user.png'}}"/>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">妈妈</view>
+            <view class="weui-media-box__desc txt-13">微信名</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-panel weui-panel_access line">
+      <view class="weui-panel__hd">普通成员</view>
+      <view class="weui-panel__bd" wx:for="012" wx:key="*this">
+        <view hover-class="weui-cell_active" class="weui-media-box weui-media-box_appmsg"
+          style='border-bottom: 1rpx solid #F2F2F2' bindtap='togglePopup'>
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{item.thumbUrl?item.thumbUrl:'../../../images/icon_user.png'}}"/>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">爸爸</view>
+            <view class="weui-media-box__desc txt-13">微信名</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+   <!--选择比赛队员-->
+  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="togglePopup"></view>
+    <view class="zan-popup__container">
+      <view class="weui-cells weui-cells_after-title txt-14">
+        <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">设置身份</view>
+        </view>
+        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">删除</view>
+        </view>
+        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">取消</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+
+.weui-panel__hd{
+  background: #F2F2F2
+}
+.weui-panel__hd:after{display: none}

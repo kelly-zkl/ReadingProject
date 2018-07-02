@@ -4,7 +4,10 @@
     "pages/home/homePage/homePage",
     "pages/device/bindDevice/bindDevice",
     "pages/device/deviceSet/deviceSet",
+    "pages/device/deviceList/deviceList",
     "pages/baby/babyBadge/babyBadge",
+    "pages/baby/babyMusics/babyMusics",
+    "pages/baby/babyBookShelf/babyBookShelf",
     "pages/baby/babyFile/babyFile",
     "pages/music/musicHot/musicHot",
     "pages/music/musicList/musicList",
@@ -13,7 +16,10 @@
     "pages/book/bookList/bookList",
     "pages/user/userCenter/userCenter",
     "pages/user/collectionMusics/collectionMusics",
-    "pages/user/collectionBooks/collectionBooks"
+    "pages/user/collectionBooks/collectionBooks",
+    "pages/user/userManager/userManager",
+    "pages/user/setUserId/setUserId",
+    "pages/user/systemMsg/systemMsg"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -23,18 +23,6 @@ page{
   margin-left: -104rpx;
   margin-top: -204rpx;
 }
-/**保存按钮*/
-.btn-save{
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  color: #fff;
-  font-size: 16px;
-  text-align: center;
-  width: 100%;
-  background: linear-gradient(to right, #00d2ff , #00eaff);
-  margin: 50rpx 0 20rpx 0;
-}
 /**男宝女宝的选择控件*/
 .baby-girl{
   width: 100rpx;

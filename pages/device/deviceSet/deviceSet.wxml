@@ -11,9 +11,6 @@
           <view class="weui-media-box__title txt-16 txt-color-white">宝宝的小精灵</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
-        <view class="weui-cell__ft" style='position: absolute;top:15px;right:0' bindtap='gotoSet'>
-          <image src="../../../images/icon_change.png" style='width:30px;height:30px'></image>
-        </view>
       </view>
       <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
         <view class='weui-flex__item'>
@@ -47,7 +44,7 @@
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px'>
           <view class="weui-media-box__title txt-15">宝宝名称</view>
           <view class="weui-media-box__desc" style='display: flex;align-items: center;margin-top:5px'>
-            <view style='display:inline-block;margin-right:5px'>3岁4个月</view>
+            <view style='display:inline-block;margin-right:5px'>3岁4个月</view> 
             <image style='display:inline-block;width:18px;height:18px' 
             src="{{sex==0?'../../../images/icon_female.png':'../../../images/icon_male.png'}}"></image>
           </view>
@@ -58,14 +55,14 @@
       </view>
       <view class='weui-flex' style='border-top:1rpx #F2F2F2 solid;padding:20rpx 30rpx'>
         <block wx:for="123" wx:key="*this">
-          <view class='weui-flex__item' style='display: flex;align-items: center'>
+          <view class='weui-flex__item' style='display: flex;align-items: center' bindtap='gotoUserId'>
             <image src="../../../images/icon_user.png" class='icon-user'></image>
           </view>
         </block>
         <view class='weui-flex__item' style='display: flex;align-items: center;text-align: center'>
           <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0;text-align: center'>共8人</view>
         </view>
-        <view style='display: flex;align-items: center'>
+        <view style='display: flex;align-items: center' bindtap='gotoUserManager'>
           <view class='user-btn'>成员管理</view>
         </view>
       </view>

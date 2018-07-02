@@ -35,16 +35,22 @@ Page({
   
   },
 
-/**跳转到设备设置页面*/
+  /**跳转到设备设置页面*/
   gotoSet:function(){
     wx.navigateTo({
       url: '/pages/device/deviceSet/deviceSet',
     })
   },
-  /**添加/绑定设备*/
+  /**跳转到添加/绑定设备*/
   bindDevice:function(){
     wx.navigateTo({
       url: '/pages/device/bindDevice/bindDevice',
+    })
+  },
+  /**跳转到已绑定的设备列表页面*/
+  gotoDevice:function(){
+    wx.navigateTo({
+      url: '/pages/device/deviceList/deviceList',
     })
   },
   /**扫码添加家庭成员*/

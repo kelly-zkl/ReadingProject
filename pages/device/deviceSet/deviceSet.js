@@ -34,7 +34,19 @@ Page({
   /**跳转到宝宝档案页面*/
   gotoBaby:function(){
     wx.navigateTo({
-      url: '/pages/baby/babyFile/babyFile',
+      url: '/pages/baby/babyFile/babyFile'
+    })
+  },
+  /**跳转到成员管理页面*/
+  gotoUserManager:function(){
+    wx.navigateTo({
+      url: '/pages/user/userManager/userManager'
+    })
+  },
+  /**跳转到成员身份页面*/
+  gotoUserId:function(){
+    wx.navigateTo({
+      url: '/pages/user/setUserId/setUserId'
     })
   }
 })

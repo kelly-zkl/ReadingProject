@@ -1,0 +1,7 @@
+<view class='page'>
+  <view class='page__bd' style='padding-bottom:180rpx'>
+  </view>
+  <view class="weui-footer weui-footer_fixed-bottom" style="padding:30rpx;background:#fff;border-top:1rpx #e5e5e5 solid">
+    <view class="btn-save" bindtap='createGame'>添加设备</view> 
+  </view>
+</view>

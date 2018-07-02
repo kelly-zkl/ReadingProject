@@ -92,6 +92,8 @@ page{
 .weui-panel:before{
   display: none
 }
+.weui-panel:after,.weui-panel:before{display: none}
+.line.weui-panel:after,.line.weui-panel:before{height:1rpx;color:#F2F2F2}
 
 /**多个标签之间的间隔10px*/
 .zan-tag + .zan-tag,.zan-tag:first-child{
@@ -281,3 +283,21 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .bg-color-active{background: #00d2ff}
 .bg-color-white{background: #fff}
 .bg-color-gray{background: #999}
+
+/**保存按钮*/
+.btn-save{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  background: linear-gradient(to right, #00d2ff , #00eaff)
+}
+.vertical-center{
+  vertical-align: middle;
+  display: flex;  
+  align-items: center; 
+}
+

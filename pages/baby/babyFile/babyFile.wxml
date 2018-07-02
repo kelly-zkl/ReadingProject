@@ -36,7 +36,7 @@
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
       </view>
-      <view class='btn-save' bindtap='saveData'>保存</view>
+      <view class='btn-save' bindtap='saveData' style='margin: 50rpx 0 20rpx 0'>保存</view>
     </view>
   </view>
   <import src="../../../template/area/area.wxml"/>

@@ -1,0 +1,25 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='scan'>
+        <view class="weui-cell__bd weui-cell_primary">自定义</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:30rpx'>
+      <block wx:for="012345" wx:key="*this">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
+          bindtap="bindChecked" data-index="{{index}}">
+          <view class="weui-cell__bd weui-cell_primary">妈妈</view>
+          <view class="weui-cell__ft">
+            <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff" class='vertical-center'/>
+            <icon wx:else type="circle" size="20" color="#00d2ff"  class='vertical-center'/>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view style='margin:30px'>
+      <view class='btn-save'>确认选择</view>
+    </view>
+  </view>
+</view>

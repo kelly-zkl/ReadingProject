@@ -12,10 +12,13 @@
           <view class="weui-media-box__desc txt-color-white" bindtap='scanCode'
             style='position: absolute;bottom:0;right:0'>扫一扫 加入家庭成员</view>
         </view>
+        <view class="weui-cell__ft setting" catchtap='gotoDevice'>
+          <image src="../../../images/btn_change.png" style='width:30px;height:30px'></image>
+        </view>
       </view>
     </view>
     <view style='padding:0 10px 30rpx 10px' wx:else>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0' bindtap='gotoSet'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
           style='width:{{bindW*0.7}}px;height:{{bindW}}px;line-height:{{bindW}}px'>
           <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
@@ -25,8 +28,11 @@
           <view class="weui-media-box__title txt-16 txt-color-white">宝宝的小精灵</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
-        <view class="weui-cell__ft" style='position: absolute;top:15px;right:0' bindtap='gotoSet'>
+        <view class="weui-cell__ft setting" catchtap='gotoSet'>
           <image src="../../../images/icon_setting.png" style='width:30px;height:30px'></image>
+        </view>
+        <view class="weui-cell__ft setting" style='right:50px' catchtap='gotoDevice'>
+          <image src="../../../images/btn_change.png" style='width:30px;height:30px'></image>
         </view>
       </view>
       <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
@@ -55,7 +61,8 @@
     <view>
       <view class='bg-white-corner' style='margin: 0 10px'>
         <view class="weui-cells weui-cells_in-small-appmsg txt-14">
-          <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <navigator url="/pages/baby/babyBookShelf/babyBookShelf" class="weui-cell weui-cell_access"
+            hover-class="weui-cell_active">
             <view class="weui-cell__hd">
               <image src="../../../images/icon_book_shelf.png" class="cell-icon-size"/>
             </view>
@@ -75,7 +82,7 @@
       </view>
       <view class='weui-flex' style='padding:10px'>
         <view class='weui-flex__item bg-white-corner' style='margin-right:5px'>
-          <navigator url="" class="weui-media-box weui-media-box_appmsg"
+          <navigator url="/pages/baby/babyMusics/babyMusics" class="weui-media-box weui-media-box_appmsg"
             style='padding:10px' hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="../../../images/icon_baby_musics.png"/>
@@ -87,7 +94,7 @@
           </navigator>
         </view>
         <view class='weui-flex__item bg-white-corner' style='margin-left:5px'>
-          <navigator url="" class="weui-media-box weui-media-box_appmsg"
+          <navigator url="/pages/baby/babyBadge/babyBadge" class="weui-media-box weui-media-box_appmsg"
             style='padding:10px' hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="../../../images/icon_baby_stars.png"/>
@@ -95,12 +102,12 @@
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
               <view class="weui-media-box__title txt-14">成长星</view>
               <view class="weui-media-box__desc" style='display: flex;align-items: center'>
-                <image src="../../../images/icon_star_selected.png" class="view-star" wx:if="{{star>0}}"></image>
-                <image src="../../../images/icon_star.png" class="view-star" wx:else></image>
-                <image src="../../../images/icon_star_selected.png" class="view-star" wx:if="{{star>1}}"></image>
-                <image src="../../../images/icon_star.png" class="view-star" wx:else></image>
-                <image src="../../../images/icon_star_selected.png" class="view-star" wx:if="{{star>2}}"></image>
-                <image src="../../../images/icon_star.png" class="view-star" wx:else></image>
+                <image src="{{star>0?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+                  class="view-star"></image>
+                <image src="{{star>1?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+                  class="view-star"></image>
+                <image src="{{star>2?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+                  class="view-star"></image>
               </view>
             </view>
           </navigator>
