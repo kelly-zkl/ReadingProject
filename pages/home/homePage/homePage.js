@@ -13,7 +13,8 @@ Page({
     isBind:true,
     star:0,
     bindW:0,
-    unbindW:0
+    unbindW:0,
+    neverBind:true
   },
 
   /**
@@ -34,7 +35,16 @@ Page({
   onShow: function () {
   
   },
-
+  changeNever:function(){
+    this.setData({
+      neverBind: !this.data.neverBind
+    })
+  },
+  changeBind:function(){
+    this.setData({
+      isBind: !this.data.isBind
+    })
+  },
   /**跳转到设备设置页面*/
   gotoSet:function(){
     wx.navigateTo({

@@ -19,7 +19,12 @@
     "pages/user/collectionBooks/collectionBooks",
     "pages/user/userManager/userManager",
     "pages/user/setUserId/setUserId",
-    "pages/user/systemMsg/systemMsg"
+    "pages/user/systemMsg/systemMsg",
+    "pages/user/usingHelp/usingHelp",
+    "pages/user/feedBack/feedBack",
+    "pages/user/aboutUs/aboutUs",
+    "pages/user/myMusics/myMusics",
+    "pages/user/myBooks/myBooks"
   ],
   "window":{
     "backgroundTextStyle":"light",

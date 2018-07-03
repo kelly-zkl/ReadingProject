@@ -1,0 +1,16 @@
+
+page{
+  background: #fff
+}
+
+.weui-grid__icon{
+  border-radius: 10rpx
+}
+.weui-grid__label{
+  text-align: left;
+  margin-left: 20rpx
+}
+.weui-grid__label.txt-13{
+  margin-top: 0;
+  margin-bottom: 5px
+}

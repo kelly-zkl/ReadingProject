@@ -296,8 +296,26 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: linear-gradient(to right, #00d2ff , #00eaff)
 }
 .vertical-center{
-  vertical-align: middle;
   display: flex;  
   align-items: center; 
+  vertical-align: middle;
 }
 
+/**搜索框*/
+.weui-search-bar__cancel-btn{
+  color: #00ddf2;
+  font-size: 14px;
+  line-height:32px;
+}
+.weui-search-bar{
+  border-top: none;
+  border-bottom: none
+}
+.weui-search-bar__input{
+  height:32px;
+  line-height:32px;
+  text-align: center
+}
+.weui-search-bar__label{line-height:32px;}
+.weui-icon-clear{padding:9px 8px}
+.weui-icon-search_in-box{top:9px}

@@ -25,25 +25,25 @@ Page({
   /**跳转我的身份页面*/
   gotoIdentity:function(){
     wx.navigateTo({
-      url: '',
+      url: '/pages/user/setUserId/setUserId'
     })
   },
   /**跳转已绑定设备页面*/
   gotoMyDevice:function(){
     wx.navigateTo({
-      url: '',
+      url: '/pages/device/deviceList/deviceList'
     })
   },
   /**跳转我的专辑页面*/
   gotoMyMusics: function () {
     wx.navigateTo({
-      url: '',
+      url: '/pages/user/myMusics/myMusics'
     })
   },
   /**跳转我的绘本页面*/
   gotoMyBooks: function () {
     wx.navigateTo({
-      url: '',
+      url: '/pages/user/myBooks/myBooks'
     })
   }
 })

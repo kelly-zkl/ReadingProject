@@ -1,8 +1,16 @@
 <view class='page'>
-  <view class='page__bd'>
+  <view class='page__bd' wx:if="{{neverBind}}" style="padding:0 30rpx" bindtap='changeNever'>
+    <view style="position:relative;height:100vh">
+      <view style='position: absolute; top: 50%;transform: translateY(-50%)'>
+        <image src="../../../images/icon_baby_musics.png" mode="widthFix" style='width:690rpx'></image>
+        <view class='btn-bind-dev' bindtap='bindDevice' style='margin:30rpx 20% 0 20%;width:60%'>添加设备</view>
+      </view>
+    </view>
+  </view>
+  <view class='page__bd' wx:else bindtap='changeNever'>
     <view style='padding:0 10px 30rpx 10px' wx:if="{{!isBind}}">
       <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg unbind"
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg unbind" catchtap='changeBind'
           style='width:{{unbindW*0.7}}px;height:{{unbindW}}px;line-height:{{unbindW}}px'>
           <image class="weui-media-box__thumb unbind" src="../../../images/icon_baby_musics.png"
             style='width:{{unbindW*0.7}}px;height:{{unbindW}}px'/>
@@ -17,9 +25,9 @@
         </view>
       </view>
     </view>
-    <view style='padding:0 10px 30rpx 10px' wx:else>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0' bindtap='gotoSet'>
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
+    <view style='padding:0 10px 30rpx 10px' wx:else bindtap='changeBind'>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind" catchtap='changeBind'
           style='width:{{bindW*0.7}}px;height:{{bindW}}px;line-height:{{bindW}}px'>
           <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
             style='width:{{bindW*0.7}}px;height:{{bindW}}px'/>
