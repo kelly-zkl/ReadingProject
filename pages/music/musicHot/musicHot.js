@@ -23,6 +23,13 @@ Page({
   
   },
 
+  /**跳转到音乐列表页*/
+  gotoList:function(){
+    wx.navigateTo({
+      url: '/pages/music/musicList/musicList'
+    })
+  },
+
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -34,14 +41,14 @@ Page({
       inputShowed: false,
       show: false
     });
-    this.getCourts();
+    // this.getCourts();
   },
   clearInput: function () {
     this.setData({
       inputVal: "",
       show: false
     });
-    this.getCourts();
+    // this.getCourts();
   },
   inputTyping: function (e) {
     console.log(e.detail.value);
@@ -50,6 +57,7 @@ Page({
       show: false
     });
     if (e.detail.value.length > 0) {
+      // this.getCourts();
     }
   }
 })

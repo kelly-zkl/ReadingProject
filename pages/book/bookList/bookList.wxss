@@ -1,1 +1,23 @@
-/* pages/book/bookList/bookList.wxss */
+
+page{
+  background: #fff
+}
+
+.weui-navbar__slider{
+  width:64px
+}
+
+.weui-flex{
+  margin: 0 30rpx
+}
+.weui-grid__icon{
+  border-radius: 10rpx;
+}
+.weui-grid__label.left{
+  text-align: left;
+  margin-left: 20rpx
+}
+.weui-grid__label.txt-13{
+  margin-top: 0;
+  margin-bottom: 5px
+}

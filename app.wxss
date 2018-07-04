@@ -57,7 +57,7 @@ page{
 .weui-footer_fixed-bottom{
   bottom: 0
 }
-
+.weui-media-box:before{display: none}
 .weui-media-box__thumb{
   width: 60px;
   height: 60px;
@@ -75,6 +75,18 @@ page{
   height: 80px;
   line-height: 80px;
   margin-right:.4em;
+}
+/**xl大图片大小为120px*/
+.weui-media-box__thumb.xl{
+  width: 100px;
+  height: 100px;
+  vertical-align:center;
+}
+.weui-media-box__hd_in-appmsg.xl{
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  margin-right:15px;
 }
 /**大图片大小为70px*/
 .weui-media-box__thumb.m{

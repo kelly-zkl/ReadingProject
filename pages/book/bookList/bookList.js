@@ -1,66 +1,92 @@
-// pages/book/bookList/bookList.js
+
+var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
+var http = require("../../../http.js");
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    inputShowed: false,
+    inputVal: "",
+    tabs: ["全部", "最新", "精选", "热销"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
   },
+  /***/
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
+    if (e.currentTarget.id == 0) {//英语
+    } else if (e.currentTarget.id == 1) {//音乐
+    } else if (e.currentTarget.id == 2) {//故事
+    } else if (e.currentTarget.id == 3) {//诗词文学
+    } else {//百科全说
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false,
+      show: false
+    });
+    // this.getCourts();
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  clearInput: function () {
+    this.setData({
+      inputVal: "",
+      show: false
+    });
+    // this.getCourts();
+  },
+  inputTyping: function (e) {
+    console.log(e.detail.value);
+    this.setData({
+      inputVal: e.detail.value,
+      show: false
+    });
+    if (e.detail.value.length > 0) {
+      // this.getCourts();
+    }
   }
 })

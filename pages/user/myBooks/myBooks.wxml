@@ -2,16 +2,17 @@
   <view class='page__bd' style='padding:30rpx'>
     <block wx:for="012" wx:key="*this">
       <view class='weui-flex' style='margin-bottom:20rpx'>
-        <view class='weui-flex__item' style='margin-right:15rpx'>
+        <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-right:15rpx'
+                  hover-class="weui-cell_active">
           <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
           <view class='weui-grid__label'>书名</view>
           <view class='weui-grid__label txt-color-gray txt-13'>系列名</view>
-        </view>
-        <view class='weui-flex__item' style='margin-left:15rpx'>
+        </navigator>
+        <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-left:15rpx' hover-class="weui-cell_active">
           <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
           <view class='weui-grid__label'>书名</view>
           <view class='weui-grid__label txt-color-gray txt-13'>系列名</view>
-        </view>
+        </navigator>
       </view>
     </block>
   </view>
