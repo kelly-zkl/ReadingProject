@@ -1,0 +1,32 @@
+<view class='page'>
+  <view class='page__bd' style='border-top:30rpx #f2f2f2 solid'>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='border-bottom:1rpx #f2f2f2 solid'>
+      <block wx:for="{{tags}}" wx:key="*this">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
+          bindtap="bindChecked" data-index="{{index}}">
+          <view class="weui-cell__bd weui-cell_primary">{{item}}</view>
+          <view class="weui-cell__ft">
+            <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff" class='vertical-center'/>
+            <icon wx:else type="circle" size="20" color="#00d2ff"  class='vertical-center'/>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view style='margin:80px 30px'>
+      <view class='btn-save' bindtap='togglePopu'>确认选择</view>
+    </view>
+  </view>
+  <!--切换语言弹框  -->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopu"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>语言模式设置</view>
+      <view class='txt-14 txt-color-black' style='padding:0 30rpx;text-align:left;margin-top:15px'>
+        选择{{tags[choose]}}后，小精灵的系统语言将切换为{{lans[choose]}}
+      </view>
+      <view style='margin:30px'>
+        <view class='btn-save' bindtap='startChange'>开始</view>
+      </view>
+    </view>
+  </view>
+</view>

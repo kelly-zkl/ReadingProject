@@ -312,6 +312,18 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   align-items: center; 
   vertical-align: middle;
 }
+/**小按钮*/
+.btn-small-50{
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  padding: 0 20rpx;
+  width: auto;
+  background: linear-gradient(to right, #00d2ff , #00eaff)
+}
 
 /**搜索框*/
 .weui-search-bar__cancel-btn{
@@ -331,3 +343,19 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .weui-search-bar__label{line-height:32px;}
 .weui-icon-clear{padding:9px 8px}
 .weui-icon-search_in-box{top:9px}
+
+/**左右箭头*/
+.left.weui-cell__ft_in-access,.right.weui-cell__ft_in-access{
+  padding: 0;
+  width: 50px;
+}
+.btn.weui-cell__ft_in-access:after{content:" ";display:inline-block;height:12px;width:12px;border-width:0 0 2px 2px;border-color:#c8c8cd;border-style:solid;-webkit-transform:matrix(.71,.71,-.71,.71,0,0);transform:matrix(.71,.71,-.71,.71,0,0);position:relative;top:-2px;position:absolute;top:50%;margin-top:-4px;left:50%;margin-left:-4px}
+.right.weui-cell__ft_in-access:after{
+  border-width:2px 2px 0 0
+}
+
+/**弹框大小  */
+.popup-example--center {
+  border-radius: 8px;
+  width: 80%;
+}

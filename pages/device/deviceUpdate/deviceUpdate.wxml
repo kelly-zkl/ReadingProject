@@ -1,0 +1,31 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class='bg-white-corner'>
+      <view class='weui-grid__label'>当前版本</view>
+      <view class='weui-grid__label'>V1.0.0</view>
+    </view>
+    <view class='bg-white-corner'>
+      <view class="btn-save" style="{{isUpdate?'':'background:#bbb'}}" bindtap='updateVersion'>立即更新到V1.0.1</view>
+      <view class='txt-14 txt-color-black' style='margin-top:30rpx'>
+        v1.0.1版本介绍：
+        1.
+        2.
+        3.
+        4.
+        5.
+      </view>
+    </view>
+  </view>
+  <!--设备升级弹框  -->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopu"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>升级提示</view>
+      <view class='weui-grid__label' style='padding:0 30rpx;text-align:left;margin-top:10px'>1.请保证设备当前在线</view>
+      <view class='weui-grid__label' style='padding:0 30rpx;text-align:left'>2.请保持小精灵电量在50%以上</view>
+      <view style='margin:30px'>
+        <view class='btn-save' bindtap='startUpdate'>开始</view>
+      </view>
+    </view>
+  </view>
+</view>

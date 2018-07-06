@@ -1,11 +1,11 @@
-// pages/user/setUserId/setUserId.js
+// pages/device/addClock/addClock.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    choose:0
+    time:'07:00'
   },
 
   /**
@@ -29,11 +29,15 @@ Page({
   
   },
 
-  //选择身份
-  bindChecked: function (e) {
-    var index = parseInt(e.currentTarget.dataset.index);
+  // 设置时间
+  bindTimeChange: function (e) {
     this.setData({
-      choose: index
+      time: e.detail.value
     })
   },
+  
+  // 保存闹钟设置
+  saveClock:function(){
+
+  }
 })

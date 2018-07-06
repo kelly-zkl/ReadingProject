@@ -48,5 +48,19 @@ Page({
     wx.navigateTo({
       url: '/pages/user/setUserId/setUserId'
     })
+  },
+  // 设备解绑
+  unBindDevice:function(){
+    wx.showModal({
+      title: '提示',
+      content: '解绑后，当前用户将无法管理设备',
+      confirmText:'确认解绑',
+      confirmColor:'#00d2ff',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
+    })
   }
 })

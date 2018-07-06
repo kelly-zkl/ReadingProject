@@ -1,0 +1,33 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class='txt-14 txt-color-gray' style='padding:15px'>开启后，当小精灵连续使用超过设定的使用时长，需要10分钟后才可继续使用</view>
+    <view class="weui-cells" style='margin-top:0'>
+      <view class="weui-cell">
+        <view class="weui-cell__bd txt-14">小精灵防沉迷</view>
+        <view class="weui-cell__ft">
+          <switch bindchange="switchChange" color="#00d2ff"/>
+        </view>
+      </view>
+    </view>
+    <view class='txt-14 txt-color-gray' style='padding:0 15px'>使用时长</view>
+    <slider bindchange="slider2change" step="1" max="60" activeColor="#00d2ff" block-color="#00d2ff"
+      block-size="14" backgroundColor="#ccc" show-value style='padding:0 15px'/>
+
+    <view style='margin:30px'>
+      <view class='btn-save' bindtap='togglePopu'>保存</view>
+    </view>
+  </view>
+  <!--设置弹框  -->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopu"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>防沉迷</view>
+      <view class='txt-14 txt-color-black' style='padding:0 30rpx;text-align:left;margin-top:15px'>
+        开启后，当小精灵连续使用超过设定的使用时长，需要10分钟后才可继续使用
+      </view>
+      <view style='margin:30px'>
+        <view class='btn-save' bindtap='startChange'>开始</view>
+      </view>
+    </view>
+  </view>
+</view>

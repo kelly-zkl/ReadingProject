@@ -52,8 +52,3 @@ page{
   line-height: 50rpx;
   text-align: center
 }
-
-/**广告栏*/
-.slide-image{
-  width: 100%;
-}

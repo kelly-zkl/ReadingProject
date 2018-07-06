@@ -41,7 +41,7 @@
       </view>
     </view>
   </view>
-   <!--选择比赛队员-->
+  <!--设置身份-->
   <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
     <view class="zan-popup__mask" catchtap="togglePopup"></view>
     <view class="zan-popup__container">

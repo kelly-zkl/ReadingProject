@@ -1,0 +1,29 @@
+
+page{
+  background: #fff
+}
+
+.update-title{
+  border-radius: 8px 8px 0 0;
+  background: #00d2ff;
+  color: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 16px;
+}
+
+.bg-active-corner{
+  border-radius: 10px;
+  background: linear-gradient(to right, #00d2ff , #00eaff);
+  padding: 30rpx;
+  margin: 15px;
+  box-shadow:4px 4px 8px rgba(0,0,0,.15);
+}
+.weui-grid__label{
+  text-align: left
+}
+.weui-grid__label.b{
+  font-size: 60rpx;
+  margin: 5px 0 20px 0
+}

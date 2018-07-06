@@ -1,0 +1,42 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:30rpx'>
+      <picker mode="time" value="{{time}}" start="00:00" end="23:59"
+              bindchange="bindTimeChange">
+        <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd weui-cell_primary">设置时间</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access">
+              <view class="picker">{{time}}</view>
+          </view>
+        </view>
+      </picker>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">重复</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+          周六、周日
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">铃声</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+          我爱刷牙
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">稍后提醒（10分钟再响）</view>
+        <view class="weui-cell__ft">
+          <switch bindchange="switchChange" color="#00d2ff"/>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd weui-cell_primary">语音指令关闭闹钟</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+          未设置
+        </view>
+      </view>
+    </view>
+    <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding:20rpx 30rpx;border-top:1rpx #f2f2f2 solid">
+      <view class='btn-save' bindtap='saveClock'>保存</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+
+page{
+  background: #fff
+}
+
+.update-title{
+  border-radius: 8px 8px 0 0;
+  background: #00d2ff;
+  color: #fff;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 16px;
+}

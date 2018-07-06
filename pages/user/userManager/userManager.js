@@ -46,7 +46,7 @@ Page({
       }
     })
   },
-  //选择球员
+  //设置身份
   togglePopup() {
     this.setData({
       showPopup: !this.data.showPopup

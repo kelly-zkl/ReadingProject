@@ -1,1 +1,44 @@
-/* pages/book/bookDetail/bookDetail.wxss */
+
+page{
+  background: #fff
+}
+
+.setting{
+  position: absolute;
+  top:0;
+  right:30rpx;
+  display: flex;
+  align-items: center
+}
+
+.btn-small-50{
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+}
+.weui-grid__label.price{
+  color: #fff;
+  margin-right: 20rpx;
+  display:inline-block;
+  margin-top:0;
+}
+
+.cell-icon-size{
+  width: 35px;
+  height: 35px;
+  display: inline-block
+}
+.cell-icon-size.s{
+  width: 56rpx;
+  height: 56rpx;
+}
+.weui-grid__label.circle{
+  position: absolute; left: 50%;transform: translateX(-50%);
+  height: 70rpx;
+  line-height: 70rpx;
+  width: auto;
+  padding: 0 30rpx;
+  border: 1px #fff solid;
+  border-radius: 35rpx;
+  margin: 5rpx auto
+}

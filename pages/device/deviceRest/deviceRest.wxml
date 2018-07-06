@@ -1,0 +1,63 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class='txt-14 txt-color-gray' style='padding:15px'>小精灵在休息时间段内不可使用</view>
+    <view class="weui-cells" style='margin-top:0'>
+      <view class="weui-cell">
+        <view class="weui-cell__bd txt-14">作息模式</view>
+        <view class="weui-cell__ft">
+          <switch bindchange="switchChange" color="#00d2ff"/>
+        </view>
+      </view>
+    </view>
+
+    <view class='bg-active-corner'>
+      <view class='weui-flex'>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label txt-color-white'>开始休息</view>
+        </view>
+        <view class='weui-flex__item'></view>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label txt-color-white'>结束休息</view>
+        </view>
+      </view>
+      <view class='weui-flex'>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label txt-color-white b'>
+            <picker mode="time" value="{{startTime}}" start="00:00" end="23:59"
+              bindchange="bindStartTimeChange">
+              <view class="picker txt-color-white">{{startTime}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label txt-color-white b' style='text-align:center'>-</view>
+        </view>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label txt-color-white b'>
+            <picker mode="time" value="{{endTime}}" start="00:00" end="23:59"
+              bindchange="bindEndTimeChange">
+              <view class="picker txt-color-white">{{endTime}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view style='margin:50px 15px'>
+      <view class='btn-save' bindtap='togglePopu'>保存</view>
+    </view>
+  </view>
+  <!--设置弹框  -->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopu"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>作息设置</view>
+      <view class='txt-14 txt-color-black' style='padding:0 30rpx;text-align:left;margin-top:15px'>
+        小精灵在休息时间段内不可使用
+      </view>
+      <view style='margin:30px'>
+        <view class='btn-save' bindtap='startChange'>开始</view>
+      </view>
+    </view>
+  </view>
+</view>
