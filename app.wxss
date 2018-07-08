@@ -313,10 +313,10 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   vertical-align: middle;
 }
 /**小按钮*/
-.btn-small-50{
-  height: 50rpx;
-  line-height: 50rpx;
-  border-radius: 25rpx;
+.btn-small-60{
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
   color: #fff;
   font-size: 13px;
   text-align: center;

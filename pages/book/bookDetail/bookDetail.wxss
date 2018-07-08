@@ -11,10 +11,8 @@ page{
   align-items: center
 }
 
-.btn-small-50{
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 30rpx;
+.btn-small-60{
+  background: linear-gradient(to right, #FFBB00 , #FFE900)
 }
 .weui-grid__label.price{
   color: #fff;
@@ -29,8 +27,8 @@ page{
   display: inline-block
 }
 .cell-icon-size.s{
-  width: 56rpx;
-  height: 56rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 .weui-grid__label.circle{
   position: absolute; left: 50%;transform: translateX(-50%);
@@ -40,5 +38,5 @@ page{
   padding: 0 30rpx;
   border: 1px #fff solid;
   border-radius: 35rpx;
-  margin: 5rpx auto
+  margin: 15rpx auto
 }

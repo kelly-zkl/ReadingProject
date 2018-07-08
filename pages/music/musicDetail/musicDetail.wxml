@@ -14,14 +14,14 @@
         <image src="../../../images/icon_setting.png" class="cell-icon-size"/>
       </view>
     </view>
-    <view class='weui-flex' style='padding:20rpx 30rpx;background:#fff'>
+    <view class='weui-flex' style='padding:20rpx 30rpx'>
       <view style='height:50rpx;line-height:50rpx;font-size:14px;text-align:center'>共88首</view>
       <view class='weui-flex__item'></view>
-      <view class='btn-small-50' style='margin-right:30rpx'>全加歌单</view>
-      <view class='btn-small-50'>推送全部</view>
+      <view class='btn-small-60' style='margin-right:30rpx'>全加歌单</view>
+      <view class='btn-small-60'>推送全部</view>
     </view>
     <!--曲目列表  -->
-    <view style='margin-top:20rpx;background:#fff'>
+    <view style='background:#fff'>
       <view class="weui-media-box weui-media-box_appmsg" style='padding:20rpx 30rpx;border-bottom:1rpx solid #f2f2f2'
         wx:for="0123456" wx:key="*this">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">

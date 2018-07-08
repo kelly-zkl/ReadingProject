@@ -16,7 +16,9 @@ Page({
     lanaugae:'英文原声',
     lanIdx:1,
     currentIdx:0,
-    currentStr:''
+    currentStr:'',
+    follow:0,
+    pause:0
   },
 
   /**
@@ -109,5 +111,33 @@ Page({
     this.setData({
       showPopup: false
     });
+  },
+  // 收藏
+  collect:function(){
+    if (this.data.follow == 0){
+      this.setData({
+        follow:1
+      })
+    }else{
+      this.setData({
+        follow: 0
+      })
+    }
+  },
+  // 分享
+  share:function(){
+
+  },
+  // 读书暂停/开始
+  readBook: function () {
+    if (this.data.pause == 0) {
+      this.setData({
+        pause: 1
+      })
+    } else {
+      this.setData({
+        pause: 0
+      })
+    }
   }
 })

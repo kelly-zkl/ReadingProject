@@ -17,3 +17,9 @@
   width: 28px;
   height: 28px;
 }
+
+.btn-small-60{
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+}
