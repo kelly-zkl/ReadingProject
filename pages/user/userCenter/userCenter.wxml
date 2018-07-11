@@ -3,7 +3,7 @@
     <view class='bg-color-active'>
       <view class="weui-media-box weui-media-box_appmsg" style='padding:30px'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
-          <image class="weui-media-box__thumb m" src="../../../images/icon_intro.png" 
+          <image class="weui-media-box__thumb m" src="../../../images/icon_user.png" 
             style='border-radius:50%' bindtap='gotoIdentity'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px' bindtap='gotoMyDevice'>
@@ -29,7 +29,7 @@
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="/pages/user/systemMsg/systemMsg" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
-          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+          <image src="../../../images/icon_msg.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">通知</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -38,7 +38,7 @@
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
-          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+          <image src="../../../images/icon_account.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">账号安全</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -47,21 +47,21 @@
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="/pages/user/usingHelp/usingHelp" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
-          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+          <image src="../../../images/icon_help.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">使用帮助</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
       <navigator url="/pages/user/feedBack/feedBack" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
-          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+          <image src="../../../images/icon_feedback.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">投诉建议</view>
         <view class="weui-cell__ft weui-cell__ft_in-access txt-12">您的建议能让我们做的更好</view>
       </navigator>
       <navigator url="/pages/user/aboutUs/aboutUs" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__hd">
-          <image src="../../../images/icon_intro.png" class="cell-icon-size"/>
+          <image src="../../../images/icon_about.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">关于我们</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>

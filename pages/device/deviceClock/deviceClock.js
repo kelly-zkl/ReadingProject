@@ -10,7 +10,7 @@ Page({
    */
   data: {
     showPopu: false,
-    upNum: 0,
+    upNum: 0
   },
 
   /**

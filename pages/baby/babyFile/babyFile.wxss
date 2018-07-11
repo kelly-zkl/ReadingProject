@@ -1,5 +1,10 @@
-@import '../../../template/area/area.wxss';
+@import '../../../template/model/model.wxss';
 
+.area{
+  height:100px;
+  min-height:100px;
+  line-height:100px
+}
 page{
   background: linear-gradient(#00d2ff , #00eaff) no-repeat fixed;
 }

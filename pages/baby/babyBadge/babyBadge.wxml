@@ -1,4 +1,50 @@
 <view class='page'>
   <view class='page__bd'>
+    <view class='bg-white-shadow-corner'>
+      <image src="../../../images/icon_today_start.png" class='start-img' mode="aspectFill"></image>
+      <view class='weui-flex vertical-center' bindtap='changeStart'>
+        <view class='weui-flex__item vertical-center' style='justify-content: center;'>
+          <image src="{{start>0?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+              class="view-star"></image>
+          <image src="{{start>1?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+            class="view-star"></image>
+          <image src="{{start>2?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+            class="view-star"></image>
+        </view>
+      </view>
+      <view class='weui-grid__label txt-15' style='margin-top:50rpx;color:#FF6483'>{{start==0?'今天还没有读书':start==1?'你很棒！':'恭喜你！'}}</view>
+      <view class='weui-grid__label txt-15' style='color:#FF6483'>{{start==0?'没有获得星星':'今天读完了'+start+'本书'}}</view>
+      <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:30rpx'>
+        {{start==0?'要加油哦！':start==3?'要持之以恒哦~':'再读'+(3-start)+'本书就能获得3颗星星了'}}
+      </view>
+    </view>
+    <view class='weui-flex' style='margin:0 30rpx 30rpx 30rpx'>
+      <view class='weui-grid__label'>本月成长星</view>
+      <view class='weui-flex__item'></view>
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2090-12-31"
+        bindchange="bindDateChange" fields="month">
+        <view class='weui-grid__label txt-color-gray'>选择月份</view>
+        <view class="picker">
+        </view>
+      </picker>
+    </view>
+    <view class='weui-grid__label' style='padding:30rpx 0;margin:0;background:#fff'>{{date}}月累计获得88颗成长星</view>
+    <block wx:for="0123012301230123" wx:key="*this">
+      <view class='weui-flex' style='background:#fff;padding:5rpx'>
+        <view class='weui-flex__item'>
+          <view class='weui-grid__label' style='margin-top:0;height:60rpx;line-height:60rpx'>8-30</view>
+        </view>
+        <view class='weui-flex__item'>
+          <view style='display: flex;align-items: center'>
+            <image src="{{item>0?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+              class="view-star"></image>
+            <image src="{{item>1?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+              class="view-star"></image>
+            <image src="{{item>2?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
+              class="view-star"></image>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
 </view>

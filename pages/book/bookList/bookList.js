@@ -9,12 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: "",
     tabs: ["全部", "最新", "精选", "热销"],
     activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0
+    sliderOffset: 36,
+    sliderLeft: 0,
+    menuHeight:0,
+    showRightPopup:false
   },
 
   /**
@@ -25,8 +25,9 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+          sliderLeft: ((res.windowWidth-72 )/ that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: (res.windowWidth - 72) / that.data.tabs.length * that.data.activeIndex+36,
+          menuHeight: (res.windowHeight - 60)
         });
       }
     });
@@ -59,34 +60,25 @@ Page({
 
     }
   },
-  showInput: function () {
+  // 跳转搜索页面
+  gotoSearch: function () {
+    wx.navigateTo({
+      url: '/pages/common/search/search?type=book'
+    })
+  },
+  // 右侧弹框
+  toggleRightPopup: function () {
     this.setData({
-      inputShowed: true
+      showRightPopup: !this.data.showRightPopup
     });
   },
-  hideInput: function () {
+  // 选择分类标签
+  changeTag: function (e) {
+    var idx = e.currentTarget.id;
+    var index = e.currentTarget.dataset.index;
     this.setData({
-      inputVal: "",
-      inputShowed: false,
-      show: false
-    });
-    // this.getCourts();
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: "",
-      show: false
-    });
-    // this.getCourts();
-  },
-  inputTyping: function (e) {
-    console.log(e.detail.value);
-    this.setData({
-      inputVal: e.detail.value,
-      show: false
-    });
-    if (e.detail.value.length > 0) {
-      // this.getCourts();
-    }
+      typeIdx: idx,
+      tagIdx: index
+    })
   }
 })

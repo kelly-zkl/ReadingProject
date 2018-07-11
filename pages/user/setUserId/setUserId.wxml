@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14">
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='scan'>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='togglePopu'>
         <view class="weui-cell__bd weui-cell_primary">自定义</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>
@@ -19,7 +19,18 @@
       </block>
     </view>
     <view style='margin:30px'>
-      <view class='btn-save'>确认选择</view>
+      <view class='btn-save' hover-class="btn-active" bindtap='saveChoose'>确认选择</view>
+    </view>
+  </view>
+  <!--自定义身份弹框  -->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopu"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>自定义身份</view>
+      <input class="weui-input" placeholder="请输入身份" value='{{identity}}' bindinput="inputIdentity"/>
+      <view style='margin:30px 30rpx 30rpx 30rpx'>
+        <view class='btn-save' bindtap='saveIdentity' hover-class="btn-active">保存</view>
+      </view>
     </view>
   </view>
 </view>

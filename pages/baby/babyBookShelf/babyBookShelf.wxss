@@ -1,1 +1,62 @@
-/* pages/baby/babyBookShelf/babyBookShelf.wxss */
+
+page{
+  background: #fff
+}
+
+.weui-flex{
+  margin: 0 30rpx
+}
+.weui-grid__icon{
+  border-radius: 10rpx;
+}
+.weui-grid__label.left{
+  text-align: left;
+  margin-left: 20rpx
+}
+.weui-grid__label.txt-13{
+  margin-top: 0;
+  margin-bottom: 5px
+}
+
+/**标签标题*/
+.view-tag{
+  position: relative;
+  padding: 0 30rpx 0 30rpx;
+}
+.view-tag-title{
+  display: inline-block;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #fff;
+  font-size: 12px;
+  background: #00d2ff;
+  border-radius: 25rpx;
+  text-align: center;
+}
+.view-tag-more{
+  display: inline-block;
+  position: absolute;
+  right: 30rpx;
+  color: #999;
+  font-size: 13px;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center
+}
+
+/*统计  */
+.view-card{
+  display: inline-block;
+  width: 43%;
+  padding:30rpx;
+  background: linear-gradient(to right, #FF6D8D , #FF9B97);
+  margin-right: 20rpx;
+  border-radius: 8px;
+}
+.view-card:first-child{
+  margin-left: 20rpx
+}
+.view-card .weui-grid__label{
+  color: #fff;
+}

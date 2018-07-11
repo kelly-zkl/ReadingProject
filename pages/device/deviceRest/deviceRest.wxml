@@ -44,7 +44,7 @@
     </view>
 
     <view style='margin:50px 15px'>
-      <view class='btn-save' bindtap='togglePopu'>保存</view>
+      <view class='btn-save' bindtap='togglePopu' hover-class="btn-active">保存</view>
     </view>
   </view>
   <!--设置弹框  -->
@@ -56,7 +56,7 @@
         小精灵在休息时间段内不可使用
       </view>
       <view style='margin:30px'>
-        <view class='btn-save' bindtap='startChange'>开始</view>
+        <view class='btn-save' bindtap='startChange' hover-class="btn-active">开始</view>
       </view>
     </view>
   </view>

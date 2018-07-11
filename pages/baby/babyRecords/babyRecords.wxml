@@ -1,0 +1,46 @@
+<view class='page'>
+  <view class='page__bd'>
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+            bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content">
+          <view style='background:#fff'>
+            <view class="weui-media-box weui-media-box_appmsg" style='padding:20rpx 30rpx;border-bottom:1rpx solid #f2f2f2'
+              wx:for="0123456" wx:key="*this" hover-class="weui-cell_active">
+              <view class="weui-media-box__hd weui-media-box__hd_in-appmsg b">
+                <image class="weui-media-box__thumb b" src="../../../images/icon_book.png"/>
+              </view>
+              <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title txt-15" style='height:30px;line-height:30px'>书名/系列名</view>
+                <view class="weui-media-box__desc txt-13 txt-color-gray" style='height:20px;line-height:20px'>已录制32页/共32页</view>
+                <view class='weui-media-box__bd'>
+                  <view class='weui-flex'>
+                    <view class='weui-flex__item'></view>
+                    <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center'>
+                      <image src="{{up==0?'../../../images/icon_ipload.png':'../../../images/icon_down_finish.png'}}"
+                      class="cell-icon-size s" bindtap='uploadBook' wx:if="{{activeIndex==0}}"/>
+                    </view>
+                    <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center'>
+                      <image src="../../../images/icon_edit.png" class="cell-icon-size s"/>
+                    </view>
+                    <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center'>
+                      <image src="../../../images/icon_delete.png" class="cell-icon-size s"/>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

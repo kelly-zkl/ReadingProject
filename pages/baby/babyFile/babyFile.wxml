@@ -17,30 +17,31 @@
             <input class="weui-input" placeholder="请输入宝宝昵称" confirm-type="done" bindinput="inputName"/>
           </view>
         </view>
-        <view class="weui-cell weui-cell_input" hover-class="weui-cell_active">
-          <view class="weui-cell__hd">
-            <view class="weui-label">生日</view>
-          </view>
-          <view class="weui-cell__bd">
-            <picker mode="date" start="1970-01-01" end="{{date}}" value="{{date}}" bindchange="bindDateChange">
+        <picker mode="date" start="1970-01-01" end="{{date}}" value="{{date}}" bindchange="bindDateChange">
+          <view class="weui-cell weui-cell_input" hover-class="weui-cell_active">
+            <view class="weui-cell__hd">
+              <view class="weui-label">生日</view>
+            </view>
+            <view class="weui-cell__bd">
               <view class="picker">{{date}}</view>
-            </picker>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
           </view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </view>
+        </picker>
+        <import src="../../../template/model/model.wxml"/>
         <view class="weui-cell weui-cell_input" bindtap="showArea" hover-class="weui-cell_active">
           <view class="weui-cell__hd">
             <view class="weui-label">地区</view>
           </view>
-          <view class="weui-cell__bd">{{province}} {{city}}</view>
+          <view class="weui-cell__bd">{{province}} {{city}} {{county}}</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
+        <template is="areaData" data="{{...item}}"/>
       </view>
-      <view class='btn-save' bindtap='saveData' style='margin: 50rpx 0 20rpx 0'>保存</view>
+      <view class='btn-save' bindtap='saveData' style='margin: 50rpx 0 20rpx 0' hover-class="btn-active">保存</view>
     </view>
   </view>
-  <import src="../../../template/area/area.wxml"/>
-  <template is="areaData" data="{{...item}}"/>
+  <!--选择图片  -->
   <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
     <view class="zan-popup__mask" catchtap="togglePopup"></view>
     <view class="zan-popup__container">

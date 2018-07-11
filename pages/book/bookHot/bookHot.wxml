@@ -1,22 +1,18 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-search-bar" style="background:#f2f2f2">
-      <image src="../../../images/icon_home.png" style="width:30px;height:30px;margin:2px 8px 0 0"/>
-      <view class="weui-search-bar__form">
+      <image src="../../../images/icon_classify.png" style="width:30px;height:30px;margin:2px 8px 0 0" bindtap='toggleLeftPopup'/>
+      <view class="weui-search-bar__form" bindtap='gotoSearch'>
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" 
-            focus="{{inputShowed}}" bindinput="inputTyping" />
-          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-            <icon type="clear" size="14"></icon>
-          </view>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" disabled='true'/> 
         </view>
-        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <label class="weui-search-bar__label vertical-center" style='justify-content: center'>
           <icon class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text">搜索</view>
+          <view class="weui-search-bar__text">搜索</view> 
         </label>
       </view>
-      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+      <image src="../../../images/icon_scan.png" style="width:30px;height:30px;margin:2px 0 0 8px" bindtap='scan'/>
     </view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular
       indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .7)">
@@ -27,10 +23,10 @@
       </block>
     </swiper>
     <view class='weui-flex' style='margin:0'>
-      <view class="weui-flex__item" style="padding:20rpx 0" wx:for='0123' wx:key="*this"
+      <view class="weui-flex__item" style="padding:20rpx 0" wx:for='{{tags}}' wx:key="*this"
         hover-class="weui-cell_active" bindtap='gotoList'>
-        <image class="weui-grid__icon" src="../../../images/icon_home.png"></image>
-        <view class="weui-grid__label">全部</view>
+        <image class="weui-grid__icon tab" src="{{item.url}}"></image>
+        <view class="weui-grid__label">{{item.name}}</view>
       </view>
     </view>
     <!--年龄推荐  -->
@@ -120,6 +116,31 @@
           </view>
         </view>
       </view>
+    </view>
+  </view>
+  <!--左侧弹框  -->
+  <view class="popup-example--left zan-popup zan-popup--left {{ showLeftPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleLeftPopup"></view>
+    <view class="zan-popup__container">
+      <scroll-view scroll-y style='width:100%;height:100%'>
+        <view class="weui-cells weui-cells_in-small-appmsg txt-14">
+          <view class="weui-cell weui-cell_access line" bindtap='gotoList'>
+            <view class="weui-cell__bd weui-cell_primary">全部</view>
+          </view>
+          <view class="weui-cell weui-cell_access line" bindtap='gotoList'>
+            <view class="weui-cell__bd weui-cell_primary">最新</view>
+          </view>
+          <block wx:for="0123456" wx:key="*this" wx:for-index="idx">
+            <view class="weui-cell weui-cell_access line">
+              <view class="weui-cell__bd weui-cell_primary">类型</view>
+            </view>
+            <view style='padding-left:30rpx'>
+              <view class="zan-tag {{typeIdx==idx&&tagIdx==index?'tag-active':''}}" wx:for="0123456789" wx:key="*this"
+                catchtap='changeTag' id="{{idx}}" data-index="{{index}}">灰色</view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
     </view>
   </view>
 </view>

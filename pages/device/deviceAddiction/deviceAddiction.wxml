@@ -14,7 +14,7 @@
       block-size="14" backgroundColor="#ccc" show-value style='padding:0 15px'/>
 
     <view style='margin:30px'>
-      <view class='btn-save' bindtap='togglePopu'>保存</view>
+      <view class='btn-save' bindtap='togglePopu' hover-class="btn-active">保存</view>
     </view>
   </view>
   <!--设置弹框  -->
@@ -26,7 +26,7 @@
         开启后，当小精灵连续使用超过设定的使用时长，需要10分钟后才可继续使用
       </view>
       <view style='margin:30px'>
-        <view class='btn-save' bindtap='startChange'>开始</view>
+        <view class='btn-save' bindtap='startChange' hover-class="btn-active">开始</view>
       </view>
     </view>
   </view>

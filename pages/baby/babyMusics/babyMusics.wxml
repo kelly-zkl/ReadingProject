@@ -10,8 +10,45 @@
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
-      <view class="weui-tab__panel">
-        <view class="weui-tab__content">音乐</view>
+      <view class="weui-tab__panel" style='padding-bottom:200rpx'>
+        <view class='weui-flex' style='padding:20rpx 30rpx'>
+          <view style='height:50rpx;line-height:50rpx;font-size:14px;text-align:center'>共88首</view>
+          <view class='weui-flex__item'></view>
+          <view class='btn-small-60' style='margin-right:30rpx' hover-class="btn-active">全加歌单</view>
+          <view class='btn-small-60' hover-class="btn-active">推送全部</view>
+        </view>
+        <!--曲目列表  -->
+        <view style='background:#fff'>
+          <view class="weui-media-box weui-media-box_appmsg" style='padding:20rpx 30rpx;border-bottom:1rpx solid #f2f2f2'
+            wx:for="0123456" wx:key="*this" hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" style='border-radius:30px'
+              src="../../../images/icon_music.png"/>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title txt-15">曲目名称</view>
+              <view class="weui-media-box__desc txt-13 txt-color-gray">2.3m   专辑名称</view>
+            </view>
+            <view class='weui-cell__ft'>
+              <image src="{{down==0?'../../../images/icon_down_music.png':down==1?'../../../images/icon_stop_down.png':'../../../images/icon_down_finish.png'}}"
+                class="cell-icon-size s" bindtap='downloadMusic'/>
+              <image src="../../../images/icon_push_music.png" class="cell-icon-size s"/>
+            </view>
+          </view>
+        </view>
+        <!--播放进度及按钮  -->
+        <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding-top:20rpx;border-top:1rpx #f2f2f2 solid">
+          <slider step="5" activeColor="#00d2ff" block-size="12" style='margin:0' block-color="#00d2ff" backgroundColor='#ccc'/>
+          <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
+            <image src="../../../images/icon_pre_music.png" class="cell-icon-size btn" style='margin-right:30px'/>
+            <image src="{{play==0?'../../../images/icon_play.png':'../../../images/icon_pause.png'}}"
+              style='border-radius:50rpx;height:100rpx;width:100rpx' bindtap='playMusic'/>
+            <view class='weui-flex__item' style='margin-left:20rpx'>
+              <view class='weui-grid__label txt-14 txt-color-white' style='margin-top:0;text-align:left;line-height:100rpx'>名称</view>
+            </view>
+            <image src="../../../images/icon_next_music.png" class="cell-icon-size btn"/>
+          </view>
+        </view>
       </view>
     </view>
   </view>

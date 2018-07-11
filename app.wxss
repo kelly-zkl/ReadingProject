@@ -115,19 +115,6 @@ page{
   margin-right: 0px;
 }
 
-/**弹框的大小，圆角*/
-.popup-example--bottom .zan-popup__container {
-  left: 0;
-  right: 0;
-}
-.popup-example--center {
-  border-radius: 4px;
-  /* width: 80%; */
-}
-.popup-width{
-  padding-top: 20rpx
-}
-
 /**按钮button去掉border*/
 button::after{
   border-bottom: none;
@@ -325,6 +312,11 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background: linear-gradient(to right, #00d2ff , #00eaff)
 }
 
+/*按钮的点击效果  */
+.btn-active{
+  background:#00BFE8;
+}
+
 /**搜索框*/
 .weui-search-bar__cancel-btn{
   color: #00ddf2;
@@ -338,6 +330,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .weui-search-bar__input{
   height:32px;
   line-height:32px;
+  min-height: 32px;
   text-align: center
 }
 .weui-search-bar__label{line-height:32px;}
@@ -358,4 +351,29 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 .popup-example--center {
   border-radius: 8px;
   width: 80%;
+}
+/**弹框的大小，圆角*/
+.popup-example--bottom .zan-popup__container {
+  left: 0;
+  right: 0;
+}
+.popup-width{
+  padding-top: 20rpx
+}
+.popup-example--right .zan-popup__container {
+  top: 0;
+  bottom: 0;
+  width: 80%
+}
+
+.popup-example--left .zan-popup__container {
+  top: 0;
+  bottom: 0;
+  width: 80%
+}
+/*灰色的标签  */
+.zan-tag{
+  margin-bottom: 20rpx;
+  color: #333;
+  background: #E4E4E4
 }

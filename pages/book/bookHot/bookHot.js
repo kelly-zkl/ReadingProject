@@ -14,8 +14,6 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
-    inputShowed: false,
-    inputVal: "",
     tabs: ["0-2岁", "3-6岁", "7-10岁", "11-14岁", "15岁以上"],
     activeIndex: 0,
     sliderOffset: 0,
@@ -24,6 +22,9 @@ Page({
     ractiveIndex: 0,
     rsliderOffset: 0,
     rsliderLeft: 0,
+    showLeftPopup:false,
+    tags: [{ name: "全部", url: "../../../images/icon_all.png" }, { name: "精选", url: "../../../images/icon_jing.png" },
+      { name: "热门", url: "../../../images/icon_hot.png" }, { name: "最新", url: "../../../images/icon_new.png" }]
   },
 
   /**
@@ -90,34 +91,44 @@ Page({
       url: '/pages/book/bookList/bookList'
     })
   },
-  showInput: function () {
+  // 跳转搜索页面
+  gotoSearch: function () {
+    wx.navigateTo({
+      url: '/pages/common/search/search?type=book'
+    })
+  },
+  //扫一扫
+  scan: function (e) {
+    wx.scanCode({
+      scanType: ['qrCode'],
+      success: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描成功', icon: 'info', duration: 1500 })
+        if (res.result && res.result.indexOf('/pages/') == 0) {
+          wx.navigateTo({ url: res.result })
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 })
+      }
+    })
+  },
+  // 左侧弹框
+  toggleLeftPopup: function () {
     this.setData({
-      inputShowed: true
+      showLeftPopup: !this.data.showLeftPopup
     });
   },
-  hideInput: function () {
+  // 选择分类标签
+  changeTag: function (e) {
+    var idx = e.currentTarget.id;
+    var index = e.currentTarget.dataset.index;
     this.setData({
-      inputVal: "",
-      inputShowed: false,
-      show: false
-    });
-    // this.getCourts();
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: "",
-      show: false
-    });
-    // this.getCourts();
-  },
-  inputTyping: function (e) {
-    console.log(e.detail.value);
-    this.setData({
-      inputVal: e.detail.value,
-      show: false
-    });
-    if (e.detail.value.length > 0) {
-       // this.getCourts();
-    }
+      typeIdx: idx,
+      tagIdx: index,
+      showLeftPopup:false
+    })
+    this.gotoList();
   }
 })

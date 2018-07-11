@@ -17,6 +17,11 @@
   width: 28px;
   height: 28px;
 }
+.cell-icon-size.btn{
+  width: 54rpx;
+  height: 54rpx;
+  margin: 23rpx 0;
+}
 
 .btn-small-60{
   height: 50rpx;

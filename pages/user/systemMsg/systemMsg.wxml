@@ -1,23 +1,18 @@
 <view class='page'>
   <view class='page__bd'>
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__bd" wx:for="0123456" wx:key="*this">
-        <view class="weui-media-box weui-media-box_appmsg" style='border-bottom: 10px #f2f2f2 solid'
-           bindtap='deleteMsg' id="{{item.messageId}}">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.sender==10000?'../../../images/icon_system.png':item.avatarUrl?item.avatarUrl:'../../../images/icon_user.png'}}"/>
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title weui-media-box__title_in-text">
-              <view class='weui-flex' style='margin-top:0'>
-                <view class='weui-flex__item txt-15'>{{item.senderName?item.senderName:'消息'}}</view>
-                <view style='display:inline-block;text-align:right;font-size:13px;color:#999'>{{item.timeStr}}</view>
-              </view>
-            </view>
-            <view class="weui-media-box__desc txt-13" style='color:#333'>{{item.content}}</view>
-          </view>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"
+      bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="*this"
+      bindtap="bindChecked" data-index="{{index}}">
+      <view class="content">
+        <view class='weui-flex'>
+          <image src="../../../images/icon_baby.png" class="img"></image>
+          <view class='weui-grid__label name'>版本升级</view>
+          <view class='weui-flex__item'></view>
+          <view class='weui-grid__label name' style='font-size:13px;color:#999'>2018-07-10 19:56:12</view>
         </view>
+        <view class='weui-media-box__desc'>{{item.content}}</view>
       </view>
+      <view class="del" catchtap="del" data-index="{{index}}">删除</view>
     </view>
   </view>
 </view>

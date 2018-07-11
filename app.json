@@ -15,6 +15,7 @@
     "pages/baby/babyMusics/babyMusics",
     "pages/baby/babyBookShelf/babyBookShelf",
     "pages/baby/babyFile/babyFile",
+    "pages/baby/babyRecords/babyRecords",
     "pages/music/musicHot/musicHot",
     "pages/music/musicList/musicList",
     "pages/music/musicDetail/musicDetail",
@@ -23,8 +24,6 @@
     "pages/book/bookList/bookList",
     "pages/book/bookDetail/bookDetail",
     "pages/user/userCenter/userCenter",
-    "pages/user/collectionMusics/collectionMusics",
-    "pages/user/collectionBooks/collectionBooks",
     "pages/user/userManager/userManager",
     "pages/user/setUserId/setUserId",
     "pages/user/systemMsg/systemMsg",
@@ -32,7 +31,9 @@
     "pages/user/feedBack/feedBack",
     "pages/user/aboutUs/aboutUs",
     "pages/user/myMusics/myMusics",
-    "pages/user/myBooks/myBooks"
+    "pages/user/myBooks/myBooks",
+    "pages/common/search/search",
+    "pages/common/chooseBabyMusic/chooseBabyMusic"
   ],
   "window":{
     "backgroundTextStyle":"light",

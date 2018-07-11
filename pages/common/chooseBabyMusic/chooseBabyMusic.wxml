@@ -1,0 +1,38 @@
+<view class='page'>
+  <view class='page__bd' style='padding-bottom:150rpx'>
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+            bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <!--曲目列表  -->
+        <view style='background:#fff'>
+          <view class="weui-media-box weui-media-box_appmsg" style='padding:20rpx 30rpx;border-bottom:1rpx solid #f2f2f2'
+            wx:for="0123456" wx:key="*this" hover-class="weui-cell_active" bindtap="bindChecked" data-index="{{index}}">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" style='border-radius:30px'
+              src="../../../images/icon_music.png"/>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title txt-15">曲目名称</view>
+              <view class="weui-media-box__desc txt-13 txt-color-gray">2.3m   专辑名称</view>
+            </view>
+            <view class='weui-cell__ft'>
+              <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff" class='vertical-center'/>
+              <icon wx:else type="circle" size="20" color="#00d2ff"  class='vertical-center'/>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding:20rpx 30rpx;border-top:1rpx #f2f2f2 solid">
+      <view class='btn-save' bindtap='saveClock' hover-class="btn-active">确认选择</view>
+  </view>
+</view>

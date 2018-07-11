@@ -2,41 +2,48 @@
   <view class='page__bd'>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:30rpx'>
       <picker mode="time" value="{{time}}" start="00:00" end="23:59"
-              bindchange="bindTimeChange">
+            bindchange="bindTimeChange">
         <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <view class="weui-cell__bd weui-cell_primary">设置时间</view>
           <view class="weui-cell__ft weui-cell__ft_in-access">
-              <view class="picker">{{time}}</view>
+            <view class="picker">{{time}}</view>
           </view>
         </view>
       </picker>
       <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">重复</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">
-          周六、周日
-        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">周六、周日</view>
       </view>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/common/chooseBabyMusic/chooseBabyMusic" 
+        class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">铃声</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">
-          我爱刷牙
-        </view>
-      </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">我爱刷牙</view>
+      </navigator>
       <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">稍后提醒（10分钟再响）</view>
         <view class="weui-cell__ft">
           <switch bindchange="switchChange" color="#00d2ff"/>
         </view>
       </view>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='togglePopu'>
         <view class="weui-cell__bd weui-cell_primary">语音指令关闭闹钟</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">
-          未设置
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{lingStr}}</view>
+      </view>
+    </view>
+    <!--语音指令弹框  -->
+    <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+      <view class="zan-popup__mask" bindtap="togglePopu"></view>
+      <view class="zan-popup__container popup-example--center">
+        <view class='update-title'>语音指令</view>
+        <input class="weui-input" placeholder="请输入语音指令" value='{{ling}}' bindinput="inputLing"/>
+        <view style='margin:30px 30rpx 30rpx 30rpx'>
+          <view class='btn-save' bindtap='saveLing' hover-class="btn-active">保存</view>
         </view>
       </view>
     </view>
+    <!--保存  -->
     <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding:20rpx 30rpx;border-top:1rpx #f2f2f2 solid">
-      <view class='btn-save' bindtap='saveClock'>保存</view>
+      <view class='btn-save' bindtap='saveClock' hover-class="btn-active">保存</view>
     </view>
   </view>
 </view>

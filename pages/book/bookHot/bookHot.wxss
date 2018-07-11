@@ -17,6 +17,10 @@ page{
 .weui-grid__icon{
   border-radius: 10rpx;
 }
+.weui-grid__icon.tab{
+  width: 120rpx;
+  height: 120rpx
+}
 .weui-grid__label.left{
   text-align: left;
   margin-left: 20rpx
@@ -29,7 +33,7 @@ page{
 /**标签标题*/
 .view-tag{
   position: relative;
-  padding: 0 30rpx 0 30rpx;
+  padding: 0 30rpx 0 0;
 }
 .view-tag-title{
   display: inline-block;
@@ -39,7 +43,7 @@ page{
   color: #fff;
   font-size: 12px;
   background: #00d2ff;
-  border-radius: 25rpx;
+  border-radius: 0 25rpx 25rpx 0;
   text-align: center;
 }
 .view-tag-more{
@@ -51,4 +55,10 @@ page{
   height: 50rpx;
   line-height: 50rpx;
   text-align: center
+}
+
+/*筛选重置/确定  */
+.tag-active{
+  color: #00D2FF;
+  background: rgba(0,210,255,.15);
 }

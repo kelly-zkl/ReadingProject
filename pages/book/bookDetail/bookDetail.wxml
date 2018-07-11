@@ -33,7 +33,7 @@
         </view>
       </view>
       <view class='weui-flex__item'></view>
-      <view class='btn-small-60 vertical-center'>
+      <view class='btn-small-60 vertical-center' hover-class="btn-active">
         <view class='weui-grid__label price'>￥23.00</view>
         <image src="../../../images/icon_shop.png" style='display:inline-block;width:40rpx;height:40rpx'></image>
       </view>

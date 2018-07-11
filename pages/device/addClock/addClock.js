@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    time:'07:00'
+    time:'07:00',
+    showPopu:false,
+    lingStr: "未设置"
   },
 
   /**
@@ -15,11 +17,12 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 设置弹框
+  togglePopu: function () {
+    this.setData({
+      ling:"",
+      showPopu: !this.data.showPopu
+    })
   },
 
   /**
@@ -34,6 +37,26 @@ Page({
     this.setData({
       time: e.detail.value
     })
+  },
+  // 语音指令
+  inputLing:function(e){
+    this.setData({
+      ling: e.detail.value
+    })
+  },
+  saveLing:function(){
+    if (!!this.data.ling){
+      this.setData({
+        lingStr: this.data.ling,
+        showPopu: false
+      })
+    }else{
+      wx.showToast({
+        title: '请输入语音指令',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   
   // 保存闹钟设置

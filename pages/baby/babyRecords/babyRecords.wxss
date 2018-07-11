@@ -1,0 +1,11 @@
+
+.weui-navbar__slider{
+  width:4em
+}
+
+.cell-icon-size.s{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-top:6px;
+}

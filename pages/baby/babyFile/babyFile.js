@@ -1,5 +1,5 @@
 
-var area = require('../../../template/area/area.js');
+var model = require('../../../template/model/model.js')
 var http = require("../../../http.js");
 var util = require('../../../utils/util.js');
 
@@ -42,13 +42,18 @@ Page({
     });
   },
 
+  onReady: function (e) {
+    var that = this;
+    //请求数据
+    model.updateAreaData(that, 0, e);
+  },
   //点击选择城市按钮显示picker-view
   showArea: function (e) {
-    area.animationEvents(this, 0, true, 400);
+    model.animationEvents(this, 0, true, 400);
   },
   //隐藏picker-view
   hiddenFloatView: function (e) {
-    area.animationEvents(this, 200, false, 400);
+    model.animationEvents(this, 200, false, 400);
   },
   //确定选择
   chooseCity: function (e) {
@@ -58,14 +63,15 @@ Page({
       city: item.citys[item.value[1]].name,
       county: item.countys[item.value[2]].name
     });
-    area.animationEvents(this, 200, false, 400);
+    model.animationEvents(this, 200, false, 400);
   },
   //滑动事件
   bindChange: function (e) {
     // console.log(e)
-    area.updateAreaData(this, 1, e);
+    model.updateAreaData(this, 1, e);
     item = this.data.item;
   },
+
   //选择上传图片
   togglePopup() {
     this.setData({

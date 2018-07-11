@@ -5,7 +5,8 @@
       <view class='weui-grid__label'>V1.0.0</view>
     </view>
     <view class='bg-white-corner'>
-      <view class="btn-save" style="{{isUpdate?'':'background:#bbb'}}" bindtap='updateVersion'>立即更新到V1.0.1</view>
+      <view class="btn-save" style="{{isUpdate?'':'background:#bbb'}}" bindtap='updateVersion'
+        hover-class="{{isUpdate?'btn-active':''}}">立即更新到V1.0.1</view>
       <view class='txt-14 txt-color-black' style='margin-top:30rpx'>
         v1.0.1版本介绍：
         1.
@@ -24,7 +25,7 @@
       <view class='weui-grid__label' style='padding:0 30rpx;text-align:left;margin-top:10px'>1.请保证设备当前在线</view>
       <view class='weui-grid__label' style='padding:0 30rpx;text-align:left'>2.请保持小精灵电量在50%以上</view>
       <view style='margin:30px'>
-        <view class='btn-save' bindtap='startUpdate'>开始</view>
+        <view class='btn-save' bindtap='startUpdate' hover-class="btn-active">开始</view>
       </view>
     </view>
   </view>

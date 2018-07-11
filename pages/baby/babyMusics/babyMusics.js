@@ -13,6 +13,8 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
+    down: 0,
+    play: 0
   },
 
   /**
@@ -50,4 +52,35 @@ Page({
 
     }
   },
+  // 播放音乐
+  playMusic: function () {
+    if (this.data.play == 0) {
+      this.setData({
+        play: 1
+      })
+    } else {
+      this.setData({
+        play: 0
+      })
+    }
+  },
+
+  /**
+   * 下载音乐
+   */
+  downloadMusic: function () {
+    if (this.data.down == 0) {
+      this.setData({
+        down: 1
+      })
+    } else if (this.data.down == 1) {
+      this.setData({
+        down: 2
+      })
+    } else {
+      this.setData({
+        down: 0
+      })
+    }
+  }
 })

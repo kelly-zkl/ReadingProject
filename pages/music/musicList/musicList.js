@@ -1,5 +1,4 @@
 
-var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
 var http = require("../../../http.js");
 const app = getApp();
 
@@ -9,12 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tags: [{ name: "全部", url: "../../../images/icon_all.png" }, { name: "学英语", url: "../../../images/icon_english.png" },
+    { name: "听音乐", url: "../../../images/icon_music_tab.png" }, { name: "讲故事", url: "../../../images/icon_story.png" },
+    { name: "诗词文学", url: "../../../images/icon_shici.png" }, { name: "百科", url: "../../../images/icon_baike.png" }],
     tabs: ["综合", "热门", "最新"],
     activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
-    inputShowed: false,
-    inputVal: ""
+    tabIdx:0,
+    showRightPopup:false,
+    menuHeight:0
   },
 
   /**
@@ -25,8 +26,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+          menuHeight: (res.windowHeight - 60)
         });
       }
     });
@@ -41,7 +41,6 @@ Page({
   /***/
   tabClick: function (e) {
     this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
     if (e.currentTarget.id == 0) {//英语
@@ -52,34 +51,31 @@ Page({
 
     }
   },
-  showInput: function () {
+  // 跳转搜索页面
+  gotoSearch: function () {
+    wx.navigateTo({
+      url: '/pages/common/search/search?type=album'
+    })
+  },
+  // 最上方的标签变化
+  tabChange:function(e){
     this.setData({
-      inputShowed: true
+      tabIdx: e.currentTarget.id
+    })
+  },
+  // 右侧弹框
+  toggleRightPopup:function(){
+    this.setData({
+      showRightPopup: !this.data.showRightPopup
     });
   },
-  hideInput: function () {
+  // 选择分类标签
+  changeTag:function(e){
+    var idx = e.currentTarget.id;
+    var index = e.currentTarget.dataset.index;
     this.setData({
-      inputVal: "",
-      inputShowed: false,
-      show: false
-    });
-    // this.getCourts();
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: "",
-      show: false
-    });
-    // this.getCourts();
-  },
-  inputTyping: function (e) {
-    console.log(e.detail.value);
-    this.setData({
-      inputVal: e.detail.value,
-      show: false
-    });
-    if (e.detail.value.length > 0) {
-      // this.getCourts();
-    }
+      typeIdx: idx,
+      tagIdx: index
+    })
   }
 })

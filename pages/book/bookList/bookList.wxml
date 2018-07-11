@@ -1,31 +1,15 @@
 <view class='page'>
   <view class='page__bd'>
-    <view class="weui-search-bar" style="background:#f2f2f2">
-      <view class="weui-search-bar__form">
-        <view class="weui-search-bar__box">
-          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" 
-            focus="{{inputShowed}}" bindinput="inputTyping" />
-          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
-            <icon type="clear" size="14"></icon>
-          </view>
-        </view>
-        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-          <icon class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text">搜索</view>
-        </label>
-      </view>
-      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-      <image src="../../../images/icon_home.png" style="width:30px;height:30px;margin:2px 0 0 8px"/>
-    </view>
     <view class="weui-tab">
-      <view class="weui-navbar">
+      <view class="weui-navbar vertical-center">
+        <image src="../../../images/icon_search.png" style="width:24px;height:24px;margin:0 6px" bindtap='gotoSearch'/>
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
             bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>
           </view>
         </block>
+        <image src="../../../images/icon_filter.png" style="width:24px;height:24px;margin:0 6px" bindtap='toggleRightPopup'/>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
       <view class="weui-tab__panel">
@@ -47,6 +31,29 @@
             </view>
           </block>
         </view>
+      </view>
+    </view>
+  </view>
+  <!--右侧弹框  -->
+  <view class="popup-example--right zan-popup zan-popup--right {{ showRightPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleRightPopup"></view>
+    <view class="zan-popup__container">
+      <scroll-view scroll-y style='width:100%;height:{{menuHeight}}px'>
+        <view class="weui-cells weui-cells_in-small-appmsg txt-14">
+          <block wx:for="0123456" wx:key="*this" wx:for-index="idx">
+            <view class="weui-cell weui-cell_access line">
+              <view class="weui-cell__bd weui-cell_primary">类型</view>
+            </view>
+            <view style='padding-left:30rpx'>
+              <view class="zan-tag {{typeIdx==idx&&tagIdx==index?'tag-active':''}}" wx:for="0123456789" wx:key="*this"
+                catchtap='changeTag' id="{{idx}}" data-index="{{index}}">灰色</view>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+      <view class='weui-flex' style='margin:15px 0 0 0'>
+        <view class='weui-flex__item reset'>重置</view>
+        <view class='weui-flex__item confirm'>确认</view>
       </view>
     </view>
   </view>

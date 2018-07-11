@@ -1,1 +1,47 @@
-/* pages/baby/babyBadge/babyBadge.wxss */
+
+.bg-white-corner{
+  background: #fff;
+  border-radius: 10px;
+}
+.bg-white-shadow-corner{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:3px 3px 6px rgba(0,0,0,.1);
+  margin:180rpx 50rpx 30rpx 50rpx;
+  padding:60rpx 30rpx 30rpx 30rpx;
+  border: 14rpx #FF6D88 solid;
+}
+
+/**成长星*/
+.start-img{
+  position: absolute;
+  width: 600rpx;
+  height: 294rpx;
+  left: 50%;
+  margin-left: -300rpx;
+  margin-top: -234rpx;
+}
+.weui-flex.vertical-center{
+  position: absolute;
+  width: 100%;
+  height: 120rpx;
+  left: 50%;
+  margin-left: -50%;
+  margin-top: -150rpx;
+}
+
+.view-star{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  vertical-align: middle;
+  margin-right: 10rpx
+}
+
+.vertical-center .view-star{
+  display: inline-block;
+  width: 90rpx;
+  height: 90rpx;
+  vertical-align: middle;
+  margin-right: 10rpx
+}

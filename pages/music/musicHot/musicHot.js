@@ -5,8 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
-    inputVal: ""
+    tags: [{ name: "全部", url: "../../../images/icon_all.png" }, { name: "学英语", url: "../../../images/icon_english.png" },
+      { name: "听音乐", url: "../../../images/icon_music_tab.png" }, { name: "讲故事", url: "../../../images/icon_story.png" },
+      { name: "诗词文学", url: "../../../images/icon_shici.png" }, { name: "百科", url: "../../../images/icon_baike.png" }]
   },
 
   /**
@@ -30,34 +31,10 @@ Page({
     })
   },
 
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
+  // 跳转搜索页面
+  gotoSearch:function(){
+    wx.navigateTo({
+      url: '/pages/common/search/search?type=album'
+    })
   },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false,
-      show: false
-    });
-    // this.getCourts();
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: "",
-      show: false
-    });
-    // this.getCourts();
-  },
-  inputTyping: function (e) {
-    console.log(e.detail.value);
-    this.setData({
-      inputVal: e.detail.value,
-      show: false
-    });
-    if (e.detail.value.length > 0) {
-      // this.getCourts();
-    }
-  }
 })

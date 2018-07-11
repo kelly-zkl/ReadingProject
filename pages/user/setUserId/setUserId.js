@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    choose:0
+    choose:0,
+    showPopu: false,
+    identity: ""
   },
 
   /**
@@ -36,4 +38,35 @@ Page({
       choose: index
     })
   },
+  // 设置弹框
+  togglePopu: function () {
+    this.setData({
+      identity: "",
+      showPopu: !this.data.showPopu
+    })
+  },
+  // 自定义身份
+  inputIdentity: function (e) {
+    this.setData({
+      identity: e.detail.value
+    })
+  },
+  saveIdentity: function () {
+    if (!!this.data.identity) {
+      this.setData({
+        showPopu: false
+      })
+      wx.navigateBack()
+    } else {
+      wx.showToast({
+        title: '请输入语音指令',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+  // 确认选择
+  saveChoose:function(){
+
+  }
 })

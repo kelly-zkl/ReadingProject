@@ -16,7 +16,7 @@
     </block>
 
     <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding:20rpx 30rpx;border-top:1rpx #f2f2f2 solid">
-      <view class='btn-save line' bindtap='addClock'>添加闹钟</view>
+      <view class='btn-save line' bindtap='addClock' hover-class="weui-cell_active">添加闹钟</view>
     </view>
   </view>
   <!--闹钟弹框  -->
@@ -28,7 +28,7 @@
         开启后，当小精灵连续使用超过设定的使用时长，需要10分钟后才可继续使用
       </view>
       <view style='margin:30px'>
-        <view class='btn-save' bindtap='startChange'>设置</view>
+        <view class='btn-save' bindtap='startChange' hover-class="btn-active">设置</view>
       </view>
     </view>
   </view>

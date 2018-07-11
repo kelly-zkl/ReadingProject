@@ -21,3 +21,25 @@ page{
   margin-top: 0;
   margin-bottom: 5px
 }
+
+/*筛选重置/确定  */
+.weui-flex__item.reset{
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  background: orange
+}
+.weui-flex__item.confirm{
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  background: red
+}
+.tag-active{
+  color: #00D2FF;
+  background: rgba(0,210,255,.15);
+}

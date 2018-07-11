@@ -1,54 +1,39 @@
 
-.weui-navbar__slider{
-  width:4em
-}
 page{
   background: #fff
 }
-.weui-media-box__info,.weui-media-box__desc{margin-top: 10px}
-.weui-flex{
-  margin: 0 30rpx
-}
-.weui-flex__item{
-  border-radius: 10rpx;
-  background: #fff;
-  box-shadow:3px 3px 6px rgba(0,0,0,.1);
-}
-.weui-grid__icon{
-  border-radius: 10rpx 10rpx 0 0;
-}
-.weui-grid__label.left{
-  text-align: left;
-  margin-left: 20rpx
-}
-.weui-grid__label.txt-13{
-  margin-top: 0;
-  margin-bottom: 5px
-}
 
-/**标签标题*/
-.view-tag{
-  position: relative;
-  padding: 0 30rpx 30rpx 30rpx;
-}
-.view-tag-title{
+.view-tab{
   display: inline-block;
-  width: 150rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  color: #fff;
-  font-size: 12px;
-  background: #00d2ff;
-  border-radius: 25rpx;
-  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  width: 23%;
+  border-bottom: 3px transparent solid;
 }
-.view-tag-more{
-  display: inline-block;
-  position: absolute;
-  right: 30rpx;
-  color: #999;
-  font-size: 13px;
-  height: 50rpx;
-  line-height: 50rpx;
+.view-tab .weui-grid__label{
+  height: 41px;
+  line-height: 41px;
+  margin-top: 0;
   text-align: center
+}
+.view-tab.active{
+  border-bottom: 3px #00d2ff solid
+}
+/*筛选重置/确定  */
+.weui-flex__item{
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px
+}
+.reset{
+  background: orange
+}
+.confirm{
+  background: red
+}
+.tag-active{
+  color: #00D2FF;
+  background: rgba(0,210,255,.15);
 }
