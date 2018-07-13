@@ -1,9 +1,10 @@
 /**
  * http请求
  * */
-const baseUrl = "https://www.yaojia.com/GlofApi/";
-// const baseUrl = "http://192.168.31.57:8080/GlofApi/";
+// const baseUrl = "https://www.yaojia.com/GlofApi/";
+const baseUrl = "http://192.168.31.57:8080/ucenter/";
 var requestHandler = {
+  baseType:0,
   url:"",
   params: {},
   msg:"",
@@ -11,6 +12,13 @@ var requestHandler = {
 }
 const request = (method, requestHandler, isShowLoading) => {
   var param = requestHandler.params;
+  if (requestHandler.baseType == 0){//用户中心接口
+    var baseUrl = 'http://192.168.31.57:8080/ucenter/';
+  } else if (requestHandler.baseType == 1){//设备模块接口
+    var baseUrl = 'http://192.168.31.57:8081/device-api/';
+  } else if (requestHandler.baseType == 2){//绘本模块接口
+    var baseUrl = 'http://192.168.31.57:8080/book/';
+  }
   console.log(param);
   isShowLoading && wx.showLoading && wx.showLoading({ title: requestHandler.msg})  
   return new Promise((resolve, reject) => {
@@ -64,7 +72,7 @@ const uploadFile = (path, requestHandler) =>{
   wx.showLoading({ title: '正在上传...', })
   return new Promise((resolve, reject) => {
     const uploadTask = wx.uploadFile({
-      url: baseUrl + "attachFile/upload",
+      url: baseUrl + "file/upload",
       filePath: path,
       name: 'file',
       formData: requestHandler.param,

@@ -1,13 +1,11 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="page">
+  <view class='page__bd'  style="position:relative;height:100vh;padding:0 50rpx" wx:if="{{canIUse}}">
+    <view style='position: absolute; top: 50%;transform: translateY(-50%)'>
+      <view class='weui-grid__label'>HI！</view>
+      <view class='weui-grid__label'>欢迎来到英语绘本学习家</view>
+      <image src="../../../images/icon_baby_musics.png" mode="widthFix" style='width:650rpx;margin:30rpx 0'></image>
+      <button open-type="getUserInfo" bindgetuserinfo="login" type="primary" class='btn-save'>使用微信授权登录</button>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <view wx:else>请升级微信版本</view>
 </view>

@@ -1,30 +1,60 @@
 <view class='page'>
   <view class='page__bd' style='paddint-top:20rpx'>
-    <view class='weui-grid__label txt-color-white'>已连接</view>
-    <view class='weui-grid__label txt-color-white txt-16'>C34D_0090</view>
+    <view class='weui-grid__label txt-color-white'>{{connectWifi?'已连接':'未连接'}}</view>
+    <view class='weui-grid__label txt-color-white txt-16'>{{connectWifi.SSID}}</view>
     <view class='bg-white-corner'>
       <view class="weui-cells weui-cells_after-title txt-14" style='margin-top:20rpx'>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-cell weui-cell_input corner" style='padding-right:0'>
           <view class="weui-cell__hd">
-            <view class="weui-label">WIFI</view>
+            <view class="weui-label corner">WIFI</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入WIFI" confirm-type="done" bindinput="inputName"/>
+            <input class="weui-input corner" placeholder="请输入WIFI" value='{{wifiName}}' bindinput="inputWifi"/>
           </view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" catchtap='toggleList'
+            style='height:100%;width:40px;text-align:center' wx:if="{{isAndroid}}"></view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-cell weui-cell_input corner">
           <view class="weui-cell__hd">
-            <view class="weui-label">密码</view>
+            <view class="weui-label corner">密码</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入密码" confirm-type="done" bindinput="inputName"/>
+            <input class="weui-input corner" placeholder="请输入密码" password bindinput="inputPwd"/>
           </view>
         </view>
       </view>
-      <view class='btn-save' bindtap='createQrcode' style='margin: 50rpx 0 20rpx 0' hover-class="btn-active">生成二维码</view>
+      <view class='btn-save' bindtap='startCreate' style='margin: 50rpx 0 20rpx 0' hover-class="btn-active">生成二维码</view>
     </view>
     <text class="view-msg">步骤\n1.在上方输入框里填写正确的WIFI账号与密码，并生成二维码（请确保小精灵当前位置可搜索到此WIFI）\n2.点击小精灵联网按钮后，确认小精灵进入 网络扫描功能\n3.将二维码平放于桌面，离小精灵5厘米左右\n4.联网成功后，设备将发出成功提示\n5.联网未成功，请检查放置的位置、网络状态、用户名与密码输入是否有误
     </text>
+  </view>
+  <!--wifi信息的二维码-->
+  <view class="zan-popup {{showPopu ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class='update-title'>
+        <view class='weui-grid__label'>1、同时按小精灵的左右键2秒，可打开扫码功能</view>
+        <view class='weui-grid__label'>2、手机平放在桌面，离小精灵5cm左右</view>
+      </view>
+      <canvas canvas-id='myQrcode' hidden='{{!showPopu}}'
+        style='width:200px;height:200px;z-index:1;margin:50rpx auto'></canvas>
+    </view>
+  </view>
+  <!--附近wifi列表-->
+  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showList ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleList"></view>
+    <view class="zan-popup__container" style='height:50%'>
+      <scroll-view scroll-y style='width:100%;height:100%'>
+        <view class="weui-cells weui-cells_after-title txt-14">
+          <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd" style="text-align:center;font-size:16px;color:#00d2ff">附近的wifi</view>
+          </view>
+          <view class="weui-cell weui-cell_access line" id="{{index}}" bindtap="popuChange"
+            wx:for="{{wifiList}}" wx:key="*this" hover-class="weui-cell_active">
+            <view class="weui-cell__bd weui-cell_primary">{{item.SSID}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
   </view>
 </view>

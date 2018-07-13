@@ -4,7 +4,7 @@
       <image src="../../../images/icon_baby.png" class='baby-img' mode="aspectFill" bindtap="togglePopup"></image>
       <view class='weui-flex' style='margin-top:40rpx'>
         <view class='weui-flex__item' style='display: flex;justify-content:center'>
-          <view class='baby-girl {{sex==0?"active":""}}' bindtap='sexChange' id="0">女宝</view>
+          <view class='baby-girl {{sex==2?"active":""}}' bindtap='sexChange' id="2">女宝</view>
           <view class='baby-boy {{sex==1?"active":""}}' bindtap='sexChange' id="1">男宝</view>
         </view>
       </view>

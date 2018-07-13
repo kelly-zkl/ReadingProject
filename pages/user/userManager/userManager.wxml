@@ -46,14 +46,14 @@
     <view class="zan-popup__mask" catchtap="togglePopup"></view>
     <view class="zan-popup__container">
       <view class="weui-cells weui-cells_after-title txt-14">
-        <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange">
-          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">设置身份</view>
+        <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange" hover-class="weui-cell_active">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center">设置身份</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange">
-          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">删除</view>
+        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange" hover-class="weui-cell_active">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center">删除</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange">
-          <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">取消</view>
+        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange" hover-class="weui-cell_active">
+          <view class="weui-cell__bd weui-cell_primary" style="text-align:center">取消</view>
         </view>
       </view>
     </view>

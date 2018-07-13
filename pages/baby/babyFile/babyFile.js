@@ -2,6 +2,7 @@
 var model = require('../../../template/model/model.js')
 var http = require("../../../http.js");
 var util = require('../../../utils/util.js');
+var app = getApp();
 
 var show = false;
 var item = {};
@@ -16,7 +17,8 @@ Page({
     },
     showPopup: false,
     date: "1970-01-01",
-    sex:0
+    sex:1,
+    childId:''
   },
 
   /**
@@ -25,15 +27,35 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.setData({
-      date: util.getNowDate()
-    });  
+      date: util.getNowDate(),
+      childId: options.id ? options.id : 1
+    });
+
+    if (this.data.childId != 1) {
+      this.getBabyDetail();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 获取宝宝详情
+  getBabyDetail:function(){
+    var that = this;
+    http.postRequest({
+      baseType: 0,
+      url: "child/detail",
+      params: { childId: that.data.childId, uid: app.globalData.userInfo.uid },
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          babyName: res.data.nickname,
+          sex: res.data.gender,
+          thumbUrl: res.data.avatarUrl,
+          date: res.data.birthdate,
+          province: res.data.province,
+          city: res.data.city,
+          county: res.data.district
+        });
+      }
+    }, false);
   },
   /**选择宝宝性别*/
   sexChange:function(e){
@@ -112,7 +134,6 @@ Page({
         for (var i in tempFilePaths) {
           http.uploadFile(tempFilePaths[i], {
             success: function (res) {
-              console.log(res.data);
               that.setData({
                 thumbUrl: res.data
               });
@@ -136,6 +157,45 @@ Page({
   },
   /**保存宝宝档案*/
   saveData:function(){
+    var that = this;
+    var deviceId = wx.getStorageSync('deviceId');
+    
+    if (!that.data.babyName || !that.data.date || !that.data.province || !that.data.city || 
+      !that.data.thumbUrl || !that.data.county) {
+      wx.showToast({ title: '请完善宝宝档案', icon: 'none', duration: 1500 });
+      return;
+    }
 
+    if (that.data.childId == 1) {
+      http.postRequest({
+        baseType: 1,
+        url: "device/bind",
+        msg: "保存中....",
+        params: {
+          deviceId: deviceId, uid: app.globalData.userInfo.uid, child: {
+          nickname: that.data.babyName, birthdate: that.data.date, gender: that.data.sex, district: that.data.county,
+          avatarUrl: that.data.thumbUrl, province: that.data.province, city: that.data.city}
+        },
+        success: res => {
+          wx.showToast({ title: '保存成功', icon: 'none', duration: 1500 })
+          wx.navigateBack()
+        }
+      }, true);
+    }else{
+      http.postRequest({
+        baseType: 0,
+        url: "child/update",
+        params: {
+          childId: that.data.childId, nickname: that.data.babyName, birthdate: that.data.date, gender: that.data.sex,
+          district: that.data.county,avatarUrl: that.data.thumbUrl, province: that.data.province, city: that.data.city,
+          uid: app.globalData.userInfo.uid
+        },
+        msg: '修改中...',
+        success: res => {
+          wx.showToast({ title: '修改成功', icon: 'none', duration: 1500 })
+          wx.navigateBack()
+        }
+      }, true);
+    }
   }
 })

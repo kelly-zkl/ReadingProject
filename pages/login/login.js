@@ -1,58 +1,112 @@
-//index.js
-//获取应用实例
-const app = getApp()
+
+var http = require("../../http.js");
+var app = getApp();
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.reLaunch({
-      url: '/pages/home/homePage/homePage',
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    //获取用户信息
+    wx.getStorage({
+      key: 'user',
+      success: function (res) {
+        app.globalData.userInfo = JSON.parse(res.data);
+        wx.reLaunch({
+          url: '/pages/home/homePage/homePage'
+        })
+      },
+      fail: function (res) {//登录
+        that.login();
+      }
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+  //授权登录弹框
+  login: function (e) {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.login({
+            success: res => {
+              // 发送 res.code 到后台换取 openId, sessionKey, unionId
+              console.log(res);
+              if (res.code) {
+                //发起网络请求
+                var code = res.code;
+                wx.getUserInfo({
+                  success: res => {
+                    // console.log(res);
+                    var encryptedData = res.encryptedData;
+                    var iv = res.iv;
+                    this.setData({
+                      code: code,
+                      encryptedData: encryptedData,
+                      iv:iv
+                    })
+                    // 调用登录接口
+                    this.loginRequst();
+                  }
+                })
+              } else {
+                console.log('登录失败！' + res.errMsg)
+              }
+            }
+          })
+        } else {
+          //用户按了拒绝按钮
+          wx.showModal({
+            title: '警告',
+            content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',
+            showCancel: false,
+            confirmText: '返回授权',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击了“返回授权”')
+              }
+            }
           })
         }
-      })
-    }
-
-    wx.reLaunch({
-      url: '/pages/home/homePage/homePage',
+      }
     })
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  // 登录请求
+  loginRequst:function(){
+    // 微信验证
+    http.postRequest({
+      baseType:0,
+      url: "user/wxAppletSession",
+      params: { wxLoginCode: this.data.code },
+      success: res => {
+        // 登录
+        http.postRequest({
+          baseType: 0,
+          url: "user/wxAppletLogin",
+          msg: "登录中....",
+          params: { encryptedData: this.data.encryptedData, iv: this.data.iv, sessionId: res.data },
+          success: res => {
+            app.globalData.userInfo = res.data;
+
+            wx.setStorageSync('user', JSON.stringify(res.data))
+
+            if (this.userInfoReadyCallback) {
+              this.userInfoReadyCallback(res)
+            }
+
+            wx.reLaunch({
+              url: '/pages/home/homePage/homePage'
+            })
+          }
+        }, true);
+      }
+    }, false);
   }
 })

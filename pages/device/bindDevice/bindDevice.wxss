@@ -12,7 +12,7 @@ page{
 }
 
 /**输入框外形*/
-.weui-cell{
+.weui-cell.corner{
   height:40px;
   min-height:40px;
   line-height:40px;
@@ -20,15 +20,15 @@ page{
   border-radius: 20px;
   margin-bottom: 20rpx;
 }
-.weui-cell_input{
+.weui-cell_input.corner{
   height:40px;
   min-height:40px;
   line-height:40px
 }
-.weui-cell:before{
+.corner.weui-cell:before{
   display: none
 }
-.weui-label{
+.weui-label.corner{
   width: 50px;
   padding-left: 30rpx;
   color: #00d2ff
@@ -42,3 +42,18 @@ page{
   color: #fff;
   font-size: 14px;
 }
+
+/*wifi信息二维码  */
+.update-title{
+  border-radius: 8px 8px 0 0;
+  background: #00d2ff;
+  padding: 30rpx
+}
+.update-title .weui-grid__label{
+  margin-top: 0;
+  color: #fff;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.weui-cell__ft_in-access:after{right: 20px}

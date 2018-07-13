@@ -3,11 +3,11 @@
     <view class='bg-color-active'>
       <view class="weui-media-box weui-media-box_appmsg" style='padding:30px'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
-          <image class="weui-media-box__thumb m" src="../../../images/icon_user.png" 
+          <image class="weui-media-box__thumb m" src="{{userInfo.avatar?userInfo.avatar:'../../../images/icon_user.png'}}" 
             style='border-radius:50%' bindtap='gotoIdentity'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px' bindtap='gotoMyDevice'>
-          <view class="weui-media-box__title txt-15 txt-color-white">微信昵称</view>
+          <view class="weui-media-box__title txt-15 txt-color-white">{{userInfo.nickname}}</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>已添加2个设备</view>
         </view>
       </view>
