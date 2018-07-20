@@ -31,16 +31,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
-          rsliderLeft: (res.windowWidth / that.data.rtabs.length - sliderWidth) / 2,
-          rsliderOffset: res.windowWidth / that.data.rtabs.length * that.data.ractiveIndex
-        });
-      }
+    this.setData({
+      sliderLeft: (app.globalData.device.windowWidth / this.data.tabs.length - sliderWidth) / 2,
+      sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex,
+      rsliderLeft: (app.globalData.device.windowWidth / this.data.rtabs.length - sliderWidth) / 2,
+      rsliderOffset: app.globalData.device.windowWidth / this.data.rtabs.length * this.data.ractiveIndex,
+      imgWidth: (app.globalData.device.windowWidth - 40) / 3
     });
   },
 
@@ -55,7 +51,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getYearTags();
+    this.getBooksYear();//年龄推荐
+    this.getBooksHot();//热播榜单
   },
   /**年龄推荐*/
   tabClick: function (e) {
@@ -130,5 +128,52 @@ Page({
       showLeftPopup:false
     })
     this.gotoList();
+  },
+  //年龄接口
+  getYearTags: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "item/all",
+      params: {},
+      msg: "加载中...",
+      success: res => {
+
+        this.setData({
+          years: res.data
+        });
+      }
+    }, false);
+  },
+  //年龄推荐
+  getBooksYear: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/query",
+      params: {},
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          recommendBooks: res.data.content
+        });
+      }
+    }, false);
+  },
+  //热播榜单
+  getBooksHot: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/query",
+      params: {},
+      msg: "加载中...",
+      success: res => {
+
+        this.setData({
+          hotBooks: res.data.content
+        });
+      }
+    }, false);
   }
 })

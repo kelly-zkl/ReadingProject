@@ -1,4 +1,8 @@
-// pages/user/aboutUs/aboutUs.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**

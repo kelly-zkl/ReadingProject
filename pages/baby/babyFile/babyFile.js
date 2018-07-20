@@ -17,8 +17,9 @@ Page({
     },
     showPopup: false,
     date: "1970-01-01",
-    sex:1,
-    childId:''
+    sex:2,
+    childId:'',
+    babyName:''
   },
 
   /**
@@ -48,7 +49,7 @@ Page({
         this.setData({
           babyName: res.data.nickname,
           sex: res.data.gender,
-          thumbUrl: res.data.avatarUrl,
+          thumbUrl: res.data.avatar,
           date: res.data.birthdate,
           province: res.data.province,
           city: res.data.city,
@@ -168,13 +169,13 @@ Page({
 
     if (that.data.childId == 1) {
       http.postRequest({
-        baseType: 1,
-        url: "device/bind",
+        baseType: 0,
+        url: "child/bindDevice",
         msg: "保存中....",
         params: {
-          deviceId: deviceId, uid: app.globalData.userInfo.uid, child: {
-          nickname: that.data.babyName, birthdate: that.data.date, gender: that.data.sex, district: that.data.county,
-          avatarUrl: that.data.thumbUrl, province: that.data.province, city: that.data.city}
+          deviceId: deviceId, uid: app.globalData.userInfo.uid, nickname: that.data.babyName,
+          birthdate: that.data.date, gender: that.data.sex, district: that.data.county,
+          avatar: that.data.thumbUrl, province: that.data.province, city: that.data.city
         },
         success: res => {
           wx.showToast({ title: '保存成功', icon: 'none', duration: 1500 })
@@ -187,7 +188,7 @@ Page({
         url: "child/update",
         params: {
           childId: that.data.childId, nickname: that.data.babyName, birthdate: that.data.date, gender: that.data.sex,
-          district: that.data.county,avatarUrl: that.data.thumbUrl, province: that.data.province, city: that.data.city,
+          district: that.data.county, avatar: that.data.thumbUrl, province: that.data.province, city: that.data.city,
           uid: app.globalData.userInfo.uid
         },
         msg: '修改中...',

@@ -24,7 +24,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+    that.setData({
+      childId: options.id ? options.id : 1
+    });
   },
 
   /**
@@ -38,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var device = wx.getSystemInfoSync();
+    var device = app.globalData.device;
     var isAndroid = (device.platform == 'android'?true:false);
     this.setData({
       isAndroid: isAndroid
@@ -220,12 +223,41 @@ Page({
         })
         clearInterval(that.data.interval);
         wx.showToast({ title: '联网成功', icon: 'none', duration: 1500 });
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '/pages/baby/babyFile/babyFile?id=1'
-          })
-        }, 2000)
+        if (that.data.childId==1){//
+          if (app.globalData.userInfo.childId && !app.globalData.userInfo.deviceId) {//绑定当前宝宝
+            that.setData({
+              childId: app.globalData.userInfo.childId
+            })
+            that.bindDevice();
+          } else {//创建新的宝宝
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/baby/babyFile/babyFile?id=1'
+              })
+            }, 1500)
+          }
+        }else{//选定宝宝绑定设备
+          that.bindDevice();
+        }
       }
     }, false);
+  },
+  /**绑定宝宝档案*/
+  bindDevice: function () {
+    var that = this;
+    var deviceId = wx.getStorageSync('deviceId');
+
+    http.postRequest({
+      baseType: 0,
+      url: "child/bindDevice",
+      msg: "绑定中....",
+      params: {
+        deviceId: deviceId, uid: app.globalData.userInfo.uid, childId: that.data.childId
+      },
+      success: res => {
+        wx.showToast({ title: '绑定成功', icon: 'none', duration: 1500 })
+        wx.navigateBack()
+      }
+    }, true);
   }
 })

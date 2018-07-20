@@ -2,7 +2,7 @@
  * http请求
  * */
 // const baseUrl = "https://www.yaojia.com/GlofApi/";
-const baseUrl = "http://192.168.31.57:8080/ucenter/";
+const baseUrl = "https://www.yaojia.com/educate-ucenter-web/";
 var requestHandler = {
   baseType:0,
   url:"",
@@ -13,12 +13,13 @@ var requestHandler = {
 const request = (method, requestHandler, isShowLoading) => {
   var param = requestHandler.params;
   if (requestHandler.baseType == 0){//用户中心接口
-    var baseUrl = 'http://192.168.31.57:8080/ucenter/';
+    var baseUrl = 'https://www.yaojia.com/educate-ucenter-web/';
   } else if (requestHandler.baseType == 1){//设备模块接口
-    var baseUrl = 'http://192.168.31.57:8081/device-api/';
+    var baseUrl = 'https://www.yaojia.com/educate-device-web/';
   } else if (requestHandler.baseType == 2){//绘本模块接口
-    var baseUrl = 'http://192.168.31.57:8080/book/';
+    var baseUrl = 'https://www.yaojia.com/educate-book-web/';
   }
+  console.log("url = " + requestHandler.url);
   console.log(param);
   isShowLoading && wx.showLoading && wx.showLoading({ title: requestHandler.msg})  
   return new Promise((resolve, reject) => {

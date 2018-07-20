@@ -1,1 +1,123 @@
-/* pages/chat/chatRoom/chatRoom.wxss */
+
+.icon-user{
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  margin:0 auto;
+  margin-top: -15rpx
+}
+.weui-flex__item.b{
+  padding: 30rpx 0;
+  position: relative
+}
+.weui-flex.b{
+  border-bottom: 1rpx #f2f2f2 solid
+}
+.weui-grid__label{
+  margin-top: 0;
+}
+.view-tag{
+  position: absolute; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 15rpx;
+  text-align: center;
+  background: #66CCFF;
+  margin-top: -15rpx;
+}
+.view-baba{
+  background: #EBBA27
+}
+
+/************myMessage********************/
+.myMessage {
+	padding: 10rpx;
+}
+.myview{
+  height: 100%;
+}
+.myview image{
+  float:right;
+}
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.myview .m {
+  position:relative;
+  float: right;
+  margin: 5px 10px;
+  max-width: 70%;
+}
+.myview .m .mes {
+  position:relative;
+  padding:10px;
+  background:#4EC046;
+  border-radius:5px; /* 圆角 */
+  word-wrap: break-word;
+  max-width: 90%;
+  float: right;
+  color: #333;
+  font-size: 14px
+}
+
+.myview .m .arrow {
+  position:absolute;
+  top:5px;
+  right:-16px; /* 圆角的位置需要细心调试哦 */
+  width:0;
+  height:0;
+  font-size:16px;
+  border:solid 8px;
+  border-color:transparent transparent transparent #4EC046;
+  z-index: 0;
+}
+/************youMessage********************/
+.youMessage {
+	 padding: 10rpx;
+}
+.youview{
+  height: 100%;
+}
+.youview image{
+  float:left;
+}
+
+.youview .m {
+  position:relative;
+  float: left;
+  margin: 5px 10px;
+  max-width: 70%;
+}
+.youview .m .mes {
+  position:relative;
+  padding:10px;
+  background:white;
+  border-radius:5px; /* 圆角 */
+  word-wrap: break-word;
+  max-width: 90%;
+  float: left;
+  color: #333;
+  font-size: 14px
+}
+
+.youview .m .arrow {
+  position:absolute;
+  top:5px;
+  left:-16px; /* 圆角的位置需要细心调试哦 */
+  width:0;
+  height:0;
+  font-size:16px;
+  border:solid 8px;
+  border-color:transparent transparent transparent ghostwhite;
+  z-index: 0;
+}
+.yk{ clear:both;}
+

@@ -1,0 +1,14 @@
+
+.view-family{
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:3px 3px 6px rgba(0,0,0,.1);
+  padding: 30rpx;
+  margin-top: 20rpx
+}
+.icon-user{
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  margin:0 auto
+}

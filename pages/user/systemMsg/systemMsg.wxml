@@ -1,18 +1,17 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"
-      bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="*this"
-      bindtap="bindChecked" data-index="{{index}}">
+      bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{msgs}}" wx:key="*this">
       <view class="content">
         <view class='weui-flex'>
-          <image src="../../../images/icon_baby.png" class="img"></image>
-          <view class='weui-grid__label name'>版本升级</view>
+          <image src="{{item.senderAvatar?item.senderAvatar:'../../../images/icon_baby.png'}}" class="img"></image>
+          <view class='weui-grid__label name'>{{item.title}}</view>
           <view class='weui-flex__item'></view>
-          <view class='weui-grid__label name' style='font-size:13px;color:#999'>2018-07-10 19:56:12</view>
+          <view class='weui-grid__label name' style='font-size:13px;color:#999'>{{item.sendTime}}</view>
         </view>
         <view class='weui-media-box__desc'>{{item.content}}</view>
       </view>
-      <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+      <view class="del" catchtap="del" id="{{item.messageId}}">删除</view>
     </view>
   </view>
 </view>

@@ -11,23 +11,31 @@ page{
   font-size: 13px
 }
 
-.weui-flex{
-  margin: 0 30rpx
-}
-.weui-grid__icon{
-  border-radius: 10rpx;
-}
 .weui-grid__icon.tab{
   width: 120rpx;
   height: 120rpx
 }
 .weui-grid__label.left{
   text-align: left;
-  margin-left: 20rpx
+  margin-left: 20rpx;
+  white-space: pre-wrap
 }
 .weui-grid__label.txt-13{
-  margin-top: 0;
-  margin-bottom: 5px
+  margin-top: 0
+}
+.b.weui-flex__item{
+  -webkit-box-flex:none;
+  -webkit-flex:none;
+  flex:none;
+}
+.b.weui-flex__item:nth-child(3n+1){
+  margin-left: 5px
+}
+.b.weui-flex__item:nth-child(3n+2){
+  margin: 0
+}
+.b.weui-flex__item:nth-child(3n){
+  margin-right: 5px
 }
 
 /**标签标题*/

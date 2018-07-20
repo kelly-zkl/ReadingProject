@@ -20,6 +20,7 @@
     "pages/music/musicList/musicList",
     "pages/music/musicDetail/musicDetail",
     "pages/chat/chatRoom/chatRoom",
+    "pages/chat/familyChat/familyChat",
     "pages/book/bookHot/bookHot",
     "pages/book/bookList/bookList",
     "pages/book/bookDetail/bookDetail",
@@ -32,6 +33,8 @@
     "pages/user/aboutUs/aboutUs",
     "pages/user/myMusics/myMusics",
     "pages/user/myBooks/myBooks",
+    "pages/user/myFamily/myFamily",
+    "pages/user/addMember/addMember",
     "pages/common/search/search",
     "pages/common/chooseBabyMusic/chooseBabyMusic"
   ],
@@ -61,6 +64,7 @@
       },
       {
         "pagePath": "pages/chat/chatRoom/chatRoom",
+        "text": "悄悄话",
         "iconPath": "images/icon_chat.png",
         "selectedIconPath": "images/icon_chat.png"
       },

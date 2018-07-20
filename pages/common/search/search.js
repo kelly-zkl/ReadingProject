@@ -1,11 +1,14 @@
-// pages/common/search/search.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inputShowed: false,
     inputVal: "",
   },
 
@@ -23,34 +26,19 @@ Page({
   
   },
 
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
   goBack: function () {
     wx.navigateBack();
   },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false,
-      show: false
-    });
-    // this.getCourts();
-  },
   clearInput: function () {
     this.setData({
-      inputVal: "",
-      show: false
+      inputVal: ""
     });
     // this.getCourts();
   },
   inputTyping: function (e) {
     console.log(e.detail.value);
     this.setData({
-      inputVal: e.detail.value,
-      show: false
+      inputVal: e.detail.value
     });
     if (e.detail.value.length > 0) {
       // this.getCourts();

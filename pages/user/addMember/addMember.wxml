@@ -1,0 +1,15 @@
+<view class='page'>
+  <view class='page__bd' style='padding:20px'>
+    <view class='weui-label txt-color-white txt-16'>方式一</view>
+    <view class='weui-grid__label txt-color-white'>使用微信小程序扫一扫下方二维码添加</view>
+    <view style='background:#fff;padding:20px;margin:30rpx {{marginLeft}}px'>
+      <canvas canvas-id='myQrcode' style='width:200px;height:200px'></canvas>
+    </view>
+    
+    <view class='weui-label txt-color-white txt-16' style='margin-top:50rpx'>方式二</view>
+    <view class='weui-grid__label txt-color-white'>分享给微信好友，好友可通过链接加入家庭</view>
+    <view style='margin:30rpx 20%'>
+      <button class='btn-save' open-type="share" style='background:#fff;color:#00d2ff'>立即分享</button>
+    </view>
+  </view>
+</view>

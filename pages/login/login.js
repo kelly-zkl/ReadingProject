@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    url: '/pages/home/homePage/homePage'
   },
 
   /**
@@ -16,13 +17,20 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var familyId = '';
+    if (options.familyId){
+      this.setData({
+        url: '/pages/home/homePage/homePage?familyId=' + options.familyId
+      })
+    }
     //获取用户信息
     wx.getStorage({
       key: 'user',
       success: function (res) {
         app.globalData.userInfo = JSON.parse(res.data);
+
         wx.reLaunch({
-          url: '/pages/home/homePage/homePage'
+          url: that.data.url
         })
       },
       fail: function (res) {//登录
@@ -102,7 +110,7 @@ Page({
             }
 
             wx.reLaunch({
-              url: '/pages/home/homePage/homePage'
+              url: this.data.url
             })
           }
         }, true);

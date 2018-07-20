@@ -21,15 +21,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-        });
-        console.log(res);
-      }
+    this.setData({
+      sliderLeft: (app.globalData.device.windowWidth / this.data.tabs.length - sliderWidth) / 2,
+      sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex,
+      isBind: app.globalData.userInfo.isBind
     });
   },
 

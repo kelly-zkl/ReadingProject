@@ -1,4 +1,8 @@
-// pages/user/myBooks/myBooks.js
+
+var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
+var http = require("../../../http.js");
+const app = getApp();
+
 Page({
 
   /**
@@ -12,7 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      imgWidth: (app.globalData.device.windowWidth - 48) / 2
+    });
   },
 
   /**
@@ -26,41 +32,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getBooks();
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+  //绘本列表
+  getBooks: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/query",
+      params: {},
+      msg: "加载中...",
+      success: res => {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+        this.setData({
+          books: res.data.content
+        });
+      }
+    }, false);
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

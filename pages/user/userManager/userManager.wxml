@@ -1,55 +1,56 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:50rpx'>
-      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/user/addMember/addMember" class="weui-cell weui-cell_access"
+        hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">添加成员</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='scan'>
-        <view class="weui-cell__bd weui-cell_primary">扫一扫</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </view>
     </view>
 
     <view class="weui-panel weui-panel_access line">
       <view class="weui-panel__hd">管理员</view>
-      <view class="weui-panel__bd" wx:for="0" wx:key="*this">
-        <view hover-class="weui-cell_active" class="weui-media-box weui-media-box_appmsg" bindtap='togglePopup'>
+      <view class="weui-panel__bd" wx:for="{{members}}" wx:key="*this">
+        <view hover-class="weui-cell_active" class="weui-media-box weui-media-box_appmsg" bindtap='togglePopup'
+          wx:if="{{item.admin}}" id="{{item.user.userId}}">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.thumbUrl?item.thumbUrl:'../../../images/icon_user.png'}}"/>
+            <image class="weui-media-box__thumb" src="{{item.user.avatar?item.user.avatar:'../../../images/icon_user.png'}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">妈妈</view>
-            <view class="weui-media-box__desc txt-13">微信名</view>
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">[我]{{item.epithet}}</view>
+            <view class="weui-media-box__desc txt-13">{{item.user.nickname}}</view>
           </view>
         </view>
       </view>
     </view>
     <view class="weui-panel weui-panel_access line">
       <view class="weui-panel__hd">普通成员</view>
-      <view class="weui-panel__bd" wx:for="012" wx:key="*this">
+      <view class="weui-panel__bd" wx:for="{{members}}" wx:key="*this">
         <view hover-class="weui-cell_active" class="weui-media-box weui-media-box_appmsg"
-          style='border-bottom: 1rpx solid #F2F2F2' bindtap='togglePopup'>
+          style='border-bottom: 1rpx solid #F2F2F2' bindtap='togglePopup' wx:if="{{!item.admin}}"
+          id="{{item.user.userId}}">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="{{item.thumbUrl?item.thumbUrl:'../../../images/icon_user.png'}}"/>
+            <image class="weui-media-box__thumb" src="{{item.user.avatar?item.user.avatar:'../../../images/icon_user.png'}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">爸爸</view>
-            <view class="weui-media-box__desc txt-13">微信名</view>
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">{{item.epithet}}</view>
+            <view class="weui-media-box__desc txt-13">{{item.user.nickname}}</view>
           </view>
+          <view class='weui-cell__ft txt-color-active' wx:if="{{myId==item.user.userId}}">编辑</view>
         </view>
       </view>
     </view>
   </view>
   <!--设置身份-->
   <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" catchtap="togglePopup"></view>
+    <view class="zan-popup__mask" catchtap="togglePopup" id="1"></view>
     <view class="zan-popup__container">
       <view class="weui-cells weui-cells_after-title txt-14">
         <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange" hover-class="weui-cell_active">
           <view class="weui-cell__bd weui-cell_primary" style="text-align:center">设置身份</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange" hover-class="weui-cell_active">
+        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange"
+          hover-class="weui-cell_active" wx:if="{{admin&&myId!=userId}}">
           <view class="weui-cell__bd weui-cell_primary" style="text-align:center">删除</view>
         </view>
         <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange" hover-class="weui-cell_active">

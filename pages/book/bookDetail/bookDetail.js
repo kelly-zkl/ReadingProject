@@ -1,4 +1,8 @@
-// pages/book/bookDetail/bookDetail.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
 
   /**
@@ -25,17 +29,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scrowHeight: res.windowHeight - 145
-        });
-        console.log(that.data.scoreHeight);
-      }
-    }); 
-    that.setData({
-      currentStr: (that.data.currentIdx + 1) + "/" + this.data.imgUrls.length
+    this.setData({
+      scrowHeight: app.globalData.device.windowHeight - 145,
+      currentStr: (this.data.currentIdx + 1) + "/" + this.data.imgUrls.length
     });
   },
 

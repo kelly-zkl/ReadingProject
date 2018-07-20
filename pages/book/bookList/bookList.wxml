@@ -13,23 +13,17 @@
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
       <view class="weui-tab__panel">
-        <view class="weui-tab__content" style='padding-top:30rpx'>
-          <block wx:for="012" wx:key="*this">
-            <view class='weui-flex' style='margin-bottom:20rpx'>
-              <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-right:10rpx'
-                hover-class="weui-cell_active">
-                <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
-                <view class='weui-grid__label left'>书名</view>
-                <view class='weui-grid__label left txt-color-gray txt-13'>系列名</view>
+        <view class="weui-tab__content" style='padding-top:20rpx'>
+          <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
+            <block wx:for="{{books}}" wx:key="*this">
+              <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
+                style='padding:8px;width:{{imgWidth}}px' hover-class="weui-cell_active">
+                <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:10px'></image>
+                <view class='weui-grid__label left'>{{item.bookName}}</view>
+                <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
               </navigator>
-              <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-left:10rpx'
-                hover-class="weui-cell_active">
-                <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
-                <view class='weui-grid__label left'>书名</view>
-                <view class='weui-grid__label left txt-color-gray txt-13'>系列名</view>
-              </navigator>
-            </view>
-          </block>
+            </block>
+          </view>
         </view>
       </view>
     </view>

@@ -22,13 +22,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          menuHeight: (res.windowHeight - 60)
-        });
-      }
+    this.setData({
+      menuHeight: (app.globalData.device.windowHeight - 60)
     });
   },
 

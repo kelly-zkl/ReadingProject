@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd' style='padding-top:30rpx'>
     <view class='bg-white-corner'>
-      <image src="../../../images/icon_baby.png" class='baby-img' mode="aspectFill" bindtap="togglePopup"></image>
+      <image src="{{thumbUrl?thumbUrl:'../../../images/icon_baby.png'}}" class='baby-img' mode="aspectFill" bindtap="togglePopup"></image>
       <view class='weui-flex' style='margin-top:40rpx'>
         <view class='weui-flex__item' style='display: flex;justify-content:center'>
           <view class='baby-girl {{sex==2?"active":""}}' bindtap='sexChange' id="2">女宝</view>
@@ -14,7 +14,8 @@
             <view class="weui-label">昵称</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入宝宝昵称" confirm-type="done" bindinput="inputName"/>
+            <input class="weui-input" placeholder="请输入宝宝昵称" confirm-type="done" bindinput="inputName"
+              value='{{babyName}}'/>
           </view>
         </view>
         <picker mode="date" start="1970-01-01" end="{{date}}" value="{{date}}" bindchange="bindDateChange">

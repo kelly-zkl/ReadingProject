@@ -18,7 +18,7 @@
   background: #fff;
   border-radius: 10px;
   box-shadow:3px 3px 6px rgba(0,0,0,.1);
-  margin:0 30rpx 30rpx 30rpx;
+  margin:0 15px 15px 15px;
 }
 .icon-user{
   width:80rpx;
@@ -39,4 +39,10 @@
 .weui-grid__icon.img{
   width: 45px;
   height: 45px
+}
+
+.b.weui-flex__item{
+  -webkit-box-flex:none;
+  -webkit-flex:none;
+  flex:none;
 }

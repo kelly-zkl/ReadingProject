@@ -1,36 +1,24 @@
 <view class='page'>
-  <view class='page__bd' style='padding:30rpx 0 150rpx 0'>
-    <view wx:if="{{isDelete}}">
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"
-        bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="*this">
-        <view class="content">
-          <view class='weui-flex'>
-            <image src="../../../images/icon_baby.png" class="img"></image>
-            <view class='weui-flex__item'><view class='weui-grid__label' class="name">{{item.content}}</view></view>
-          </view>  
+  <view class='page__bd' style='padding:30rpx 30rpx 150rpx 30rpx'>
+    <block wx:for='{{babys}}' wx:key='*this'>
+      <view class="weui-media-box weui-media-box_appmsg" bindtap="bindChecked" data-index="{{index}}"
+        hover-class="weui-cell_active" id="{{item.bindState}}">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
+          <image class="weui-media-box__thumb m" style='border-radius:50%'
+          src="{{item.avatar?item.avatar:'../../../images/icon_baby.png'}}"/>
         </view>
-        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
-      </view>
-    </view>
-    
-    <view wx:else>
-      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{items}}" wx:key="*this"
-        bindtap="bindChecked" data-index="{{index}}">
-        <view class="content">
-          <view class='weui-flex'>
-            <image src="../../../images/icon_baby.png" class="img"></image>
-            <view class='weui-flex__item'><view class='weui-grid__label' class="name">{{item.content}}</view></view>
-            <view class="weui-cell__ft vertical-center" style='padding:20rpx'>
-              <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff"/>
-              <icon wx:else type="circle" size="20" color="#00d2ff"/>
-            </view>
-          </view>  
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title txt-15" style='margin-bottom:15rpx'>{{item.nickname}}的小叮当</view>
+          <view class="weui-media-box__desc txt-color-gray txt-13">{{item.bindState=="binding"?"已绑定":item.bindState=="unbind"?"未绑定":"未绑定"}}</view>
         </view>
-        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+        <view class="weui-cell__ft vertical-center" style='padding:20rpx'>
+          <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff"/>
+          <icon wx:else type="circle" size="20" color="#00d2ff"/>
+        </view>
       </view>
-    </view>
+    </block>
   </view>
   <view class="weui-footer weui-footer_fixed-bottom" style="padding:30rpx;background:#fff;border-top:1rpx #f2f2f2 solid">
-    <view class="btn-save" bindtap='bindDevice' hover-class="btn-active">添加设备</view> 
+    <view class="btn-save" bindtap='bindDevice' hover-class="btn-active">添加设备</view>
   </view>
 </view>

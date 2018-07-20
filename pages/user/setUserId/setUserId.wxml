@@ -7,10 +7,10 @@
       </view>
     </view>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:30rpx'>
-      <block wx:for="012345" wx:key="*this">
+      <block wx:for="{{tags}}" wx:key="*this">
         <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"
           bindtap="bindChecked" data-index="{{index}}">
-          <view class="weui-cell__bd weui-cell_primary">妈妈</view>
+          <view class="weui-cell__bd weui-cell_primary">{{item}}</view>
           <view class="weui-cell__ft">
             <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff" class='vertical-center'/>
             <icon wx:else type="circle" size="20" color="#00d2ff"  class='vertical-center'/>
@@ -27,7 +27,8 @@
     <view class="zan-popup__mask" bindtap="togglePopu"></view>
     <view class="zan-popup__container popup-example--center">
       <view class='update-title'>自定义身份</view>
-      <input class="weui-input" placeholder="请输入身份" value='{{identity}}' bindinput="inputIdentity"/>
+      <input class="weui-input" placeholder="请输入身份" value='{{identity}}' bindinput="inputIdentity"
+        maxlength="5"/>
       <view style='margin:30px 30rpx 30rpx 30rpx'>
         <view class='btn-save' bindtap='saveIdentity' hover-class="btn-active">保存</view>
       </view>

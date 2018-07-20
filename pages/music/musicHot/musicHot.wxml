@@ -25,22 +25,16 @@
           <view class='view-tag-title'>3岁启蒙</view>
           <view class='view-tag-more' bindtap='gotoList'>更多</view>
         </view>
-        <block wx:for="01" wx:key="*this">
-          <view class='weui-flex' style='margin-bottom:20rpx'>
-            <navigator url="/pages/music/musicDetail/musicDetail" class='weui-flex__item' style='margin-right:10rpx'
-              hover-class="weui-cell_active">
-              <image class='weui-grid__icon' src="../../../images/icon_music.png" mode="widthFix" style='width:100%'></image>
+        <view class='weui-flex'>
+          <block wx:for="01234" wx:key="*this">
+            <navigator url="/pages/music/musicDetail/musicDetail?id={{item.bookId}}" class='b weui-flex__item'
+              style='width:{{imgWidth}}px' hover-class="weui-cell_active">
+              <image src="../../../images/icon_music.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius: 10px 10px 0 0'></image>
               <view class='weui-grid__label left'>专辑名称</view>
               <view class='weui-grid__label left txt-color-gray txt-13'>专辑介绍</view>
             </navigator>
-            <navigator url="/pages/music/musicDetail/musicDetail" class='weui-flex__item' style='margin-left:10rpx'
-              hover-class="weui-cell_active">
-              <image class='weui-grid__icon' src="../../../images/icon_music.png" mode="widthFix" style='width:100%'></image>
-              <view class='weui-grid__label left'>专辑名称</view>
-              <view class='weui-grid__label left txt-color-gray txt-13'>专辑介绍</view>
-            </navigator>
-          </view>
-        </block>
+          </block>
+        </view>
       </view>
     </block>
   </view>

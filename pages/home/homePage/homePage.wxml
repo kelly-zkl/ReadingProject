@@ -1,5 +1,5 @@
 <view class='page'>
-  <view class='page__bd' wx:if="{{neverBind}}" style="padding:0 30rpx" bindtap='changeNever'>
+  <view class='page__bd' wx:if="{{neverBind}}" style="padding:0 30rpx">
     <view style="position:relative;height:100vh">
       <view style='position: absolute; top: 50%;transform: translateY(-50%)'>
         <image src="../../../images/icon_baby_musics.png" mode="widthFix" style='width:690rpx'></image>
@@ -7,33 +7,31 @@
       </view>
     </view>
   </view>
-  <view class='page__bd' wx:else bindtap='changeNever'>
+  <view class='page__bd' wx:else>
     <view style='padding:0 10px 30rpx 10px' wx:if="{{!isBind}}">
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg unbind" catchtap='changeBind'
-          style='width:{{unbindW*0.7}}px;height:{{unbindW}}px;line-height:{{unbindW}}px'>
-          <image class="weui-media-box__thumb unbind" src="../../../images/icon_baby_musics.png"
-            style='width:{{unbindW*0.7}}px;height:{{unbindW}}px'/>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0;margin-bottom:30rpx'>
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
+          <image class="weui-media-box__thumb bind" src="{{baby.avatar?baby.avatar:'../../../images/icon_baby.png'}}"
+            style='border-radius:50%'/>
         </view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title btn-bind-dev" bindtap='bindDevice'>添加设备</view>
-          <view class="weui-media-box__desc txt-color-white" bindtap='scanCode'
-            style='position: absolute;bottom:0;right:0'>扫一扫 加入家庭成员</view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg bind">
+          <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
+          <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>宝宝还没有关联设备</view>
         </view>
         <view class="weui-cell__ft setting" catchtap='gotoDevice'>
           <image src="../../../images/btn_change.png" style='width:30px;height:30px'></image>
         </view>
       </view>
+      <view class="weui-media-box__title btn-bind-dev" bindtap='bindDevice'>添加设备</view>
     </view>
-    <view style='padding:0 10px 30rpx 10px' wx:else bindtap='changeBind'>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:0'>
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind" catchtap='changeBind'
-          style='width:{{bindW*0.7}}px;height:{{bindW}}px;line-height:{{bindW}}px'>
-          <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
-            style='width:{{bindW*0.7}}px;height:{{bindW}}px'/>
+    <view style='padding:0 10px 30rpx 10px' wx:else>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:0;margin-bottom:20rpx'>
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
+          <image class="weui-media-box__thumb bind" src="{{baby.avatar?baby.avatar:'../../../images/icon_baby.png'}}"
+            style='border-radius:50%'/>
         </view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title txt-16 txt-color-white">宝宝的小精灵</view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg bind">
+          <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
         <view class="weui-cell__ft setting" catchtap='gotoSet'>
@@ -46,21 +44,21 @@
       <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_power.png"></image>
-          <view class='weui-grid__label txt-color-white' style='margin-top:0'>99%</view>
+          <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.battery?device.battery:'--'}}%</view>
         </view>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_sdcard.png"></image>
-          <view class='weui-grid__label txt-color-white' style='margin-top:0'>79%</view>
+          <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.space?device.space:'--'}}%</view>
         </view>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_wifi.png"></image>
-          <view class='weui-grid__label txt-color-white' style='margin-top:0'>在线</view>
+          <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.online?'在线':'离线'}}</view>
         </view>
         <view class='weui-flex__item'>
           <image class='weui-grid__icon' src="../../../images/icon_clock.png"></image>
-          <view class='weui-grid__label txt-color-white' style='margin-top:0'>开启</view>
+          <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.alarm?'开启':'关闭'}}</view>
         </view>
-        <view class='weui-flex__item'>
+        <view class='weui-flex__item' wx:if="{{device.rest}}">
           <image class='weui-grid__icon' src="../../../images/icon_rest.png"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>休息</view>
         </view>
@@ -79,8 +77,9 @@
           </navigator>
         </view>
         <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid;padding:0 10px 20rpx 10px'>
-          <block wx:for="123" wx:key="*this">
-            <navigator url="" class='weui-flex__item' style='padding:30rpx 0 0 0' hover-class="weui-cell_active">
+          <block wx:for="{{books}}" wx:key="*this">
+            <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='padding:30rpx 0 0 0'
+              hover-class="weui-cell_active">
               <image src="../../../images/icon_book.png" style='width:{{imgWidth}};height:{{imgWidth}};margin: 0 6px;border-radius:5px'></image>
               <view class='weui-grid__label txt-14' style='text-align:left;margin-left:6px;margin-top:0'>书名/系列名</view>
               <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>8遍</view>

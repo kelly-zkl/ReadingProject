@@ -1,34 +1,39 @@
 
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+const app = getApp();
+
 Page({
   data: {
     items: [],
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    refresh: false,
+    page:1,
+    size:10
   },
   onLoad: function (e) {
-    var that = this;
-    for (var i = 0; i < 10; i++) {
-      this.data.items.push({
-        content: i + " 向左滑动删除哦,向左滑动删除哦,向左滑动删除哦,向左滑动删除哦向左滑动删除哦向左滑动删除哦,向左滑动删除哦向左滑动删除哦向左滑动删除哦",
-        isTouchMove: false //默认隐藏删除
-      })
-    }
+
+  },
+
+  onShow:function(){
     this.setData({
-      items: this.data.items
+      page: 1
     });
+    this.getMsgs();
   },
   
   //手指触摸动作开始 记录起点X坐标
   touchstart: function (e) {
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function (v, i) {
+    this.data.msgs.forEach(function (v, i) {
       if (v.isTouchMove)//只操作为true的
         v.isTouchMove = false;
     })
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      items: this.data.items
+      msgs: this.data.msgs
     })
   },
   //滑动事件处理
@@ -41,7 +46,7 @@ Page({
       touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
       //获取滑动角度
       angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    that.data.items.forEach(function (v, i) {
+    that.data.msgs.forEach(function (v, i) {
       v.isTouchMove = false
       //滑动超过30度角 return
       if (Math.abs(angle) > 30) return;
@@ -54,7 +59,7 @@ Page({
     })
     //更新数据
     that.setData({
-      items: that.data.items
+      msgs: that.data.msgs
     })
   },
   /**
@@ -70,9 +75,84 @@ Page({
   },
   //删除事件
   del: function (e) {
-    this.data.items.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      items: this.data.items
+    var that = this;
+    // this.data.msgs.splice(e.currentTarget.dataset.index, 1)
+    // this.setData({
+    //   msgs: this.data.msgs
+    // })
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该消息？',
+      confirmText: '删除',
+      confirmColor: '#00d2ff',
+      success: function (res) {
+        if (res.confirm) {
+          
+          http.postRequest({
+            baseType: 0,
+            url: "user/child/master/select",
+            params: {uid:app.globalData.userInfo.uid,messageId:e.currentTarget.id},
+            msg: "操作中...",
+            success: res => {
+              wx.showToast({ title: '删除成功', icon: 'none', duration: 1500 })
+              that.setData({
+                page: 1
+              });
+              that.getMsgs();
+            }
+          }, true);
+        }
+      }
     })
+  },
+
+  /**获取通知列表 */
+  getMsgs:function(){
+    var that = this;
+    http.postRequest({
+      baseType: 0,
+      url: "message/query/notify",
+      params: { uid: app.globalData.userInfo.uid, page: that.data.page,size:that.data.size},
+      msg: "加载中...",
+      success: res => {
+        if (that.data.refresh) {
+          wx.hideNavigationBarLoading(); //完成停止加载
+          wx.stopPullDownRefresh(); //停止下拉刷新
+        }
+        (res.data.content || []).map(function (item) {
+          item.isTouchMove = false
+        })
+        if (that.data.page <= 1) {
+          that.setData({
+            msgs: res.data.content
+          })
+        } else {
+          that.setData({
+            msgs: that.data.msgs.concat(res.data.content)
+          })
+        }
+      }
+    }, false);
+  },
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading();
+    this.setData({
+      refresh: true,
+      page: 1
+    });
+
+    this.getMsgs();
+  },
+  /** 
+   * 页面上拉触底事件的处理函数 
+   */
+  onReachBottom: function () {
+    this.setData({
+      page: this.data.page + 1
+    });
+    this.getMsgs();
   }
 })

@@ -1,4 +1,8 @@
-// pages/user/userCenter/userCenter.js
+
+var http = require("../../../http.js");
+var util = require('../../../utils/util.js');
+var app = getApp();
+
 Page({
 
   /**
@@ -15,6 +19,11 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     });
+
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 3];  //上2个页面
+    console.log(pages)
   },
 
   /**
@@ -24,16 +33,17 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     });
+    this.getBabyList();
   },
 
   /**跳转我的身份页面*/
-  gotoIdentity:function(){
+  gotoIdentity:function (){
     wx.navigateTo({
       url: '/pages/user/setUserId/setUserId'
     })
   },
   /**跳转已绑定设备页面*/
-  gotoMyDevice:function(){
+  gotoMyDevice:function (){
     wx.navigateTo({
       url: '/pages/device/deviceList/deviceList'
     })
@@ -49,5 +59,59 @@ Page({
     wx.navigateTo({
       url: '/pages/user/myBooks/myBooks'
     })
-  }
+  },
+  //扫一扫
+  scan: function (e) {
+    wx.scanCode({
+      scanType: ['qrCode'],
+      success: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描成功', icon: 'info', duration: 1500 })
+        if (res.result && res.result.indexOf('/pages/') == 0 && res.result.indexOf('familyId') > 0) {
+          var familyId = res.result.substring(res.result.indexOf("=") + 1, res.result.length)
+          console.log(familyId);
+          this.setData({
+            familyId: familyId
+          })
+          this.addMembers();
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 })
+      }
+    })
+  },
+  // 加入家庭组
+  addMembers: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 0,
+      url: "family/member/add",
+      params: {
+        familyId: that.data.familyId, uid: app.globalData.userInfo.uid,
+        userId: app.globalData.userInfo.userId
+      },
+      msg: "操作中...",
+      success: res => {
+        wx.showToast({ title: '成功加入家庭组', icon: 'info', duration: 1500 })
+      }
+    }, true);
+  },
+  // 获取宝宝列表
+  getBabyList: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 0,
+      url: "user/childs",
+      params: {uid: app.globalData.userInfo.uid },
+      msg: "加载中...",
+      success: res => {
+        var arry = res.data.length;
+        this.setData({
+          num: arry
+        });
+      }
+    }, false);
+  },
 })

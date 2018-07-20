@@ -15,7 +15,7 @@
           <view style='height:50rpx;line-height:50rpx;font-size:14px;text-align:center'>共88首</view>
           <view class='weui-flex__item'></view>
           <view class='btn-small-60' style='margin-right:30rpx' hover-class="btn-active">全加歌单</view>
-          <view class='btn-small-60' hover-class="btn-active">推送全部</view>
+          <view class='btn-small-60' hover-class="btn-active" wx:if="{{isBind}}">推送全部</view>
         </view>
         <!--曲目列表  -->
         <view style='background:#fff'>
@@ -32,7 +32,7 @@
             <view class='weui-cell__ft'>
               <image src="{{down==0?'../../../images/icon_down_music.png':down==1?'../../../images/icon_stop_down.png':'../../../images/icon_down_finish.png'}}"
                 class="cell-icon-size s" bindtap='downloadMusic'/>
-              <image src="../../../images/icon_push_music.png" class="cell-icon-size s"/>
+              <image src="../../../images/icon_push_music.png" class="cell-icon-size s" wx:if="{{isBind}}"/>
             </view>
           </view>
         </view>
