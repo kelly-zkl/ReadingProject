@@ -22,7 +22,7 @@
           <view class="youview">
             <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
             <view class="m">
-              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:"语音"}}</text>
+              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:item.attachUrl}}</text>
               <view class="arrow"></view>
             </view>
           </view>
@@ -34,7 +34,7 @@
           <view class="myview">
             <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
             <view class="m">
-              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:"语音"}}</text>
+              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:item.attachUrl}}</text>
               <view class="arrow"></view>
             </view>
           </view>

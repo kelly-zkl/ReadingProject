@@ -116,7 +116,7 @@
   height:0;
   font-size:16px;
   border:solid 8px;
-  border-color:transparent transparent transparent ghostwhite;
+  border-color:transparent white transparent transparent;
   z-index: 0;
 }
 .yk{ clear:both;}
