@@ -31,7 +31,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       scrowHeight: app.globalData.device.windowHeight - 145,
-      currentStr: (this.data.currentIdx + 1) + "/" + this.data.imgUrls.length
+      currentStr: (this.data.currentIdx + 1) + "/" + this.data.imgUrls.length,
+      bookId: options.id
     });
   },
 
@@ -39,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getBookDetail();
   },
   // 滑动图片
   changeImg:function(e){
@@ -135,5 +136,20 @@ Page({
         pause: 0
       })
     }
-  }
+  },
+  //绘本详情
+  getBookDetail: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/detail/" + that.data.bookId,
+      params: { bookId:that.data.bookId},
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          bookDetail: res.data
+        });
+      }
+    }, false);
+  },
 })

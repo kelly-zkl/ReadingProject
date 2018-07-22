@@ -27,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getMusics();
   },
 
   /**跳转到音乐列表页*/
@@ -43,5 +43,19 @@ Page({
       url: '/pages/common/search/search?type=album'
     })
   },
-
+  //专辑列表
+  getMusics: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "album/query",
+      params: {},
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          musics: res.data.content
+        });
+      }
+    }, false);
+  },
 })

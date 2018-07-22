@@ -54,7 +54,7 @@ Page({
       sampleRate: 44100,
       numberOfChannels: 1,
       encodeBitRate: 192000,
-      format: 'aac',
+      format: 'mp3',
       // frameSize: 500,
       audioSource: 'auto'
     }
@@ -69,10 +69,10 @@ Page({
     recorderManager.stop();
     recorderManager.onStop((res) => {
       console.log('recorder stop', res)
-      const { tempFilePath } = res
       this.setData({
-        video: res.tempFilePath
-      })
+        tempFilePath: res
+      });
+      this.uploadVideo();
     })
   },
   //播放声音
@@ -96,7 +96,18 @@ Page({
       content: e.detail.value
     });
   },
-
+  /***/
+  uploadVideo:function(){
+    var that = this;
+    http.uploadFile(that.data.tempFilePath.tempFilePath, {
+      success: function (res) {
+        that.setData({
+          video: res.data
+        });
+        that.sendMsg();
+      }
+    })
+  },
   /**跳转到成员管理页面*/
   gotoUserManager: function () {
     wx.navigateTo({

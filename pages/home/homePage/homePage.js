@@ -112,7 +112,7 @@ Page({
             app.globalData.userInfo["deviceId"] = res.data.deviceId;
 
             // that.getDeviceStatus();
-            // that.getBabyBooks();
+            that.getBabyBooks();
           }
         }else{//从未绑定过
           neverBind = true;
