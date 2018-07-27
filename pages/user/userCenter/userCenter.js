@@ -34,6 +34,7 @@ Page({
       userInfo: app.globalData.userInfo
     });
     this.getBabyList();
+    this.getFavNum();
   },
 
   /**跳转我的身份页面*/
@@ -110,6 +111,22 @@ Page({
         var arry = res.data.length;
         this.setData({
           num: arry
+        });
+      }
+    }, false);
+  },
+  // 获取用户收藏的绘本和专辑数
+  getFavNum: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "favo/stat/" + app.globalData.userInfo.userId,
+      params: {},
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          bookFavoCount: res.data.bookFavoCount,
+          albumFavoCount: res.data.albumFavoCount
         });
       }
     }, false);

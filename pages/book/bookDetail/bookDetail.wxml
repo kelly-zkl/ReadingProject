@@ -1,20 +1,20 @@
 <view class='page'>
   <view class='page__bd' style='padding-bottom:150rpx'>
     <swiper style='height:{{bannerHeight}}px' current="{{currentIdx}}" bindchange="changeImg">
-      <block wx:for="{{imgUrls}}" wx:key="*this">
+      <block wx:for="{{bookDetail.pageList}}" wx:key="*this">
         <swiper-item>
-          <image src="{{item}}" mode="widthFix" style='width:100%' bindload='imageLoad'/>
+          <image src="{{item.picUrl}}" mode="widthFix" style='width:100%' bindload='imageLoad'/>
         </swiper-item>
       </block>
     </swiper>
     <!--分享和收藏  -->
-    <view class="setting">
-      <image src="{{follow==0?'../../../images/icon_unfollow.png':'../../../images/icon_follow.png'}}"
+    <view class="setting" style='right:140rpx'>
+      <image src="{{bfId?'../../../images/icon_follow.png':'../../../images/icon_unfollow.png'}}"
         style='width:80rpx;height:80rpx' bindtap='collect'></image>
     </view>
-    <view class="setting" style='right:140rpx'>
-      <image src="../../../images/icon_share.png" style='width:80rpx;height:80rpx' bindtap='share'></image>
-    </view>
+    <button open-type="share" class="setting">
+      <image src="../../../images/icon_share.png" style='width:80rpx;height:80rpx'></image>
+    </button>
     <!--左右箭头  -->
     <view class='weui-flex' style='padding-top:30rpx;margin:0 28%'>
       <image src="../../../images/icon_prebtn.png" bindtap='preImg' style='width:50rpx;height:50rpx'></image>
@@ -26,30 +26,21 @@
     <!--标题  -->
     <view class='weui-flex' style='padding:30rpx'>
       <view>
-        <view class='weui-grid__label txt-15' style='display:block;margin-top:0'>露露住在朋友家</view>
+        <view class='weui-grid__label txt-15' style='display:block;margin-top:0'>{{bookDetail.bookName}}</view>
         <view class='weui-grid__label txt-color-gray' style='display:block;text-align:left;margin-top:0'>
-          <view style='display:inline-block;padding-right:20rpx'>系列名</view>
-          <view style='display:inline-block;padding-left:20rpx'>作者</view>
+          <view style='display:inline-block;padding-right:20rpx'>{{bookDetail.author}}</view>
+          <view style='display:inline-block;padding-left:20rpx'>{{bookDetail.publisherName}}</view>
         </view>
       </view>
       <view class='weui-flex__item'></view>
       <view class='btn-small-60 vertical-center' hover-class="btn-active">
-        <view class='weui-grid__label price'>￥23.00</view>
+        <view class='weui-grid__label price'>￥{{bookDetail.pricing}}</view>
         <image src="../../../images/icon_shop.png" style='display:inline-block;width:40rpx;height:40rpx'></image>
       </view>
     </view>
     <scroll-view scroll-y class="score-y" style="height: {{scrowHeight}}">
       <view style='padding:0 30rpx'>
-        <text style='color:#333;font-size:14px;word-break:break-all'>
-    坐上车，然后大喊一声：“出发喽！”这是一个小朋友永远不会厌倦的时刻！
-　　因为出发之后，就可以安心地坐在车里，和家人一起在移动的状态中享受车内和车外的风景。这套书就这样带着一车车的人，到了山问、原野、花田，过铁桥、看大海。
-　　书里的插图细腻精美，细致到我们可以一一述说人们都在做什么。文字简单而富有旋律。极简短的文字只为引导读者自行分辨书中角色和情境。
-　　坐车旅行是一种风景和记忆，亲子阅读也是一种旅行和风景，只要和家人在一起，就会感觉幸福无比。这样的记忆、想念与期待，才是永远有魅力的旅行。
-　　这是一套交通工具大集合的书。天上飞的飞机、飞艇，地上走的火车、公共汽车、消防车、摩托车，水里游的大轮船、小橡皮艇，大大小小的交通工具都有出现，男孩子一定会喜欢！
-　　这是一套美丽的自然风景书。超级清新的画风，色彩柔和而绚丽，带给我们扑面而来的清新。动物形象也圆乎乎的，特别可爱，女孩子也一定会喜欢！
-　　这还是一套有趣的亲子共读书。细致的图画，有好多的小细节可以让孩子仔细看，让爸妈慢慢讲。
-　　这是一套别出心裁的游戏书。每本书都有不同的工艺设计，让小朋友们惊喜不已。而且在每本书里都可以找到别的故事里出现过的交通工具！喜欢找一找的小朋友，别忘了睁大眼睛瞧一瞧喔！
-        </text>
+        <text style='color:#333;font-size:14px;word-break:break-all'>{{lanIdx==2?bookDetail.pageList[currentIdx].contentZh:bookDetail.pageList[currentIdx].contentEn}}</text>
       </view>
     </scroll-view>
     <!--播放按钮及语言切换  -->
@@ -63,8 +54,8 @@
             <image src="../../../images/icon_change.png" style='display:inline-block;width:50rpx;height:50rpx'></image>
           </view>
         </view>
-        <image src="../../../images/icon_push.png" class="cell-icon-size s" style='margin:15rpx 30rpx 15rpx 0'/>
-        <image src="../../../images/icon_add.png" class="cell-icon-size s" style='margin:15rpx 0'/>
+        <image src="../../../images/icon_push.png" class="cell-icon-size s" style='margin:15rpx 30rpx 15rpx 0' bindtap='pushToDevice' wx:if="{{isBind}}"/>
+        <image src="../../../images/icon_add.png" class="cell-icon-size s" style='margin:15rpx 0' bindtap='addToBaby'/>
       </view>
     </view>
   </view>

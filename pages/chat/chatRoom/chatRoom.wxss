@@ -121,3 +121,39 @@
 }
 .yk{ clear:both;}
 
+/**语音/键盘切换*/
+.weui-grid__label.voice{
+  margin-top:0;
+  border:2rpx #e5e5e5 solid;
+  height:66rpx;
+  line-height:66rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  color: #999
+}
+.spk{
+  background: rgba(0,0,0,.1);
+}
+.keyboard{
+  color:#333;
+  height:68rpx;
+  line-height: 68rpx;
+  min-height: 68rp;
+  margin:0;
+  text-align: left;
+  border-bottom: 2rpx #00d2ff solid
+}
+.speak-style{
+  position: fixed;
+  height: 240rpx;
+  width: 240rpx;
+  background: rgba(0,0,0,.6);
+  border-radius: 20rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%)
+}
+.sound-style{
+  height: 240rpx;
+  width: 240rpx;
+}

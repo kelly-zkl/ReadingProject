@@ -23,6 +23,9 @@ Page({
     textMessage: '',
     chatItems: [],
     scrollTopTimeStamp: 0,
+    keyBoard:true,
+    j: 1,//帧动画初始图片
+    isSpeaking: false,//是否正在说话
   },
 
   /**
@@ -38,13 +41,39 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
     this.setData({
       page: 1,
       baby: app.globalData.baby
     });
     this.getFamilyMembers();
     this.getChatList();
+  },
+  //切换语音/键盘
+  changeVoice:function(){
+    this.setData({
+      keyBoard: !this.data.keyBoard
+    })
+  },
+  //手指按下
+  touchdown: function () {
+    console.log("手指按下了...")
+    var _this = this;
+    speaking.call(this);
+    this.setData({
+      isSpeaking: true
+    })
+    //开始录音
+    this.startRecord();
+  },
+  //手指抬起
+  touchup: function () {
+    console.log("手指抬起了...")
+    clearInterval(this.timer)
+    this.setData({
+      isSpeaking: false,
+      j:1
+    })
+    this.stopRecord();
   },
 
   //开始录音
@@ -200,7 +229,9 @@ Page({
       msg: "加载中...",
       success: res => {
         this.setData({
-          page: 1
+          page: 1,
+          content:'',
+          video:''
         });
         this.getChatList();
       }
@@ -227,5 +258,26 @@ Page({
       page: this.data.page + 1
     });
     this.getChatList();
+  },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    innerAudioContext.destroy();
   }
 })
+
+//麦克风帧动画
+function speaking() {
+  var _this = this;
+  //话筒帧动画
+  var i = 1;
+  this.timer = setInterval(function () {
+    i++;
+    i = i % 5;
+    console.log(i);
+    _this.setData({
+      j: i
+    })
+  }, 200);
+}

@@ -4,8 +4,8 @@
       <view class="weui-media-box weui-media-box_appmsg" style='padding:0;margin-bottom:20rpx'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
           style='width:{{deviceW*0.7}}px;height:{{deviceW}}px;line-height:{{deviceW}}px'>
-          <image class="weui-media-box__thumb bind" src="../../../images/icon_baby_musics.png"
-            style='width:{{deviceW*0.7}}px;height:{{deviceW}}px'/>
+          <image class="weui-media-box__thumb bind" src="../../../images/icon_device.png"
+            style='width:{{deviceW*0.78}}px;height:{{deviceW}}px'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>

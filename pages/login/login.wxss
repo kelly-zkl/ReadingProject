@@ -2,3 +2,8 @@
 page{
   background: #fff
 }
+
+.weui-grid__label.txt-color-active{
+  font-weight: 700;
+  font-size: 40rpx
+}

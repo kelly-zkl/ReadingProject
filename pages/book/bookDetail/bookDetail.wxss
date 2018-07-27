@@ -8,7 +8,16 @@ page{
   top:0;
   right:30rpx;
   display: flex;
-  align-items: center
+  align-items: center;
+  width:80rpx;height:80rpx;
+  background:transparent;
+  padding: 0;
+  border: transparent;
+  margin: 0;
+}
+.setting::before,.setting::after{
+  border:transparent;
+  background:transparent;
 }
 
 .btn-small-60{

@@ -18,9 +18,19 @@ Page({
   onLoad: function (options) {
     var that = this;
     var familyId = '';
-    if (options.familyId){
+    if (options.familyId){//添加家庭成员
       this.setData({
         url: '/pages/home/homePage/homePage?familyId=' + options.familyId
+      })
+    }
+    if (options.albumId) {//分享专辑
+      this.setData({
+        url: '/pages/home/homePage/homePage?albumId=' + options.albumId
+      })
+    }
+    if (options.bookId) {//分享绘本
+      this.setData({
+        url: '/pages/home/homePage/homePage?bookId=' + options.bookId
       })
     }
     //获取用户信息

@@ -20,13 +20,13 @@
         <text class='text-book'>收藏\n专辑</text>
       </view>
       <view class='weui-flex__item txt-num' bindtap='gotoMyMusics'>
-        <view class='txt-num' style='text-align:left'>9999</view>
+        <view class='txt-num' style='text-align:left'>{{albumFavoCount}}</view>
       </view>
       <view class='weui-flex__item' bindtap='gotoMyBooks'>
         <text class='text-book'>收藏\n绘本</text>
       </view>
       <view class='weui-flex__item txt-num' bindtap='gotoMyBooks'>
-        <view class='txt-num' style='text-align:left'>9999</view>
+        <view class='txt-num' style='text-align:left'>{{bookFavoCount}}</view>
       </view>
     </view>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>

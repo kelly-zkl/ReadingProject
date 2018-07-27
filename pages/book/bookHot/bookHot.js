@@ -23,8 +23,8 @@ Page({
     rsliderOffset: 0,
     rsliderLeft: 0,
     showLeftPopup:false,
-    tags: [{ name: "全部", url: "../../../images/icon_all.png" }, { name: "精选", url: "../../../images/icon_jing.png" },
-      { name: "热门", url: "../../../images/icon_hot.png" }, { name: "最新", url: "../../../images/icon_new.png" }]
+    tags: [{name: "全部", url: "../../../images/icon_all.png"}, { name: "最新", url: "../../../images/icon_new.png"},
+     {name: "精选", url: "../../../images/icon_jing.png"}, {name: "热销", url: "../../../images/icon_hot.png"}]
   },
 
   /**
@@ -53,7 +53,13 @@ Page({
   onShow: function () {
     this.getYearTags();
     this.getBooksYear();//年龄推荐
-    this.getBooksHot();//热播榜单
+    if (this.data.ractiveIndex == 0) {//今日榜单
+      this.getBooksToday();
+    } else if (this.data.ractiveIndex == 1) {//本周榜单
+      this.getBooksWeek();
+    } else if (this.data.ractiveIndex == 2) {//本月榜单
+      this.getBooksMonth();
+    }
   },
   /**年龄推荐*/
   tabClick: function (e) {
@@ -75,18 +81,21 @@ Page({
       rsliderOffset: e.currentTarget.offsetLeft,
       ractiveIndex: e.currentTarget.id
     });
-    if (e.currentTarget.id == 0) {//英语
-    } else if (e.currentTarget.id == 1) {//音乐
-    } else if (e.currentTarget.id == 2) {//故事
-    } else if (e.currentTarget.id == 3) {//诗词文学
-    } else {//百科全说
-
+    if (e.currentTarget.id == 0) {//今日榜单
+      this.getBooksToday();
+    } else if (e.currentTarget.id == 1) {//本周榜单
+      this.getBooksWeek();
+    } else if (e.currentTarget.id == 2) {//本月榜单
+      this.getBooksMonth();
     }
   },
 /**跳转到绘本列表*/
-  gotoList:function(){
+  gotoList:function(e){
+    this.setData({
+      showLeftPopup:false
+    })
     wx.navigateTo({
-      url: '/pages/book/bookList/bookList'
+      url: '/pages/book/bookList/bookList?type=' + e.currentTarget.id
     })
   },
   // 跳转搜索页面
@@ -160,16 +169,45 @@ Page({
       }
     }, false);
   },
-  //热播榜单
-  getBooksHot: function () {
+  //热播榜单--今日榜单
+  getBooksToday: function () {
     var that = this;
     http.postRequest({
       baseType: 2,
-      url: "book/query",
-      params: {},
+      url: "book/stat/today",
+      params: {page:1,size:6},
       msg: "加载中...",
       success: res => {
-
+        this.setData({
+          hotBooks: res.data.content
+        });
+      }
+    }, false);
+  },
+  //热播榜单--本周榜单
+  getBooksWeek: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/stat/week",
+      params: { page: 1, size: 6 },
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          hotBooks: res.data.content
+        });
+      }
+    }, false);
+  },
+  //热播榜单--本月榜单
+  getBooksMonth: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "book/stat/month",
+      params: { page: 1, size: 6 },
+      msg: "加载中...",
+      success: res => {
         this.setData({
           hotBooks: res.data.content
         });

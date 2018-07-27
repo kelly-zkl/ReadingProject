@@ -35,6 +35,18 @@ Page({
       })
       this.addMembers();
     }
+    // 分享绘本
+    if (options.bookId) {
+      wx.navigateTo({
+        url: '/pages/book/bookDetail/bookDetail?id=' + options.bookId
+      })
+    }
+    // 分享专辑
+    if (options.albumId) {
+      wx.navigateTo({
+        url: '/pages/music/musicDetail/musicDetail?id=' + options.albumId
+      })
+    }
   },
   // 加入家庭组
   addMembers: function () {
@@ -151,10 +163,9 @@ Page({
     http.postRequest({
       baseType: 2,
       url: "childBook/query",
-      params: { childId: app.globalData.userInfo.childId},
+      params: {childId: app.globalData.userInfo.childId,page:1,size:3},
       msg: "加载中...",
       success: res => {
-
         this.setData({
           books: res.data.content
         });

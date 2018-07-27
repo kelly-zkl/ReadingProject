@@ -19,17 +19,17 @@
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content">
-          <block wx:for='0123' wx:key='*this'>
-            <navigator url="/pages/music/musicDetail/musicDetail" class="weui-media-box weui-media-box_appmsg"
+          <block wx:for='{{musics}}' wx:key='*this'>
+            <navigator url="/pages/music/musicDetail/musicDetail?id={{item.albumId}}" class="weui-media-box weui-media-box_appmsg"
               hover-class="weui-cell_active" style='border-bottom:1rpx #f2f2f2 solid'>
               <view class="weui-media-box__hd weui-media-box__hd_in-appmsg xl">
                 <image class="weui-media-box__thumb xl" style='border-radius:8px'
                 src="../../../images/icon_music.png"/>
               </view>
               <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-                <view class="weui-media-box__title txt-15">专辑名称</view>
-                <view class="weui-media-box__desc txt-color-gray txt-13">专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍……专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍专辑介绍……</view>
-                <view class="weui-media-box__info txt-color-gray">专辑名称</view>
+                <view class="weui-media-box__title txt-15">{{item.name}}</view>
+                <view class="weui-media-box__desc txt-color-gray txt-13">{{item.name}}</view>
+                <view class="weui-media-box__info txt-color-gray">{{item.creator}}</view>
               </view>
             </navigator>
           </block>

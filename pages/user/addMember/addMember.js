@@ -49,7 +49,7 @@ Page({
     console.log(text);
 
     return {
-      title: '绘本阅读',
+      title: '小精灵',
       desc: '添加家庭成员',
       path: text,
       success: function (res) {// 转发成功

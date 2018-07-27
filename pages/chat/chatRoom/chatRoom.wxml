@@ -41,23 +41,27 @@
           <view class="yk"></view>
         </view>
       </view>
-    </block> 
+    </block>
   </view>
-  <view class="weui-footer weui-footer_fixed-bottom" style="padding:10rpx 30rpx;background:#fff;border-top:1rpx #f2f2f2 solid">
+  <view class="weui-footer weui-footer_fixed-bottom" style="padding:15rpx 30rpx;background:#fff;border-top:1rpx #f2f2f2 solid">
     <view class='weui-flex'>
-      <input type="text" value="{{content}}" bindinput="bindKeyInput" style='color:#333'></input>
-      <view class='weui-flex__item' style='marrgin-right:15rpx'>
-        <view class="btn-small-60" bindtap='startRecord' hover-class="btn-active">开始录音</view>
+      <image src="{{keyBoard?'../../../images/voice.png':'../../../images/keyboard.png'}}" 
+        style='width:70rpx;height:70rpx;margin-right:30rpx' bindtap='changeVoice'></image>
+      <view class='weui-flex__item' wx:if="{{keyBoard}}">
+        <input type="text" value="{{content}}" bindinput="bindKeyInput" class='keyboard'></input>
       </view>
-      <view class='weui-flex__item' style='marrgin-right:15rpx'>
-        <view class="btn-small-60" bindtap='stopRecord' hover-class="btn-active">结束录音</view>
+      <view class='weui-flex__item' wx:if="{{!keyBoard}}">
+        <view class="weui-grid__label voice {{isSpeaking?'spk':''}}" bindtouchstart="touchdown" bindtouchend="touchup">按住说话</view>
       </view>
-      <view class='weui-flex__item' style='marrgin-right:15rpx'>
-        <view class="btn-small-60" bindtap='play' hover-class="btn-active" id="{{video}}">播放</view>
-      </view>
-      <view class='weui-flex__item'>
-        <view class="btn-small-60" bindtap='sendMsg' hover-class="btn-active">发送</view>
-      </view>
+      <view class="btn-small-60" bindtap='sendMsg' hover-class="btn-active" wx:if="{{keyBoard&&content.length>0}}"
+        style="height:70rpx;border-radius:6px;margin-left:30rpx;padding:auto 20rpx;line-height:70rpx">发送</view>
     </view>
+  </view>
+  <view wx:if="{{isSpeaking}}" class="speak-style">
+    <image wx:if="{{j==1}}" class="sound-style" src="../../../images/icon_speak_1.png" ></image>
+    <image wx:if="{{j==2}}" class="sound-style" src="../../../images/icon_speak_2.png" ></image>
+    <image wx:if="{{j==3}}" class="sound-style" src="../../../images/icon_speak_3.png" ></image>
+    <image wx:if="{{j==4}}" class="sound-style" src="../../../images/icon_speak_4.png" ></image>
+    <image wx:if="{{j==0}}" class="sound-style" src="../../../images/icon_speak_5.png" ></image>
   </view>
 </view>

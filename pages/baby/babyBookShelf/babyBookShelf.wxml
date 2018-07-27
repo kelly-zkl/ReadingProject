@@ -1,36 +1,24 @@
 <view class='page'>
   <view class='page__bd'>
     <scroll-view scroll-x="true" style="white-space: nowrap; display: flex;padding:30rpx 0">
-      <view class='view-card' wx:for='01234' wx:key="*this">
-        <view class="weui-grid__label txt-15" style='margin-top:0'>888本</view>
-        <view class="weui-grid__label txt-13" style='margin-top:20rpx'>累计数量</view>
+      <view class="view-card {{index==1?'view-2':index==2?'view-3':''}}" wx:for='{{tags}}' wx:key="*this">
+        <view class="weui-grid__label txt-15" style='margin-top:0'>{{item.num}}</view>
+        <view class="weui-grid__label txt-13" style='margin-top:20rpx'>累计阅读</view>
       </view>
     </scroll-view>
     <view class='view-tag' style='margin-bottom:20rpx'>
       <view class='view-tag-title'>宝宝书架</view>
       <view class='view-tag-more' bindtap='gotoRocords'>我的录音</view>
     </view>
-    <block wx:for="01" wx:key="*this">
-      <view class='weui-flex' style='margin-bottom:20rpx'>
-        <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-right:10rpx'
-          hover-class="weui-cell_active">
-          <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
-          <view class='weui-grid__label left'>书名</view>
-          <view class='weui-grid__label left txt-color-gray txt-13'>系列名</view>
+    <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
+      <block wx:for="{{books}}" wx:key="*this">
+        <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}" class='b weui-flex__item'
+          style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
+          <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:8px'></image>
+          <view class='weui-grid__label left'>{{item.book.bookName}}</view>
+          <view class='weui-grid__label left txt-color-gray txt-13'>{{item.progress==0?'未读完':item.progress+'遍'}}</view>
         </navigator>
-        <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item'
-          style='margin-left:10rpx;margin-right:10rpx' hover-class="weui-cell_active">
-          <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
-          <view class='weui-grid__label left'>书名</view>
-          <view class='weui-grid__label left txt-color-gray txt-13'>系列名</view>
-        </navigator>
-        <navigator url="/pages/book/bookDetail/bookDetail" class='weui-flex__item' style='margin-left:10rpx'
-          hover-class="weui-cell_active">
-          <image class='weui-grid__icon' src="../../../images/icon_book.png" mode="widthFix" style='width:100%'></image>
-          <view class='weui-grid__label left'>书名</view>
-          <view class='weui-grid__label left txt-color-gray txt-13'>系列名</view>
-        </navigator>
-      </view>
-    </block>
+      </block>
+    </view>
   </view>
 </view>

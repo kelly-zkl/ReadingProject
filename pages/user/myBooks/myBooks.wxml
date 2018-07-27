@@ -2,11 +2,11 @@
   <view class='page__bd' style='padding-top:20rpx'>
     <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
       <block wx:for="{{books}}" wx:key="*this">
-        <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
+        <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}" class='b weui-flex__item'
           style='padding:8px;width:{{imgWidth}}px' hover-class="weui-cell_active">
           <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:10px'></image>
-          <view class='weui-grid__label left'>{{item.bookName}}</view>
-          <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
+          <view class='weui-grid__label left'>{{item.book.bookName}}</view>
+          <view class='weui-grid__label left txt-color-gray txt-13'>{{item.book.author}}</view>
         </navigator>
       </block>
     </view>

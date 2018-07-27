@@ -13,6 +13,9 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
+    refresh: false,
+    page: 1,
+    size: 10
   },
 
   /**
@@ -30,7 +33,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      page: 1
+    })
+    this.getMusics();
   },
 
   tabClick: function (e) {
@@ -46,4 +52,50 @@ Page({
 
     }
   },
+  //收藏专辑列表
+  getMusics: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "favo/album/query",
+      params: {userId: app.globalData.userInfo.userId, page: that.data.page, size: that.data.size},
+      msg: "加载中...",
+      success: res => {
+        if (that.data.refresh) {
+          wx.hideNavigationBarLoading(); //完成停止加载
+          wx.stopPullDownRefresh(); //停止下拉刷新
+        }
+        if (that.data.page <= 1) {
+          that.setData({
+            musics: res.data.content
+          })
+        } else {
+          that.setData({
+            musics: that.data.musics.concat(res.data.content)
+          })
+        }
+      }
+    }, false);
+  },
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading();
+    this.setData({
+      refresh: true,
+      page: 1
+    });
+
+    this.getMusics();
+  },
+  /** 
+   * 页面上拉触底事件的处理函数 
+   */
+  onReachBottom: function () {
+    this.setData({
+      page: this.data.page + 1
+    });
+    this.getMusics();
+  }
 })

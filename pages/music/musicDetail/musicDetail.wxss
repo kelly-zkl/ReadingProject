@@ -2,15 +2,15 @@
 .weui-media-box__desc{margin-top: 6px;-webkit-line-clamp:3}
 .collection{
   position: absolute;
-  top:10px;
+  top:0px;
   right:5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cell-icon-size{
-  width: 35px;
-  height: 35px;
+  width: 60rpx;
+  height: 60rpx;
   display: inline-block
 }
 .cell-icon-size.s{
@@ -22,9 +22,20 @@
   height: 54rpx;
   margin: 23rpx 0;
 }
-
 .btn-small-60{
   height: 50rpx;
   line-height: 50rpx;
   border-radius: 25rpx;
+}
+.share{
+  width:60rpx;
+  height:60rpx;
+  background:transparent;
+  padding: 0;
+  border: transparent;
+  margin: 0;
+}
+.share::before,.share::after{
+  border:transparent;
+  background:transparent;
 }

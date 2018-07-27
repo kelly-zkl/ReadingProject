@@ -3,15 +3,27 @@ page{
   background: #fff
 }
 
-.weui-flex{
-  margin: 0 30rpx
+.b.weui-flex__item{
+  -webkit-box-flex:none;
+  -webkit-flex:none;
+  flex:none;
+}
+.b.weui-flex__item:nth-child(3n+1){
+  margin-left: 5px
+}
+.b.weui-flex__item:nth-child(3n+2){
+  margin: 0
+}
+.b.weui-flex__item:nth-child(3n){
+  margin-right: 5px
 }
 .weui-grid__icon{
   border-radius: 10rpx;
 }
 .weui-grid__label.left{
   text-align: left;
-  margin-left: 20rpx
+  margin-left: 20rpx;
+  white-space: pre-wrap
 }
 .weui-grid__label.txt-13{
   margin-top: 0;
@@ -48,11 +60,17 @@ page{
 /*统计  */
 .view-card{
   display: inline-block;
-  width: 43%;
-  padding:30rpx;
-  background: linear-gradient(to right, #FF6D8D , #FF9B97);
+  width: 30%;
+  padding:20rpx 30rpx;
+  background: linear-gradient(to right, #FFb48e , #FFe149);
   margin-right: 20rpx;
   border-radius: 8px;
+}
+.view-2{
+  background: linear-gradient(to right, #72a1fa , #59d4f8);
+}
+.view-3{
+  background: linear-gradient(to right, #43d97f , #a6ec79);
 }
 .view-card:first-child{
   margin-left: 20rpx

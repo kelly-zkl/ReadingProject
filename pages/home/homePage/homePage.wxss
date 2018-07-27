@@ -51,3 +51,10 @@ page{
   display: flex;
   align-items: center
 }
+
+.weui-grid__label.txt-14{
+  text-align:left;
+  margin-left:6px;
+  margin-top:0;
+  white-space: pre-wrap
+}
