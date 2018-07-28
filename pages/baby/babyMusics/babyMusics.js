@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: ["音乐", "故事", "诗词", "百科","绘本"],
+    tabs: ["学英语", "听音乐", "讲故事"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
@@ -50,12 +50,9 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
-    if (e.currentTarget.id == 0) {//音乐
-    } else if (e.currentTarget.id == 1) {//故事
-    } else if (e.currentTarget.id == 2) {//诗词
-    } else if (e.currentTarget.id == 3){//百科
-    } else {//绘本
-
+    if (e.currentTarget.id == 0) {//学英语
+    } else if (e.currentTarget.id == 1) {//听音乐
+    } else if (e.currentTarget.id == 2) {//讲故事
     }
   },
   // 播放音乐

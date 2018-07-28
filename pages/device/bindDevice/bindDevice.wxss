@@ -57,3 +57,8 @@ page{
 }
 
 .weui-cell__ft_in-access:after{right: 20px}
+
+/**连接的wifi*/
+.bg-active{
+  background: rgba(0,0,0,.1);
+}

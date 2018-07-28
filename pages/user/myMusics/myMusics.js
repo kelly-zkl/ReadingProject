@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: ["英语", "音乐", "故事", "诗词文学", "百科全说"],
+    tabs: ["学英语", "听音乐", "讲故事"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,

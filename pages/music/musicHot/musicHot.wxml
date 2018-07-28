@@ -12,13 +12,13 @@
         </label>
       </view>
     </view>
-    <scroll-view scroll-x="true" style="white-space: nowrap; display: flex;border-bottom:20rpx #f2f2f2 solid">
-      <view style="width: 23%;display: inline-block;padding:20rpx 0" wx:for="{{tags}}" wx:key="*this"
+    <view class='weui-flex' style="border-bottom:20rpx #f2f2f2 solid">
+      <view class="weui-flex__item" style="padding:20rpx 0" wx:for="{{tags}}" wx:key="*this"
         hover-class="weui-cell_active" bindtap='gotoList'>
         <image class="weui-grid__icon tab" src="{{item.url}}"></image>
         <view class="weui-grid__label">{{item.name}}</view>
       </view>
-    </scroll-view>
+    </view>
     <block wx:for="012" wx:key="*this">
       <view style='margin:15rpx 0'>
         <view class='view-tag'>

@@ -1,4 +1,5 @@
 
+var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
 var http = require("../../../http.js");
 const app = getApp();
 
@@ -8,12 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tags: [{ name: "全部", url: "../../../images/icon_all.png" }, { name: "学英语", url: "../../../images/icon_english.png" },
-    { name: "听音乐", url: "../../../images/icon_music_tab.png" }, { name: "讲故事", url: "../../../images/icon_story.png" },
-    { name: "诗词文学", url: "../../../images/icon_shici.png" }, { name: "百科", url: "../../../images/icon_baike.png" }],
-    tabs: ["综合", "热门", "最新"],
+    tabs: ["全部","英语","音乐","故事"],
     activeIndex: 0,
-    tabIdx:0,
+    sliderOffset: 36,
+    sliderLeft: 0,
     showRightPopup:false,
     menuHeight:0,
     refresh: false,
@@ -26,6 +25,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      sliderLeft: (app.globalData.device.windowWidth / this.data.tabs.length - sliderWidth) / 2,
+      sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex + 36,
       menuHeight: (app.globalData.device.windowHeight - 60)
     });
   },
@@ -42,13 +43,13 @@ Page({
   /***/
   tabClick: function (e) {
     this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
-    if (e.currentTarget.id == 0) {//英语
-    } else if (e.currentTarget.id == 1) {//音乐
-    } else if (e.currentTarget.id == 2) {//故事
-    } else if (e.currentTarget.id == 3) {//诗词文学
-    } else {//百科全说
+    if (e.currentTarget.id == 0) {//全部
+    } else if (e.currentTarget.id == 1) {//英语
+    } else if (e.currentTarget.id == 2) {//音乐
+    } else {//故事
 
     }
   },

@@ -43,15 +43,15 @@
       </view>
       <view class="weui-flex bg-white-corner" style='padding:10px;background:#00c6f0'>
         <view class='weui-flex__item'>
-          <image class='weui-grid__icon' src="../../../images/icon_power.png"></image>
+          <image class='weui-grid__icon' src="{{device.battery?device.battery==100?'../../../images/icon_power_100.png':device.battery>=80?'../../../images/icon_power_80.png':device.battery>=60?'../../../images/icon_power_60.png':device.battery>=40?'../../../images/icon_power_40.png':device.battery>=20?'../../../images/icon_power_20.png':'../../../images/icon_power_10.png':'../../../images/icon_power_10.png'}}"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.battery?device.battery:'--'}}%</view>
         </view>
         <view class='weui-flex__item'>
-          <image class='weui-grid__icon' src="../../../images/icon_sdcard.png"></image>
+          <image class='weui-grid__icon' src="{{device.space?device.space==100?'../../../images/icon_sdcard_100.png':device.space>=80?'../../../images/icon_sdcard_80.png':device.space>=60?'../../../images/icon_sdcard_60.png':device.space>=40?'../../../images/icon_sdcard_40.png':device.space>=20?'../../../images/icon_sdcard_20.png':'../../../images/icon_sdcard_10.png':'../../../images/icon_sdcard_10.png'}}"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.space?device.space:'--'}}%</view>
         </view>
         <view class='weui-flex__item'>
-          <image class='weui-grid__icon' src="../../../images/icon_wifi.png"></image>
+          <image class='weui-grid__icon' src="{{device.online?'../../../images/icon_online.png':'../../../images/icon_offline.png'}}"></image>
           <view class='weui-grid__label txt-color-white' style='margin-top:0'>{{device.online?'在线':'离线'}}</view>
         </view>
         <view class='weui-flex__item'>

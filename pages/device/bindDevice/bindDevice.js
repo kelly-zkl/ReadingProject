@@ -44,12 +44,14 @@ Page({
         success: res => {
           this.getConnectedWifi();
           this.getWifiList();
+          this.connectStatus();
         }
       })
     }else{
       wx.startWifi({
         success: res => {
           this.getConnectedWifi();
+          this.connectStatus();
         }
       })
     }
@@ -161,9 +163,14 @@ Page({
   },
   // 监听连接上 Wi-Fi 的事件。
   connectStatus:function(){
-    wx.onWifiConnected(function(res){
+    wx.onWifiConnected(res => {
       console.log('监听连接上 Wi-Fi 的事件。');
       console.log(res);
+      this.setData({
+        wifiName: res.wifi.SSID,
+        connectWifi: res.wifi,
+        wifi: res.wifi
+      })
     })
   },
   // 获取wifi列表

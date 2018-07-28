@@ -49,9 +49,12 @@
           <view class="weui-cell weui-cell_access">
             <view class="weui-cell__bd" style="text-align:center;font-size:16px;color:#00d2ff">附近的wifi</view>
           </view>
-          <view class="weui-cell weui-cell_access line" id="{{index}}" bindtap="popuChange"
-            wx:for="{{wifiList}}" wx:key="*this" hover-class="weui-cell_active">
+          <view class="weui-cell weui-cell_access line {{item.SSID==wifiName?'bg-active':''}}" id="{{index}}" bindtap="popuChange"
+            wx:for="{{wifiList}}" wx:key="*this" hover-class="weui-cell_active" wx:if="{{item.SSID.length>0}}">
             <view class="weui-cell__bd weui-cell_primary">{{item.SSID}}</view>
+            <view class='weui-cell__ft'>
+              <image class='weui-grid__icon' src="{{item.signalStrength>=80?'../../../images/icon_wifi_3.png':item.signalStrength>=30?'../../../images/icon_wifi_2.png':item.signalStrength>=10?'../../../images/icon_wifi_1.png':'../../../images/icon_wifi_0.png'}}"></image>
+            </view>
           </view>
         </view>
       </scroll-view>

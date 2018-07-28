@@ -3,6 +3,10 @@ page{
   background: #fff
 }
 
+.weui-navbar__slider{
+  width:64px
+}
+
 .view-tab{
   display: inline-block;
   height: 44px;
@@ -20,7 +24,7 @@ page{
   border-bottom: 3px #00d2ff solid
 }
 /*筛选重置/确定  */
-.weui-flex__item{
+.weui-flex__item.b{
   height: 45px;
   line-height: 45px;
   text-align: center;
