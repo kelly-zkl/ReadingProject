@@ -49,3 +49,11 @@ page{
   border-radius: 35rpx;
   margin: 15rpx auto
 }
+
+.page-img{
+  margin:0 auto;
+  height:53vh;
+  display:flex;
+  justify-content:center;
+  align-items: center
+}

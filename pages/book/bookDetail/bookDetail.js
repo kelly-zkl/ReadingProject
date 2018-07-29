@@ -23,7 +23,8 @@ Page({
     lanIdx:2,
     currentIdx:0,
     currentStr:'',
-    pause:0
+    pause:0,
+    bookDetail: {pageList:[]}
   },
 
   /**
@@ -32,7 +33,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       scrowHeight: app.globalData.device.windowHeight - 145,
-      currentStr: (this.data.currentIdx + 1) + "/" + 1,
+      currentStr: (this.data.currentIdx) + "/" + 0,
       bookId: options.id,
       isBind: app.globalData.userInfo.isBind
     });
@@ -51,7 +52,7 @@ Page({
     console.log(e);
     this.setData({
       currentIdx: e.detail.current,
-      currentStr: (e.detail.current + 1) + "/" + this.bookDetail.pageList.length
+      currentStr: (e.detail.current + 1) + "/" + this.data.bookDetail.pageList.length
     });
   },
   // 上一页
@@ -62,18 +63,18 @@ Page({
     }
     this.setData({
       currentIdx: index,
-      currentStr: (index + 1) + "/" + this.bookDetail.pageList.length
+      currentStr: (index + 1) + "/" + this.data.bookDetail.pageList.length
     });
   },
   // 下一页
   nextImg:function(){
     var index = this.data.currentIdx;
-    if (index < this.bookDetail.pageList.length-1) {
+    if (index < this.data.bookDetail.pageList.length-1) {
       index = index + 1;
     }
     this.setData({
       currentIdx: index,
-      currentStr: (index + 1) + "/" + this.bookDetail.pageList.length
+      currentStr: (index + 1) + "/" + this.data.bookDetail.pageList.length
     });
   },
 
@@ -158,8 +159,11 @@ Page({
       params: {},
       msg: "加载中...",
       success: res => {
+        wx.setNavigationBarTitle({title: res.data.bookName})
         this.setData({
-          bookDetail: res.data
+          bookDetail: res.data,
+          currentIdx: 0,
+          currentStr: res.data.pageList?(1 + "/" + res.data.pageList.length):"0/0",
         });
       }
     }, false);

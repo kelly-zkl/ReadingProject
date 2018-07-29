@@ -1,9 +1,9 @@
 <view class='page'>
   <view class='page__bd' style='padding-bottom:150rpx'>
-    <swiper style='height:{{bannerHeight}}px' current="{{currentIdx}}" bindchange="changeImg">
+    <swiper current="{{currentIdx}}" bindchange="changeImg" style='height: 53vh' wx:if="{{bookDetail.pageList.length>0}}">
       <block wx:for="{{bookDetail.pageList}}" wx:key="*this">
         <swiper-item>
-          <image src="{{item.picUrl}}" mode="widthFix" style='width:100%' bindload='imageLoad'/>
+          <image src="{{item.picUrl}}" class="page-img" mode="aspectFit"/>
         </swiper-item>
       </block>
     </swiper>
@@ -26,8 +26,8 @@
     <!--标题  -->
     <view class='weui-flex' style='padding:30rpx'>
       <view>
-        <view class='weui-grid__label txt-15' style='display:block;margin-top:0'>{{bookDetail.bookName}}</view>
-        <view class='weui-grid__label txt-color-gray' style='display:block;text-align:left;margin-top:0'>
+        <view class='weui-grid__label txt-15' style='text-align:left;margin-top:0'>{{bookDetail.bookName}}</view>
+        <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-top:0'>
           <view style='display:inline-block;padding-right:20rpx'>{{bookDetail.author}}</view>
           <view style='display:inline-block;padding-left:20rpx'>{{bookDetail.publisherName}}</view>
         </view>
