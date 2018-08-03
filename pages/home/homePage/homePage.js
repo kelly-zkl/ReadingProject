@@ -1,4 +1,5 @@
 
+var base64 = require("../../../images/base64");
 var http = require("../../../http.js");
 var util = require('../../../utils/util.js');
 const app = getApp();
@@ -14,7 +15,8 @@ Page({
     star:0,
     bindW:0,
     unbindW:0,
-    neverBind:true
+    neverBind:true,
+    bg:''
   },
 
   /**
@@ -26,6 +28,8 @@ Page({
       imgWidth: app.globalData.homeWidth.imgWidth,
       bindW: app.globalData.homeWidth.bindW,
       unbindW: app.globalData.homeWidth.unbindW,
+      bg: base64.bg,
+      welbg: base64.welbg
     });
 
     // 加入家庭组

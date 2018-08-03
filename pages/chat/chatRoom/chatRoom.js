@@ -79,7 +79,7 @@ Page({
   //开始录音
   startRecord:function(){
     const option = {
-      duration: 60000,
+      duration: 6000,
       sampleRate: 44100,
       numberOfChannels: 1,
       encodeBitRate: 192000,
@@ -125,7 +125,7 @@ Page({
       content: e.detail.value
     });
   },
-  /***/
+  /**上传语音文件*/
   uploadVideo:function(){
     var that = this;
     http.uploadFile(that.data.tempFilePath.tempFilePath, {

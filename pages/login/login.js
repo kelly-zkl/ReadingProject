@@ -1,4 +1,5 @@
 
+var base64 = require("../../images/base64");
 var http = require("../../http.js");
 var app = getApp();
 
@@ -8,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),//
     url: '/pages/home/homePage/homePage'
   },
 
@@ -17,6 +18,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
+    that.setData({
+      welbg: base64.welbg
+    });
+
     var familyId = '';
     if (options.familyId){//添加家庭成员
       this.setData({

@@ -1,13 +1,11 @@
 <view class='page'>
-  <view class='page__bd' wx:if="{{neverBind}}" style="padding:0 70rpx">
-    <view style="position:relative;height:100vh">
-      <view style='position: absolute; top: 50%;transform: translateY(-50%)'>
-        <image src="../../../images/icon_device.png" mode="widthFix" style='width:550rpx;margin:30rpx'></image>
-        <view class='btn-bind-dev' bindtap='bindDevice' style='margin:30rpx 20% 0 20%;width:60%'>添加设备</view>
-      </view>
+  <view class='page__bd' wx:if="{{neverBind}}" style="background-image:url({{welbg}});background-repeat:no-repeat;background-size:100%;-moz-background-size:100%;background-attachment:fixed">
+    <view style="height:100vh">
+      <image src="../../../images/icon_welcome.png" mode="widthFix" style='position:absolute;bottom:0;width:100%'></image>
+      <view class='btn-bind-dev' bindtap='bindDevice' style='position:absolute;bottom:10%;margin:0 25%;width:50%'>添加设备</view>
     </view>
   </view>
-  <view class='page__bd' wx:else>
+  <view class='page__bd' wx:else style="background-image:url({{bg}});background-repeat:no-repeat;background-size:100%;-moz-background-size:100%;background-attachment:fixed">
     <view style='padding:0 10px 30rpx 10px' wx:if="{{!isBind}}">
       <view class="weui-media-box weui-media-box_appmsg" style='padding:0;margin-bottom:30rpx'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
@@ -78,9 +76,10 @@
         </view>
         <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid;padding:0 10px 20rpx 10px'>
           <block wx:for="{{books}}" wx:key="*this">
-            <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}" class='weui-flex__item' style='padding:30rpx 0 0 0'
+            <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}&type=true" class='weui-flex__item' style='padding:30rpx 0 0 0'
               hover-class="weui-cell_active">
-              <image src="../../../images/icon_book.png" style='width:{{imgWidth}};height:{{imgWidth}};margin: 0 6px;border-radius:5px'></image>
+              <image src="{{item.book.coverPicture?item.book.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}"
+                style='width:{{imgWidth}};height:{{imgWidth}};margin: 0 6px;border-radius:5px' mode="widthFix"></image>
               <view class='weui-grid__label txt-14'>{{item.book.bookName}}/系列名</view>
               <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>{{item.progress==0?'未读完':item.progress+'遍'}}</view>
             </navigator>

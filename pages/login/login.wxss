@@ -1,9 +1,18 @@
 /**index.wxss**/
 page{
-  background: #fff
+  background: linear-gradient(#00d2ff , #00eaff) no-repeat fixed;
 }
 
-.weui-grid__label.txt-color-active{
+.weui-grid__label.txt-color-white{
   font-weight: 700;
   font-size: 40rpx
+}
+
+.btn-save{
+  position:absolute;
+  bottom:10%;
+  margin:0 20%;
+  width:60%;
+  border: 2px #fff solid;
+  background: linear-gradient( #56EAFF , #31E0FF)
 }

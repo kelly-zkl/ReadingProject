@@ -4,6 +4,7 @@ var util = require('../../../utils/util.js');
 const app = getApp();
 
 const innerAudioContext = wx.createInnerAudioContext();
+const recorderManager = wx.getRecorderManager();
 
 Page({
 
@@ -24,7 +25,9 @@ Page({
     currentIdx:0,
     currentStr:'',
     pause:0,
-    bookDetail: {pageList:[]}
+    bookDetail: {pageList:[]},
+    j: 1,//帧动画初始图片
+    isSpeaking: false,//是否正在说话
   },
 
   /**
@@ -35,7 +38,8 @@ Page({
       scrowHeight: app.globalData.device.windowHeight - 145,
       currentStr: (this.data.currentIdx) + "/" + 0,
       bookId: options.id,
-      isBind: app.globalData.userInfo.isBind
+      isBind: app.globalData.userInfo.isBind,
+      isRecords: options.type ? options.type:false
     });
   },
 
@@ -109,6 +113,12 @@ Page({
         lanaugae: str,
         lanIdx: id
       });
+    } else if (id == 2) {//家长录制
+      str = '家长录制';
+      this.setData({
+        lanaugae: str,
+        lanIdx: id
+      });
     }
     this.setData({
       showPopup: false
@@ -125,10 +135,12 @@ Page({
   // 读书暂停/开始
   readBook: function () {
     var url ="";
-    if (this.data.lanIdx==1){
+    if (this.data.lanIdx==1){//英文
       url = this.bookDetail.pageList[this.data.currentIdx].audioEn[0]
-    }else{
+    } else if (this.data.lanIdx == 2){//中文
       url = this.bookDetail.pageList[this.data.currentIdx].audioZh[0]
+    } else if (this.data.lanIdx == 3){//家长录制
+
     }
     innerAudioContext.src = url
 
@@ -269,11 +281,116 @@ Page({
       desc: this.data.bookDetail.bookName,
       path: text,
       success: function (res) {// 转发成功
-        wx.showToast({ title: '分享成功', icon: 'info', duration: 1500 })
+        wx.showToast({title: '分享成功', icon: 'info', duration: 1500})
       },
       fail: function (res) {// 转发失败
-        wx.showToast({ title: '分享失败', icon: 'info', duration: 1500 })
+        wx.showToast({title: '分享失败', icon: 'info', duration: 1500})
       }
     }
+  },
+  //手指按下
+  touchdown: function () {
+    console.log("手指按下了...")
+    var _this = this;
+    speaking.call(this);
+    this.setData({
+      isSpeaking: true
+    })
+    //开始录音
+    this.startRecord();
+  },
+  //手指抬起
+  touchup: function () {
+    console.log("手指抬起了...")
+    clearInterval(this.timer)
+    this.setData({
+      isSpeaking: false,
+      j: 1
+    })
+    this.stopRecord();
+  },
+
+  //开始录音
+  startRecord: function () {
+    const option = {
+      duration: 60000,
+      sampleRate: 44100,
+      numberOfChannels: 1,
+      encodeBitRate: 192000,
+      format: 'mp3',
+      // frameSize: 500,
+      audioSource: 'auto'
+    }
+    recorderManager.start(option);
+
+    recorderManager.onStart(() => {
+      console.log('recorder start')
+    })
+    recorderManager.onError((res) => {
+      console.log('recorder onError', res)
+      wx.showToast({ title: '请按住录音，松开结束', icon: 'none', duration: 1500})
+    })
+  },
+  //结束录音
+  stopRecord: function () {
+    recorderManager.stop();
+    recorderManager.onStop((res) => {
+      console.log('recorder stop', res)
+      this.setData({
+        tempFilePath: res
+      });
+      wx.showModal({
+        title: '提示',
+        content: '上传后将会覆盖其他家长录制的版本，确认上传？',
+        confirmText: '上传',
+        confirmColor: '#00d2ff',
+        success: function (res) {
+          if (res.confirm) {
+            this.uploadVideo();
+          }
+        }
+      })
+    })
+  },
+  /**上传录制mp3文件*/
+  uploadVideo: function () {
+    var that = this;
+    http.uploadFile(that.data.tempFilePath.tempFilePath, {
+      success: function (res) {
+        that.setData({
+          video: res.data
+        });
+      }
+    })
+  },
+  //上传音频文件地址到后台
+  confirmRecord: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "bookPage/create/customizeAudio",
+      params: {
+        bookId: that.data.bookId, userId: app.globalData.userInfo.userId, audioUrlOther: [that.data.video],
+        bookPageId: that.data.bookDetail.pageList[that.data.currentIdx].bookPageId},
+      msg: "操作中...",
+      success: res => {
+        wx.showToast({title: '上传成功', icon: 'info', duration: 1500});
+      }
+    }, true);
   }
 })
+
+//麦克风帧动画
+function speaking() {
+  var _this = this;
+  //话筒帧动画
+  var i = 1;
+  this.timer = setInterval(function () {
+    i++;
+    i = i % 5;
+    console.log(i);
+    _this.setData({
+      j: i
+    })
+  }, 200);
+}

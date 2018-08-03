@@ -25,7 +25,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      activeIndex: options.type ? options.type : 0
+      activeIndex: options.type ? options.type : 0,
+      itemId: options.itemId ? options.itemId:0
     })
     this.setData({
       sliderLeft: ((app.globalData.device.windowWidth - 72) / this.data.tabs.length - sliderWidth) / 2,
@@ -43,11 +44,12 @@ Page({
     })
     if (this.data.activeIndex == 0) {//全部
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: {
+          page: this.data.page, size: this.data.size, sortProps:["playCount"]}
       })
     } else if (this.data.activeIndex == 1) {//最新
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size}
       })
     } else if (this.data.activeIndex == 2) {//精选
       this.setData({
@@ -58,7 +60,7 @@ Page({
         param: { page: this.data.page, size: this.data.size,hotSell:1}
       })
     }
-    // this.getTags();
+    this.getTags();
     this.getBooks();
   },
   /***/
@@ -70,11 +72,11 @@ Page({
     });
     if (e.currentTarget.id == 0) {//全部
       this.setData({
-        param: {page: this.data.page, size: this.data.size}
+        param: { page: this.data.page, size: this.data.size, sortProps: ["playCount"]}
       })
     } else if (e.currentTarget.id == 1) {//最新
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size}
       })
     } else if (e.currentTarget.id == 2) {//精选
       this.setData({
@@ -103,10 +105,14 @@ Page({
   changeTag: function (e) {
     var idx = e.currentTarget.id;
     var index = e.currentTarget.dataset.index;
+    var selected = this.data.tags[idx].childItem[index].selected;
+    var tags = this.data.tags;
+    tags[idx].childItem[index].selected = !selected;
+
     this.setData({
-      typeIdx: idx,
-      tagIdx: index
+      tags: tags
     })
+    this.getBooks();
   },
   //分类标签
   getTags: function () {
@@ -117,16 +123,59 @@ Page({
       params: {},
       msg: "加载中...",
       success: res => {
-
-        this.setData({
+        (res.data || []).map(function (item) {
+          (item.childItem || []).map(function (tag) {
+            if (that.data.itemId != 0 && that.data.itemId == tag.itemId) {
+              tag.selected = true
+            }else{
+              tag.selected = false
+            }
+          })
+        });
+        that.setData({
           tags: res.data
         });
+        that.getBooks();
       }
     }, false);
+  },
+  //标签重置
+  resetTag:function(){
+    var tags = this.data.tags;
+    (tags || []).map(function (item) {
+      (item.childItem || []).map(function (tag) {
+        tag.selected = false
+      })
+    });
+    this.setData({
+      tags: tags,
+      showRightPopup:false,
+    })
+    this.getBooks();
+  },
+  //确认筛选
+  confirmTag:function(){
+    this.setData({
+      showRightPopup: false
+    })
+    this.getBooks();
   },
   //绘本列表
   getBooks: function () {
     var that = this;
+    var tags = [];
+    (this.data.tags || []).map(function (item) {
+      (item.childItem || []).map(function (tag) {
+        if (tag.selected){
+          tags.push(tag.itemId)
+        }
+      })
+    });
+    if (tags.length>0){
+      that.data.param['item'] = tags
+    }else{
+      delete that.data.param['item'];
+    }
     http.postRequest({
       baseType: 2,
       url: "book/query",
@@ -160,19 +209,19 @@ Page({
     });
     if (this.data.activeIndex == 0) {//全部
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size, sortProps: ["playCount"]}
       })
     } else if (this.data.activeIndex == 1) {//最新
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size}
       })
     } else if (this.data.activeIndex == 2) {//精选
       this.setData({
-        param: { page: this.data.page, size: this.data.size, featured: 1 }
+        param: { page: this.data.page, size: this.data.size, featured: 1}
       })
     } else if (this.data.activeIndex == 3) {//热销
       this.setData({
-        param: { page: this.data.page, size: this.data.size, hotSell: 1 }
+        param: { page: this.data.page, size: this.data.size, hotSell: 1}
       })
     }
     this.getBooks();
@@ -186,19 +235,19 @@ Page({
     });
     if (this.data.activeIndex == 0) {//全部
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size,sortProps: ["playCount"]}
       })
     } else if (this.data.activeIndex == 1) {//最新
       this.setData({
-        param: { page: this.data.page, size: this.data.size }
+        param: { page: this.data.page, size: this.data.size}
       })
     } else if (this.data.activeIndex == 2) {//精选
       this.setData({
-        param: { page: this.data.page, size: this.data.size, featured: 1 }
+        param: { page: this.data.page, size: this.data.size, featured: 1}
       })
     } else if (this.data.activeIndex == 3) {//热销
       this.setData({
-        param: { page: this.data.page, size: this.data.size, hotSell: 1 }
+        param: { page: this.data.page, size: this.data.size, hotSell: 1}
       })
     }
     this.getBooks();

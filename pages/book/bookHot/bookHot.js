@@ -51,8 +51,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getYearTags();
-    this.getBooksYear();//年龄推荐
+    this.getTags();
+    
     if (this.data.ractiveIndex == 0) {//今日榜单
       this.getBooksToday();
     } else if (this.data.ractiveIndex == 1) {//本周榜单
@@ -60,6 +60,29 @@ Page({
     } else if (this.data.ractiveIndex == 2) {//本月榜单
       this.getBooksMonth();
     }
+
+    if (this.data.activeIndex == 0) {//0-2岁
+      this.setData({
+        itemId: "20"
+      })
+    } else if (this.data.activeIndex == 1) {//3-6岁
+      this.setData({
+        itemId: "21"
+      })
+    } else if (this.data.activeIndex == 2) {//7-10岁
+      this.setData({
+        itemId: "22"
+      })
+    } else if (this.data.activeIndex == 3) {//11-14岁
+      this.setData({
+        itemId: "23"
+      })
+    } else {//15岁以上
+      this.setData({
+        itemId: "24"
+      })
+    }
+    this.getBooksYear();//年龄推荐
   },
   /**年龄推荐*/
   tabClick: function (e) {
@@ -67,13 +90,28 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
-    if (e.currentTarget.id == 0) {//英语
-    } else if (e.currentTarget.id == 1) {//音乐
-    } else if (e.currentTarget.id == 2) {//故事
-    } else if (e.currentTarget.id == 3) {//诗词文学
-    } else {//百科全说
-
+    if (e.currentTarget.id == 0) {//0-2岁
+      this.setData({
+        itemId: "20"
+      })
+    } else if (e.currentTarget.id == 1) {//3-6岁
+      this.setData({
+        itemId: "21"
+      })
+    } else if (e.currentTarget.id == 2) {//7-10岁
+      this.setData({
+        itemId: "22"
+      })
+    } else if (e.currentTarget.id == 3) {//11-14岁
+      this.setData({
+        itemId: "23"
+      })
+    } else {//15岁以上
+      this.setData({
+        itemId: "24"
+      })
     }
+    this.getBooksYear();//年龄推荐
   },
   /**热播榜*/
   rtabClick: function (e) {
@@ -136,10 +174,12 @@ Page({
       tagIdx: index,
       showLeftPopup:false
     })
-    this.gotoList();
+    wx.navigateTo({
+      url: '/pages/book/bookList/bookList?itemId=' + this.data.tabTags[this.data.typeIdx].childItem[this.data.tagIdx].itemId
+    })
   },
   //年龄接口
-  getYearTags: function () {
+  getTags: function () {
     var that = this;
     http.postRequest({
       baseType: 2,
@@ -149,7 +189,7 @@ Page({
       success: res => {
 
         this.setData({
-          years: res.data
+          tabTags: res.data
         });
       }
     }, false);
@@ -160,7 +200,7 @@ Page({
     http.postRequest({
       baseType: 2,
       url: "book/query",
-      params: {},
+      params: {page: 1, size: 6,item:[this.data.itemId]},
       msg: "加载中...",
       success: res => {
         this.setData({

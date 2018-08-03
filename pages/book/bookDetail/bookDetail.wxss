@@ -57,3 +57,29 @@ page{
   justify-content:center;
   align-items: center
 }
+
+/* 录音 */
+.btn-record{
+  width:90rpx;
+  height:90rpx;
+  background:#fff;
+  border-radius:50rpx;
+  margin:5rpx 0
+}
+.spk{
+  background: rgba(0,0,0,.1);
+}
+.speak-style{
+  position: fixed;
+  height: 240rpx;
+  width: 240rpx;
+  background: rgba(0,0,0,.6);
+  border-radius: 20rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%)
+}
+.sound-style{
+  height: 240rpx;
+  width: 240rpx;
+}

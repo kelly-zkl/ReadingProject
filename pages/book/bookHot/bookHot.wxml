@@ -51,7 +51,8 @@
               <block wx:for="{{recommendBooks}}" wx:key="*this">
                 <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
                   style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
-                  <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:8px'></image>
+                  <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}" mode="widthFix"
+                   style='width:{{imgWidth}}px;border-radius:8px'></image>
                   <view class='weui-grid__label left'>{{item.bookName}}</view>
                   <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
                 </navigator>
@@ -83,7 +84,8 @@
             <block wx:for="{{hotBooks}}" wx:key="*this">
               <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
                 style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
-                <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:8px'></image>
+                <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}" mode="widthFix"
+                   style='width:{{imgWidth}}px;border-radius:8px'></image>
                 <view class='weui-grid__label left'>{{item.bookName}}</view>
                 <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
               </navigator>
@@ -106,13 +108,13 @@
           <view class="weui-cell weui-cell_access line" bindtap='gotoList' id="1">
             <view class="weui-cell__bd weui-cell_primary">最新</view>
           </view>
-          <block wx:for="0123456" wx:key="*this" wx:for-index="idx">
+          <block wx:for="{{tabTags}}" wx:key="*this" wx:for-index="idx">
             <view class="weui-cell weui-cell_access line">
-              <view class="weui-cell__bd weui-cell_primary">类型</view>
+              <view class="weui-cell__bd weui-cell_primary">{{item.name}}</view>
             </view>
             <view style='padding-left:30rpx'>
-              <view class="zan-tag {{typeIdx==idx&&tagIdx==index?'tag-active':''}}" wx:for="0123456789" wx:key="*this"
-                catchtap='changeTag' id="{{idx}}" data-index="{{index}}">灰色</view>
+              <view class="zan-tag" wx:for="{{item.childItem}}" wx:key="*this"
+                catchtap='changeTag' id="{{idx}}" data-index="{{index}}" wx:for-item="tag">{{tag.name}}</view>
             </view>
           </block>
         </view>
