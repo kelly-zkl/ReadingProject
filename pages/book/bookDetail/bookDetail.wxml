@@ -76,7 +76,7 @@
           <view class="weui-cell__bd weui-cell_primary {{lanIdx==2?'txt-color-active':''}}"
             style="text-align:center;padding:20rpx">中文原声</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange" wx:if="{{bookDetail.pageList[currentIdx].audioZh}}">
+        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange" wx:if="{{bookDetail.pageList[currentIdx].audioOther}}">
           <view class="weui-cell__bd weui-cell_primary {{lanIdx==3?'txt-color-active':''}}"
             style="text-align:center;padding:20rpx">家长录制</view>
         </view>

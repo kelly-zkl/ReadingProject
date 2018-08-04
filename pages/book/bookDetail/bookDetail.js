@@ -136,30 +136,33 @@ Page({
   readBook: function () {
     var url ="";
     if (this.data.lanIdx==1){//英文
-      url = this.bookDetail.pageList[this.data.currentIdx].audioEn[0]
+      url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0]
     } else if (this.data.lanIdx == 2){//中文
-      url = this.bookDetail.pageList[this.data.currentIdx].audioZh[0]
+      url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
     } else if (this.data.lanIdx == 3){//家长录制
-
+      url = this.data.bookDetail.pageList[this.data.currentIdx].audioOther[0]
     }
     innerAudioContext.src = url
 
-    if (this.data.pause == 0) {
+    if (this.data.pause == 0) {//播放（暂停状态）
       innerAudioContext.play();
       this.setData({
         pause: 1
       })
-    } else {
+    } else {//暂停（播放状态）
       innerAudioContext.pause();
       this.setData({
         pause: 0
       })
     }
+    console.log(url);
+    console.log("时长：", innerAudioContext.duration);
+    console.log("当前时间：", innerAudioContext.currentTime);
+    console.log("缓冲：", innerAudioContext.buffered);
 
-    innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-      wx.showToast({title: res.errMsg, icon: 'info', duration: 1500})
+    innerAudioContext.onTimeUpdate((res) => {
+      console.log(res)
+      wx.showToast({title: res, icon: 'info', duration: 1500})
     })
   },
   //绘本详情
