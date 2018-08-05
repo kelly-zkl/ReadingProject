@@ -12,7 +12,7 @@ Page({
    */
   data: {
     down:0,
-    play:1,
+    play:0,
     refresh: false,
     page: 1,
     size: 10,
@@ -27,6 +27,23 @@ Page({
       albumId: options.id,
       isBind: app.globalData.userInfo.isBind
     })
+
+    innerAudioContext.onEnded((res) => {
+      this.setData({
+        pause: 0
+      })
+    });
+    innerAudioContext.onWaiting((res) => {
+      console.log("onWaiting", res);
+      wx.showLoading({ title: "加载中..." })
+    });
+    innerAudioContext.onCanplay((res) => {
+      console.log("onCanplay", res);
+      wx.hideLoading();
+    });
+    innerAudioContext.onPlay((res) => {
+      console.log("onPlay",res);
+    });
   },
 
   /**
@@ -82,13 +99,13 @@ Page({
   },
   //暂停/播放音乐
   pauseStop:function(e){
-    if (this.data.play == 0) {
+    if (this.data.play == 0) {//播放（暂停状态）
       this.setData({
         play: 1,
         idx: e.currentTarget.id
       })
       this.playMusic();
-    } else {
+    } else {//暂停（播放状态）
       innerAudioContext.pause();
       this.setData({
         play: 0
@@ -97,10 +114,19 @@ Page({
   },
   // 播放音乐
   playMusic:function(e){
-
-    innerAudioContext.url = this.data.musics[this.data.idx].url;
+    this.setData({
+      play: 1
+    })
+    innerAudioContext.src = this.data.musics[this.data.idx].url;
 
     innerAudioContext.play();
+
+    console.log(innerAudioContext.src);
+    console.log("时长：", innerAudioContext.duration);
+    console.log("缓冲：", innerAudioContext.buffered);
+    // innerAudioContext.onTimeUpdate((res) => {
+    //   console.log("当前时间：", innerAudioContext.currentTime);
+    // })
   },
   //播放上/下一首
   preNextMusic:function(e){

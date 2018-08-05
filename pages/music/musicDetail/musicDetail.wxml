@@ -43,13 +43,13 @@
     <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;padding-top:20rpx;border-top:1rpx #f2f2f2 solid">
       <slider step="5" activeColor="#00d2ff" block-size="12" style='margin:0' block-color="#00d2ff" backgroundColor='#ccc'/>
       <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
-        <image src="../../../images/icon_pre_music.png" class="cell-icon-size btn" style='margin-right:30px' bindtap='preMusic'/>
-        <image src="{{play==0?'../../../images/icon_play.png':'../../../images/icon_pause.png'}}"
+        <image src="../../../images/icon_pre_music.png" class="cell-icon-size btn" style='margin-right:30px' bindtap='preNextMusic' id="true"/>
+        <image src="{{play==0?'../../../images/icon_pause.png':'../../../images/icon_play.png'}}"
           style='border-radius:50rpx;height:100rpx;width:100rpx' bindtap='pauseStop' id="{{idx}}"/>
         <view class='weui-flex__item' style='margin-left:20rpx'>
           <view class='weui-grid__label txt-14 txt-color-white' style='margin-top:0;text-align:left;line-height:100rpx'>{{musics[idx].name}}</view>
         </view>
-        <image src="../../../images/icon_next_music.png" class="cell-icon-size btn" bindtap='nextMusic'/>
+        <image src="../../../images/icon_next_music.png" class="cell-icon-size btn" bindtap='preNextMusic' id="false"/>
       </view>
     </view>
   </view>

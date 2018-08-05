@@ -41,6 +41,16 @@ Page({
       isBind: app.globalData.userInfo.isBind,
       isRecords: options.type ? options.type:false
     });
+
+    innerAudioContext.onTimeUpdate((res) => {
+      console.log("缓冲",res)
+      wx.showToast({ title: "缓冲中...", icon: 'info', duration: 1500 })
+    })
+    innerAudioContext.onEnded((res) => {
+      this.setData({
+        pause: 0
+      })
+    })
   },
 
   /**
@@ -136,12 +146,25 @@ Page({
   readBook: function () {
     var url ="";
     if (this.data.lanIdx==1){//英文
-      url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0]
+      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioEn) {
+        wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500});
+        return;
+      }
+      url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0] 
     } else if (this.data.lanIdx == 2){//中文
+      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioZh) {
+        wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500});
+        return;
+      }
       url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
     } else if (this.data.lanIdx == 3){//家长录制
+      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioOther) {
+        wx.showToast({ title: "家长录制音频不存在", icon: 'none', duration: 1500});
+        return;
+      }
       url = this.data.bookDetail.pageList[this.data.currentIdx].audioOther[0]
     }
+    
     innerAudioContext.src = url
 
     if (this.data.pause == 0) {//播放（暂停状态）
@@ -159,11 +182,6 @@ Page({
     console.log("时长：", innerAudioContext.duration);
     console.log("当前时间：", innerAudioContext.currentTime);
     console.log("缓冲：", innerAudioContext.buffered);
-
-    innerAudioContext.onTimeUpdate((res) => {
-      console.log(res)
-      wx.showToast({title: res, icon: 'info', duration: 1500})
-    })
   },
   //绘本详情
   getBookDetail: function () {
