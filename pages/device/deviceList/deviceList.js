@@ -78,9 +78,35 @@ Page({
       params: { uid: app.globalData.userInfo.uid, childMaster: that.data.childId },
       msg: "切换宝宝...",
       success: res => {
-        app.globalData.userInfo["childId"] = that.data.childId;
+        that.getSelectBaby();
         wx.showToast({ title: '切换成功', icon: 'none', duration: 1500 })
       }
     }, true);
-  }
+  },
+  //获取当前选择的设备--》baby
+  getSelectBaby: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 0,
+      url: "user/child/master",
+      params: {uid: app.globalData.userInfo.uid},
+      msg: "加载中...",
+      success: res => {
+        app.globalData.baby = res.data;
+
+        app.globalData.userInfo["admin"] = (res.data.creator == app.globalData.userInfo.userId);
+        var isBind = res.data.bindState == "binding" ? true : res.data.bindState == "unbind" ? false : false;
+
+        if (res.data) {//已经绑定过
+          app.globalData.userInfo["childId"] = res.data.childId;
+          app.globalData.userInfo["familyId"] = res.data.familyId
+          if (res.data.deviceId) {//绑定设备
+            app.globalData.userInfo["deviceId"] = res.data.deviceId;
+          }
+        }
+
+        app.globalData.userInfo["isBind"] = isBind;
+      }
+    }, false);
+  },
 })

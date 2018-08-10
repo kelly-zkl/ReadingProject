@@ -25,10 +25,6 @@ page{
   line-height: 100px;
   margin-right: 60rpx;
 }
-.weui-media-box__hd_in-appmsg.bind,.weui-media-box__bd_in-appmsg.bind{
-  margin-top: 80rpx
-}
-
 .weui-cell,.weui-cells{
   border-radius: 10px 10px 0 0;
 }
@@ -57,4 +53,9 @@ page{
   margin-left:6px;
   margin-top:0;
   white-space: pre-wrap
+}
+
+.weui-grid__icon{
+  width: 26px;
+  height: 26px;
 }

@@ -26,8 +26,6 @@ Page({
     var that = this;
     that.setData({
       imgWidth: app.globalData.homeWidth.imgWidth,
-      bindW: app.globalData.homeWidth.bindW,
-      unbindW: app.globalData.homeWidth.unbindW,
       bg: base64.bg,
       welbg: base64.welbg
     });
@@ -51,6 +49,28 @@ Page({
         url: '/pages/music/musicDetail/musicDetail?id=' + options.albumId
       })
     }
+  },
+  //扫一扫
+  scan: function (e) {
+    wx.scanCode({
+      scanType: ['qrCode'],
+      success: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描成功', icon: 'info', duration: 1500 })
+        if (res.result && res.result.indexOf('/pages/') == 0 && res.result.indexOf('familyId') > 0) {
+          var familyId = res.result.substring(res.result.indexOf("=") + 1, res.result.length)
+          console.log(familyId);
+          this.setData({
+            familyId: familyId
+          })
+          this.addMembers();
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 })
+      }
+    })
   },
   // 加入家庭组
   addMembers: function () {
@@ -123,7 +143,7 @@ Page({
           neverBind = false;
           baby = res.data;
           app.globalData.userInfo["childId"] = res.data.childId;
-          app.globalData.userInfo["familyId"] = "5b4ef0c6698a496b1dea0925"
+          app.globalData.userInfo["familyId"] = res.data.familyId
           if (res.data.deviceId){//绑定设备
             app.globalData.userInfo["deviceId"] = res.data.deviceId;
 

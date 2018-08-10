@@ -4,7 +4,8 @@
       <block wx:for="{{books}}" wx:key="*this">
         <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}" class='b weui-flex__item'
           style='padding:8px;width:{{imgWidth}}px' hover-class="weui-cell_active">
-          <image src="../../../images/icon_book.png" mode="widthFix" style='width:{{imgWidth}}px;border-radius:10px'></image>
+          <image src="{{item.book.coverPicture?item.book.coverPicture+'?x-oss-process=image/resize,m_fill,h_300,w_300':'../../../images/icon_book.png'}}"
+            mode="widthFix" style='width:{{imgWidth}}px;border-radius:10px'></image>
           <view class='weui-grid__label left'>{{item.book.bookName}}</view>
           <view class='weui-grid__label left txt-color-gray txt-13'>{{item.book.author}}</view>
         </navigator>

@@ -12,7 +12,6 @@ Page({
     showPopu:false,
     showList:false,
     wifiInfo: {ssid:'',pwd:'',optId:''},
-    connectWifi:{},
     wifi:{},
     wifiName:'',
     pwd:'',
@@ -139,7 +138,7 @@ Page({
       },
       fail: res => {
         console.log(res);
-        wx.showToast({ title: res.errMsg, icon: 'none', duration: 1500 });
+        wx.showToast({title: res.errMsg, icon: 'none', duration: 1500});
       }
     })
   },
@@ -151,13 +150,13 @@ Page({
       password:'',
       success: res => {
         console.log(res);
-        wx.showToast({ title: 'wifi连接成功', icon: 'none', duration: 1500 });
+        wx.showToast({title: 'wifi连接成功', icon: 'none', duration: 1500});
       },
       complete: res => {
         console.log(res);
       },
       fail:res => {
-        wx.showToast({ title: res.errMsg, icon: 'none', duration: 1500 });
+        wx.showToast({title: res.errMsg, icon: 'none', duration: 1500});
       }
     })
   },

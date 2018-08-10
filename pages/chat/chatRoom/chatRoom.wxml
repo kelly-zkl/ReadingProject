@@ -22,7 +22,9 @@
           <view class="youview">
             <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
             <view class="m">
-              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:item.attachUrl}}</text>
+              <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
+              <image wx:else class="mes" src="../../../images/icon_voice_other.png" bindtap='play' id="{{item.attachUrl}}"
+                style='width:40rpx;height:40rpx'></image>
               <view class="arrow"></view>
             </view>
           </view>
@@ -34,7 +36,9 @@
           <view class="myview">
             <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
             <view class="m">
-              <text class="mes" bindtap='play' id="{{item.attachUrl?item.attachUrl:'1'}}">{{item.content?item.content:item.attachUrl}}</text>
+              <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
+              <image wx:else class="mes" src="../../../images/icon_voice_myself.png" bindtap='play' id="{{item.attachUrl}}"
+                style='width:40rpx;height:40rpx'></image>
               <view class="arrow"></view>
             </view>
           </view>

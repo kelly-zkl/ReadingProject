@@ -45,6 +45,7 @@ Page({
       page: 1,
       baby: app.globalData.baby
     });
+    
     this.getFamilyMembers();
     this.getChatList();
   },
@@ -155,6 +156,10 @@ Page({
   },
   /**获取当前家庭组的成员*/
   getFamilyMembers: function () {
+    if (!app.globalData.userInfo.familyId) {
+      wx.showToast({ title: '还没有添加设备~~~', icon: 'none', duration: 1500 });
+      return;
+    }
     var that = this;
     http.postRequest({
       baseType: 0,
@@ -177,6 +182,10 @@ Page({
   },
   /**获取聊天记录*/
   getChatList: function () {
+    if (!app.globalData.userInfo.familyId){
+      wx.showToast({title: '还没有添加设备~~~', icon: 'none', duration: 1500});
+      return;
+    }
     var that = this;
     http.postRequest({
       baseType: 0,

@@ -381,6 +381,7 @@ Page({
         that.setData({
           video: res.data
         });
+        that.confirmRecord();
       }
     })
   },

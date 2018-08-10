@@ -18,7 +18,7 @@
             <block wx:for="{{books}}" wx:key="*this">
               <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
                 style='padding:8px;width:{{imgWidth}}px' hover-class="weui-cell_active">
-                <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}" mode="widthFix"
+                <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_300,w_300':'../../../images/icon_book.png'}}" mode="widthFix"
                    style='width:{{imgWidth}}px;border-radius:8px'></image>
                 <view class='weui-grid__label left'>{{item.bookName}}</view>
                 <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>

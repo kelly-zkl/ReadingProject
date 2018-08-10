@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:50rpx'>
-      <navigator url="/pages/user/addMember/addMember" class="weui-cell weui-cell_access"
+      <navigator url="/pages/user/addMember/addMember?familyId={{familyId}}" class="weui-cell weui-cell_access"
         hover-class="weui-cell_active">
         <view class="weui-cell__bd weui-cell_primary">添加成员</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -17,7 +17,7 @@
             <image class="weui-media-box__thumb" src="{{item.user.avatar?item.user.avatar:'../../../images/icon_user.png'}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">[我]{{item.epithet}}</view>
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">{{item.user.userId==myId?'[我]':''}}{{item.epithet}}</view>
             <view class="weui-media-box__desc txt-13">{{item.user.nickname}}</view>
           </view>
         </view>
@@ -33,7 +33,7 @@
             <image class="weui-media-box__thumb" src="{{item.user.avatar?item.user.avatar:'../../../images/icon_user.png'}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">{{item.epithet}}</view>
+            <view class="weui-media-box__title weui-media-box__title_in-text txt-14">{{item.user.userId==myId?'[我]':''}}{{item.epithet}}</view>
             <view class="weui-media-box__desc txt-13">{{item.user.nickname}}</view>
           </view>
           <view class='weui-cell__ft txt-color-active' wx:if="{{myId==item.user.userId}}">编辑</view>

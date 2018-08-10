@@ -1,6 +1,6 @@
 <view class='page'>
   <view class='page__bd' style='paddint-top:20rpx'>
-    <view class='weui-grid__label txt-color-white'>{{connectWifi?'已连接':'未连接'}}</view>
+    <view class='weui-grid__label txt-color-white'>{{connectWifi.SSID.length>0?'已连接':''}}</view>
     <view class='weui-grid__label txt-color-white txt-16'>{{connectWifi.SSID}}</view>
     <view class='bg-white-corner'>
       <view class="weui-cells weui-cells_after-title txt-14" style='margin-top:20rpx'>
@@ -19,7 +19,7 @@
             <view class="weui-label corner">密码</view>
           </view>
           <view class="weui-cell__bd">
-            <input class="weui-input corner" placeholder="请输入密码" password bindinput="inputPwd"/>
+            <input class="weui-input corner" placeholder="请输入密码" bindinput="inputPwd"/>
           </view>
         </view>
       </view>

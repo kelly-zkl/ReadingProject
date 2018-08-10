@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-search-bar" style="background:#f2f2f2">
-      <image src="../../../images/icon_classify.png" style="width:30px;height:30px;margin:2px 8px 0 0" bindtap='toggleLeftPopup'/>
+      <image src="../../../images/icon_classify.png" style="width:32px;height:32px;margin-right:8px" bindtap='toggleLeftPopup'/>
       <view class="weui-search-bar__form" bindtap='gotoSearch'>
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -9,10 +9,10 @@
         </view>
         <label class="weui-search-bar__label vertical-center" style='justify-content: center'>
           <icon class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text">搜索</view> 
+          <view class="weui-search-bar__text">搜索</view>
         </label>
       </view>
-      <image src="../../../images/icon_scan.png" style="width:30px;height:30px;margin:2px 0 0 8px" bindtap='scan'/>
+      <image src="../../../images/icon_scan.png" style="width:32px;height:32px;margin-left: 8px" bindtap='scan'/>
     </view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular
       indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .7)">
