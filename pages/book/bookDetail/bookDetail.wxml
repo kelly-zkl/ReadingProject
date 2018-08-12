@@ -3,7 +3,7 @@
     <swiper current="{{currentIdx}}" bindchange="changeImg" style='height: 53vh'  wx:if="{{bookDetail.pageList.length>0}}">
       <block wx:for="{{bookDetail.pageList}}" wx:key="*this">
         <swiper-item style="display:flex;justify-content:center;align-items:center">
-          <image src="{{item.picUrl+'?x-oss-process=image/resize,h_400'}}" class="page-img" mode="widthFix"/>
+          <image src="{{item.picUrl+'?x-oss-process=image/resize,h_400'}}" class="page-img" mode="aspectFit"/>
         </swiper-item>
       </block>
     </swiper>

@@ -158,11 +158,17 @@ Page({
       if (!this.data.bookDetail.pageList[this.data.currentIdx].audioEn) {
         wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500});
         return;
+      } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioEn.length == 0) {
+        wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500 });
+        return;
       }
       url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0] 
     } else if (this.data.lanIdx == 2){//中文
       if (!this.data.bookDetail.pageList[this.data.currentIdx].audioZh) {
         wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500});
+        return;
+      } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioZh.length==0){
+        wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500 });
         return;
       }
       url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
