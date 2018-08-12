@@ -22,7 +22,7 @@ Page({
   //选择设备
   bindChecked: function (e) {
     var that = this;
-    if (this.data.babys.length > 1){
+    if (this.data.babys.length < 2){
       return;
     }
     var index = parseInt(e.currentTarget.dataset.index);
