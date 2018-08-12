@@ -45,7 +45,7 @@ page{
 
 /*wifi信息二维码  */
 .update-title{
-  border-radius: 8px 8px 0 0;
+  border-radius: 0 0 0 0;
   background: #00d2ff;
   padding: 30rpx
 }
@@ -54,6 +54,20 @@ page{
   color: #fff;
   text-align: left;
   white-space: pre-wrap;
+}
+.popup-example--center {
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+}
+.qrcode{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width:200px;
+  height:200px;
+  z-index:1;
+  transform: translateX(-50%)translateY(-50%);
 }
 
 .weui-cell__ft_in-access:after{right: 20px}

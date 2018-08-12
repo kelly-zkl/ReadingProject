@@ -36,8 +36,7 @@
         <view class='weui-grid__label'>1、同时按小精灵的左右键2秒，可打开扫码功能</view>
         <view class='weui-grid__label'>2、手机平放在桌面，离小精灵5cm左右</view>
       </view>
-      <canvas canvas-id='myQrcode' hidden='{{!showPopu}}'
-        style='width:200px;height:200px;z-index:1;margin:50rpx auto'></canvas>
+      <canvas canvas-id='myQrcode' hidden='{{!showPopu}}' class='qrcode'></canvas>
     </view>
   </view>
   <!--附近wifi列表-->
