@@ -44,7 +44,12 @@ Page({
     })
     this.getMusics();
   },
-
+  //去绘本城
+  gotoMusics: function () {
+    wx.switchTab({
+      url: '/pages/music/musicHot/musicHot'
+    })
+  },
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,

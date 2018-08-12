@@ -4,14 +4,14 @@
       <view class="weui-media-box weui-media-box_appmsg" bindtap="bindChecked" data-index="{{index}}"
         hover-class="weui-cell_active" id="{{item.bindState}}">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
-          <image class="weui-media-box__thumb m" style='border-radius:50%'
+          <image class="weui-media-box__thumb m" style='border-radius:50%' mode='aspectFill'
           src="{{item.avatar?item.avatar:'../../../images/icon_baby.png'}}"/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title txt-15" style='margin-bottom:15rpx'>{{item.nickname}}的小叮当</view>
           <view class="weui-media-box__desc txt-color-gray txt-13">{{item.bindState=="binding"?"已绑定":item.bindState=="unbind"?"未绑定":"未绑定"}}</view>
         </view>
-        <view class="weui-cell__ft vertical-center" style='padding:20rpx'>
+        <view class="weui-cell__ft vertical-center" style='padding:20rpx' wx:if="{{babys.length>1}}">
           <icon wx:if="{{choose==index}}" type="success" size="20" color="#00d2ff"/>
           <icon wx:else type="circle" size="20" color="#00d2ff"/>
         </view>

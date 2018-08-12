@@ -2,7 +2,7 @@
   <view class='page__bd' style='padding-bottom:100rpx;'>
     <view class='weui-flex b' style='margin-bottom:5px;background:#fff'>
       <view class='weui-flex__item b'>
-        <image class="weui-grid__icon icon-user" src="{{baby.avatar?baby.avatar:'../../../images/icon_user.png'}}"></image>
+        <image class="weui-grid__icon icon-user" src="{{baby.avatar?baby.avatar:'../../../images/icon_user.png'}}" mode='aspectFill'></image>
         <view class="weui-grid__label view-tag view-baba">{{baby.nickname}}</view>
       </view>
       <block wx:for="{{members}}" wx:key="*this">

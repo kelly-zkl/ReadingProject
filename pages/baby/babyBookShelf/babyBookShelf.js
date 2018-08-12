@@ -83,6 +83,12 @@ Page({
       }
     }, false);
   },
+  //去绘本城
+  gotoBooks:function(){
+    wx.switchTab({
+      url: '/pages/book/bookHot/bookHot'
+    })
+  },
   /**
    * 下拉刷新
    */

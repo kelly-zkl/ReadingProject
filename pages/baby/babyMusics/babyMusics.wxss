@@ -59,3 +59,16 @@
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+
+/* 去听一听按钮 */
+.weui-grid__label.music{
+  width: auto;
+  height:60rpx;
+  line-height:60rpx;
+  border-radius:30rpx;
+  border:1px #00d2ff solid;
+  padding: 0 30rpx;
+  margin: 15rpx auto;
+  color: #00d2ff;
+  text-align: center
+}

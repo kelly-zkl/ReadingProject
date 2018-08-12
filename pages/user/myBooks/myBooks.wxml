@@ -1,6 +1,6 @@
 <view class='page'>
   <view class='page__bd' style='padding-top:20rpx'>
-    <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
+    <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{books.length>0}}">
       <block wx:for="{{books}}" wx:key="*this">
         <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}" class='b weui-flex__item'
           style='padding:8px;width:{{imgWidth}}px' hover-class="weui-cell_active">
@@ -11,5 +11,14 @@
         </navigator>
       </block>
     </view>
+    <block wx:else>
+      <view class='weui-flex'>
+        <view class="weui-flex__item" style='padding:100rpx 0 30rpx 0'>
+          <image class="weui-grid__icon" src="../../../images/icon_book_null.png" mode='aspectFill'
+            style='width:240rpx;height:240rpx'/>
+          <view class="weui-grid__label txt-color-active">还没有收藏绘本哦~</view>
+        </view>
+      </view>
+    </block>
   </view>
 </view>

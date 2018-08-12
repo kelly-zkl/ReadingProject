@@ -27,6 +27,12 @@ Page({
   onShow: function () {
     this.getMyFamily();
   },
+  /**跳转到添加设备页面*/
+  gotoDevice:function(){
+    wx.navigateTo({
+      url: '/pages/device/bindDevice/bindDevice'
+    })
+  },
   /**跳转到成员管理页面*/
   gotoUserManager: function (e) {
     wx.navigateTo({

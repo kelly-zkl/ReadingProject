@@ -10,7 +10,7 @@
       <view class='view-tag-title'>宝宝书架</view>
       <view class='view-tag-more' bindtap='gotoRocords'>我的录音</view>
     </view>
-    <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
+    <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{books.length>0}}">
       <block wx:for="{{books}}" wx:key="*this">
         <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}&type=true" class='b weui-flex__item'
           style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
@@ -21,5 +21,19 @@
         </navigator>
       </block>
     </view>
+    <block wx:else>
+      <view class='weui-flex'>
+        <view class="weui-flex__item" style='padding:30rpx 0px'>
+          <image class="weui-grid__icon" src="../../../images/icon_book_null.png" mode='aspectFill'
+            style='width:240rpx;height:240rpx'/>
+          <view class="weui-grid__label txt-color-active">快让小叮当陪宝宝阅读一本书吧</view>
+        </view>
+      </view>
+      <view class='weui-flex'>
+        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
+          <view class='weui-grid__label book' bindtap='gotoBooks'>去绘本城</view>
+        </view>
+      </view>
+    </block>
   </view>
 </view>

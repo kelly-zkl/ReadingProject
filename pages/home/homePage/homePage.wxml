@@ -37,7 +37,7 @@
       <view class="weui-media-box weui-media-box_appmsg" style='padding:14% 0'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
           <image class="weui-media-box__thumb bind" src="{{baby.avatar?baby.avatar:'../../../images/icon_baby.png'}}"
-            style='border-radius:50%'/>
+            style='border-radius:50%' mode='aspectFill'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg bind">
           <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
@@ -47,7 +47,7 @@
     </view>
     <view>
       <view class='bg-white-corner' style='margin: 0 10px'>
-        <view class="weui-cells weui-cells_in-small-appmsg txt-14">
+        <view class="weui-cells weui-cells_in-small-appmsg txt-14" style="border-bottom:1rpx #f2f2f2 solid">
           <navigator url="/pages/baby/babyBookShelf/babyBookShelf" class="weui-cell weui-cell_access"
             hover-class="weui-cell_active">
             <view class="weui-cell__hd">
@@ -57,7 +57,7 @@
             <view class="weui-cell__ft">查看</view>
           </navigator>
         </view>
-        <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid;padding:0 10px 20rpx 10px'>
+        <view class='weui-flex' style='padding:0 10px 20rpx 10px' wx:if="{{books.length>0}}">
           <block wx:for="{{books}}" wx:key="*this">
             <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}&type=true" class='weui-flex__item' style='padding:30rpx 0 0 0'
               hover-class="weui-cell_active">
@@ -67,7 +67,15 @@
               <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>{{item.progress==0?'未读完':item.progress+'遍'}}</view>
             </navigator>
           </block>
-        </view> 
+        </view>
+        <view class="weui-media-box weui-media-box_appmsg" wx:else>
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
+            <image class="weui-media-box__thumb bind" src="../../../images/icon_book_null.png" mode='aspectFill'/>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg bind">
+            <view class="weui-media-box__title txt-16 txt-color-active" style="white-space: pre-wrap">快让小叮当陪宝宝\n阅读一本书吧</view>
+          </view>
+        </view>
       </view>
       <view class='weui-flex' style='padding:10px'>
         <view class='weui-flex__item bg-white-corner' style='margin-right:5px'>

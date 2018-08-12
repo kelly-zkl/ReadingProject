@@ -41,7 +41,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#00d2ff",
-    "navigationBarTitleText": "绘本精灵",
+    "navigationBarTitleText": "慧读机器人",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
@@ -52,7 +52,7 @@
     "list": [
       {
         "pagePath": "pages/home/homePage/homePage",
-        "text": "小精灵",
+        "text": "小叮当",
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_selected.png"
       },

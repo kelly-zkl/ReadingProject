@@ -49,13 +49,21 @@ page{
   border-radius: 35rpx;
   margin: 15rpx auto
 }
+.weui-grid__label.video{
+  width: auto;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 30rpx;
+  border: 1px #fff solid;
+  border-radius: 35rpx;
+  margin: 15rpx auto;
+  color: #fff;
+  text-align: center
+}
 
 .page-img{
   margin:0 auto;
-  height:53vh;
-  display:flex;
-  justify-content:center;
-  align-items: center
+  width: 100%;
 }
 
 /* 录音 */

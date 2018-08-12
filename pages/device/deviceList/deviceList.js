@@ -22,6 +22,9 @@ Page({
   //选择设备
   bindChecked: function (e) {
     var that = this;
+    if (this.data.babys.length > 1){
+      return;
+    }
     var index = parseInt(e.currentTarget.dataset.index);
     var name = that.data.babys[index].nickname;
     var status = e.currentTarget.id;

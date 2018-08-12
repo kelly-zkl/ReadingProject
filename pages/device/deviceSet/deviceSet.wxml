@@ -5,7 +5,7 @@
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind"
           style='width:{{deviceW*0.7}}px;height:{{deviceW}}px;line-height:{{deviceW}}px'>
           <image class="weui-media-box__thumb bind" src="../../../images/icon_device.png"
-            style='width:{{deviceW*0.78}}px;height:{{deviceW}}px'/>
+            style='width:{{deviceW*0.78}}px;height:{{deviceW}}px' mode='aspectFill'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
           <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
@@ -38,7 +38,7 @@
     <view class='bg-white-shadow-corner' style='margin-top:-70rpx'>
       <view class="weui-media-box weui-media-box_appmsg" style='padding:30rpx'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg m">
-          <image class="weui-media-box__thumb m" style='border-radius:50%'
+          <image class="weui-media-box__thumb m" style='border-radius:50%' mode='aspectFill'
             src="{{baby.avatar?baby.avatar:'../../../images/icon_baby.png'}}"/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg" style='margin-left:15px'>

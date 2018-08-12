@@ -119,6 +119,7 @@ Page({
             msg: "操作中...",
             success: res => {
               wx.showToast({ title: '删除成功', icon: 'none', duration: 1500 })
+              this.getMembers();
             }
           }, true);
         }

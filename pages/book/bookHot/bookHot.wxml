@@ -1,7 +1,8 @@
 <view class='page'>
   <view class='page__bd'>
-    <view class="weui-search-bar" style="background:#f2f2f2">
-      <image src="../../../images/icon_classify.png" style="width:32px;height:32px;margin-right:8px" bindtap='toggleLeftPopup'/>
+    <view class="weui-search-bar vertical-center" style="background:#f2f2f2">
+      <image src="../../../images/icon_classify.png" style="width:32px;height:32px;margin-right:8px" bindtap='toggleLeftPopup'
+        mode="widthFix"/>
       <view class="weui-search-bar__form" bindtap='gotoSearch'>
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -12,7 +13,8 @@
           <view class="weui-search-bar__text">搜索</view>
         </label>
       </view>
-      <image src="../../../images/icon_scan.png" style="width:32px;height:32px;margin-left: 8px" bindtap='scan'/>
+      <image src="../../../images/icon_scan.png" style="width:32px;height:32px;margin-left:8px" bindtap='scan'
+        mode="widthFix"/>
     </view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular
       indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .7)">
@@ -47,7 +49,7 @@
         </view>
         <view class="weui-tab__panel">
           <view class="weui-tab__content" style='padding-top:30rpx'>
-            <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
+            <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{recommendBooks.length>0}}">
               <block wx:for="{{recommendBooks}}" wx:key="*this">
                 <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
                   style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
@@ -58,6 +60,15 @@
                 </navigator>
               </block>
             </view>
+            <block wx:else>
+              <view class='weui-flex'>
+                <view class="weui-flex__item" style='padding:30rpx 0'>
+                  <image class="weui-grid__icon" src="../../../images/icon_book_null.png" mode='aspectFill'
+                    style='width:240rpx;height:240rpx'/>
+                  <view class="weui-grid__label txt-color-active">还没有绘本哦~</view>
+                </view>
+              </view>
+            </block>
           </view>
         </view>
       </view>
@@ -80,17 +91,26 @@
         </view>
         <view class="weui-tab__panel">
           <view class="weui-tab__content" style='padding-top:30rpx'>
-            <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row'>
-            <block wx:for="{{hotBooks}}" wx:key="*this">
-              <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
-                style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
-                <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}" mode="widthFix"
-                   style='width:{{imgWidth}}px;border-radius:8px'></image>
-                <view class='weui-grid__label left'>{{item.bookName}}</view>
-                <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
-              </navigator>
+            <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{hotBooks.length>0}}">
+              <block wx:for="{{hotBooks}}" wx:key="*this">
+                <navigator url="/pages/book/bookDetail/bookDetail?id={{item.bookId}}" class='b weui-flex__item'
+                  style='padding:5px;width:{{imgWidth}}px' hover-class="weui-cell_active">
+                  <image src="{{item.coverPicture?item.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}" mode="widthFix"
+                    style='width:{{imgWidth}}px;border-radius:8px'></image>
+                  <view class='weui-grid__label left'>{{item.bookName}}</view>
+                  <view class='weui-grid__label left txt-color-gray txt-13'>{{item.author}}</view>
+                </navigator>
+              </block>
+            </view>
+            <block wx:else>
+              <view class='weui-flex'>
+                <view class="weui-flex__item" style='padding:30rpx 0'>
+                  <image class="weui-grid__icon" src="../../../images/icon_book_null.png" mode='aspectFill'
+                    style='width:240rpx;height:240rpx'/>
+                  <view class="weui-grid__label txt-color-active">还没有绘本哦~</view>
+                </view>
+              </view>
             </block>
-          </view>
           </view>
         </view>
       </view>

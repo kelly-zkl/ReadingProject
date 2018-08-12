@@ -118,6 +118,7 @@ Page({
       play: 1
     })
     innerAudioContext.src = this.data.musics[this.data.idx].url;
+    innerAudioContext.startTime = 0;
 
     innerAudioContext.play();
 

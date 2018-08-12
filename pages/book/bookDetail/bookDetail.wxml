@@ -1,9 +1,9 @@
 <view class='page'>
   <view class='page__bd' style='padding-bottom:150rpx'>
-    <swiper current="{{currentIdx}}" bindchange="changeImg" style='height: 53vh' wx:if="{{bookDetail.pageList.length>0}}">
+    <swiper current="{{currentIdx}}" bindchange="changeImg" style='height: 53vh'  wx:if="{{bookDetail.pageList.length>0}}">
       <block wx:for="{{bookDetail.pageList}}" wx:key="*this">
-        <swiper-item>
-          <image src="{{item.picUrl+'?x-oss-process=image/resize,h_400'}}" class="page-img" mode="aspectFit"/>
+        <swiper-item style="display:flex;justify-content:center;align-items:center">
+          <image src="{{item.picUrl+'?x-oss-process=image/resize,h_400'}}" class="page-img" mode="widthFix"/>
         </swiper-item>
       </block>
     </swiper>
@@ -26,14 +26,17 @@
     <!--标题  -->
     <view class='weui-flex' style='padding:30rpx'>
       <view>
-        <view class='weui-grid__label txt-15' style='text-align:left;margin-top:0'>{{bookDetail.bookName}}</view>
+        <view class='weui-grid__label txt-15' style='text-align:left;margin-top:0'>
+          <!-- {{lanIdx==2?bookDetail.bookName:lanIdx==1?bookDetail.bookNameEn:''}} -->
+          {{bookDetail.bookName}}
+        </view>
         <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-top:0'>
           <view style='display:inline-block;padding-right:20rpx'>{{bookDetail.author}}</view>
           <view style='display:inline-block;padding-left:20rpx'>{{bookDetail.publisherName}}</view>
         </view>
       </view>
       <view class='weui-flex__item'></view>
-      <view class='btn-small-60 vertical-center' hover-class="btn-active">
+      <view class='btn-small-60 vertical-center' hover-class="btn-active" wx:if="{{!isRecords}}">
         <view class='weui-grid__label price'>￥{{bookDetail.pricing}}</view>
         <image src="../../../images/icon_shop.png" style='display:inline-block;width:40rpx;height:40rpx'></image>
       </view>
@@ -44,7 +47,7 @@
       </view>
     </scroll-view>
     <!--播放按钮及语言切换  -->
-    <view class="weui-footer weui-footer_fixed-bottom" style="border-top:1rpx #f2f2f2 solid">
+    <view class="weui-footer weui-footer_fixed-bottom" style="border-top:1rpx #f2f2f2 solid" wx:if="{{!isAudio}}">
       <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
         <image src="{{pause==0?'../../../images/icon_pause.png':'../../../images/icon_play.png'}}"
           style='height:100rpx;width:100rpx' bindtap='readBook'/>
@@ -57,9 +60,26 @@
         <image src="../../../images/icon_push.png" class="cell-icon-size s" style='margin:15rpx 30rpx 15rpx 0' bindtap='pushToDevice'
           wx:if="{{isBind&&!isRecords}}"/>
         <image src="../../../images/icon_add.png" class="cell-icon-size s" style='margin:15rpx 0' bindtap='addToBaby' wx:if="{{!isRecords}}"/>
-        <view wx:if="{{isRecords}}" class="btn-record {{isSpeaking?'spk':''}}" bindtouchstart="touchdown" bindtouchend="touchup">
+        <view class="btn-record" bindtap='startAudio' wx:if="{{isRecords}}">
           <image src="../../../images/icon_record.png" style="width:60rpx;height:60rpx;margin:15rpx"/>
         </view>
+      </view>
+    </view>
+    <!--录制音频-->
+    <view class="weui-footer weui-footer_fixed-bottom" style="border-top:1rpx #f2f2f2 solid" wx:if="{{isAudio}}">
+      <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
+        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
+          <view class='weui-grid__label video vertical-center txt-15' bindtap='resetVideo' style='margin-right:20rpx'>重录</view>
+          <view class='weui-grid__label video vertical-center txt-15' bindtap='testVideo'>试听</view>
+        </view>
+        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
+          <view class="btn-record {{isSpeaking?'spk':''}}" bindtouchstart="touchdown" bindtouchend="touchup">
+            <image src="../../../images/icon_record.png" style="width:60rpx;height:60rpx;margin:15rpx"/>
+          </view>
+        </view>
+        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
+          <view class='weui-grid__label video vertical-center txt-15' bindtap='uploadVideo'>完成录制</view>
+        </view>       
       </view>
     </view>
   </view>
@@ -68,19 +88,19 @@
     <view class="zan-popup__mask" catchtap="togglePopup"></view>
     <view class="zan-popup__container">
       <view class="weui-cells weui-cells_after-title txt-14">
-        <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange" wx:if="{{bookDetail.pageList[currentIdx].audioEn}}">
+        <view class="weui-cell weui-cell_access line" id="1" bindtap="popuChange">
           <view class="weui-cell__bd weui-cell_primary {{lanIdx==1?'txt-color-active':''}}"
             style="text-align:center;padding:20rpx">英文原声</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange" wx:if="{{bookDetail.pageList[currentIdx].audioZh}}">
+        <view class="weui-cell weui-cell_access line" id="2" bindtap="popuChange">
           <view class="weui-cell__bd weui-cell_primary {{lanIdx==2?'txt-color-active':''}}"
             style="text-align:center;padding:20rpx">中文原声</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange" wx:if="{{bookDetail.pageList[currentIdx].audioOther}}">
+        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange">
           <view class="weui-cell__bd weui-cell_primary {{lanIdx==3?'txt-color-active':''}}"
             style="text-align:center;padding:20rpx">家长录制</view>
         </view>
-        <view class="weui-cell weui-cell_access line" id="3" bindtap="popuChange">
+        <view class="weui-cell weui-cell_access line" id="4" bindtap="popuChange">
           <view class="weui-cell__bd weui-cell_primary" style="text-align:center;padding:20rpx">取消</view>
         </view>
       </view>

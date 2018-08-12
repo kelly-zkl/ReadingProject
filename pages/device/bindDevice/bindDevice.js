@@ -115,7 +115,7 @@ Page({
         })
         this.createQrCode();
       }else{
-        wx.showToast({ title: '请输入wifi密码', icon: 'none', duration: 1500 });
+        wx.showToast({ title: '请输入wifi/密码', icon: 'none', duration: 1500 });
       }
     // }else{
     //   var info = { ssid: this.data.wifiName, pwd: '', optId: '' + new Date().getTime() }

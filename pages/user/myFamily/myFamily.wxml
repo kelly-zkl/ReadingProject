@@ -1,68 +1,86 @@
 <view class='page'>
   <view class='page__bd' style='padding:30rpx'>
     <!--我管理的家庭  -->
-    <view class='weui-label txt-color-gray txt-14'>我管理的家庭</view>
-    <block wx:for="{{family}}" wx:key="*this">
-      <view class='view-family' wx:if="{{item.creator==uid}}">
-        <view class='weui-flex'>
-          <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
-            <image src="{{item.adminUser.avatar?item.adminUser.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
-          </view>
-          <block wx:for="{{item.top4User}}" wx:key="*this" wx:for-item="user">
+    <block wx:if="{{family.created.length>0}}">
+      <view class='weui-label txt-color-gray txt-14'>我管理的家庭</view>
+      <block wx:for="{{family.created}}" wx:key="*this">
+        <view class='view-family' wx:if="{{item.creator==uid}}">
+          <view class='weui-flex'>
             <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
-              <image src="{{user.avatar?user.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
+              <image src="{{item.adminUser.avatar?item.adminUser.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
             </view>
-          </block>
-          <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center;padding-bottom:20rpx'>
-            <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0'>共{{item.memberNumber}}人</view>
+            <block wx:for="{{item.top4User}}" wx:key="*this" wx:for-item="user">
+              <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
+                <image src="{{user.avatar?user.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
+              </view>
+            </block>
+            <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center;padding-bottom:20rpx'>
+              <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0'>共{{item.memberNumber}}人</view>
+            </view>
+          </view>
+          <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid'>
+            <view class='weui-flex__item' style='padding-top:30rpx' bindtap='gotoUserId' id="{{item.familyId}}">
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>设置我的身份</view>
+            </view>
+            <view class='weui-flex__item' style='padding-top:20rpx'></view>
+            <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoAddMember'
+              id="{{item.familyId}}">
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>添加成员</view>
+            </view>
+            <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoUserManager'
+              id="{{item.familyId}}">
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>管理家庭</view>
+            </view>
           </view>
         </view>
-        <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid'>
-          <view class='weui-flex__item' style='padding-top:30rpx' bindtap='gotoUserId' id="{{item.familyId}}">
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>设置我的身份</view>
-          </view>
-          <view class='weui-flex__item' style='padding-top:20rpx'></view>
-          <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoAddMember'
-            id="{{item.familyId}}">
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>添加成员</view>
-          </view>
-          <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoUserManager'
-            id="{{item.familyId}}">
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>管理家庭</view>
-          </view>
-        </view>
-      </view>
+      </block>
     </block>
     <!--我加入的家庭  -->
-    <view class='weui-label txt-color-gray txt-14' style='margin-top:50rpx'>我加入的家庭</view>
-    <block wx:for="{{family}}" wx:key="*this">
-      <view class='view-family' wx:if="{{item.creator!=uid}}">
-        <view class='weui-flex'>
-          <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
-            <image src="{{item.adminUser.avatar?item.adminUser.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
-          </view>
-          <block wx:for="{{item.top4User}}" wx:key="*this" wx:for-item="user">
+    <block wx:if="{{family.joined.length>0}}">
+      <view class='weui-label txt-color-gray txt-14' style="{{family.created.length>0?'margin-top:50rpx':''}}">我加入的家庭</view>
+      <block wx:for="{{family.joined}}" wx:key="*this">
+        <view class='view-family' wx:if="{{item.creator!=uid}}">
+          <view class='weui-flex'>
             <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
-              <image src="{{user.avatar?user.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
+              <image src="{{item.adminUser.avatar?item.adminUser.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
             </view>
-          </block>
-          <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center;padding-bottom:20rpx'>
-            <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0'>共{{item.memberNumber}}人</view>
+            <block wx:for="{{item.top4User}}" wx:key="*this" wx:for-item="user">
+              <view class='weui-flex__item' style='display:flex;align-items:center;padding-bottom:30rpx'>
+                <image src="{{user.avatar?user.avatar:'../../../images/icon_user.png'}}" class='icon-user'></image>
+              </view>
+            </block>
+            <view class='weui-flex__item' style='display:flex;align-items:center;justify-content: center;padding-bottom:20rpx'>
+              <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0'>共{{item.memberNumber}}人</view>
+            </view>
+          </view>
+          <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid'>
+            <view class='weui-flex__item' style='padding-top:30rpx' bindtap='gotoUserId'>
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>设置我的身份</view>
+            </view>
+            <view class='weui-flex__item' style='padding-top:20rpx'></view>
+            <view class='weui-flex__item' style='padding-top:20rpx' bindtap='exitFamily'
+              id="{{item.familyId}}">
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>退出家庭</view>
+            </view>
+            <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoUserManager'
+              id="{{item.familyId}}">
+              <view class='weui-grid__label txt-color-active' style='margin-top:0'>查看家庭</view>
+            </view>
           </view>
         </view>
-        <view class='weui-flex' style='border-top:1rpx #f2f2f2 solid'>
-          <view class='weui-flex__item' style='padding-top:30rpx' bindtap='gotoUserId'>
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>设置我的身份</view>
-          </view>
-          <view class='weui-flex__item' style='padding-top:20rpx'></view>
-          <view class='weui-flex__item' style='padding-top:20rpx' bindtap='exitFamily'
-            id="{{item.familyId}}">
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>退出家庭</view>
-          </view>
-          <view class='weui-flex__item' style='padding-top:20rpx' bindtap='gotoUserManager'
-            id="{{item.familyId}}">
-            <view class='weui-grid__label txt-color-active' style='margin-top:0'>查看家庭</view>
-          </view>
+      </block>
+    </block>
+    <block wx:if="{{family.created.length==0&&family.joined.length==0}}">
+      <view class='weui-flex'>
+        <view class="weui-flex__item" style='padding:100rpx 0 30rpx 0'>
+          <image class="weui-grid__icon" src="../../../images/icon_book_null.png" mode='aspectFill'
+            style='width:240rpx;height:240rpx'/>
+          <view class="weui-grid__label txt-color-active">还没有家庭~</view>
+        </view>
+      </view>
+      <view class='weui-flex'>
+        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
+          <view class='weui-grid__label device' bindtap='gotoDevice'>添加设备</view>
         </view>
       </view>
     </block>

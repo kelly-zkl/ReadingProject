@@ -28,6 +28,8 @@ Page({
     bookDetail: {pageList:[]},
     j: 1,//帧动画初始图片
     isSpeaking: false,//是否正在说话
+    tempFilePath:'',
+    isAudio:false
   },
 
   /**
@@ -51,6 +53,13 @@ Page({
         pause: 0
       })
     })
+
+    // if (this.data.isRecords){
+    //   this.setData({
+    //     lanaugae: '家长录制',
+    //     lanIdx: 3
+    //   });
+    // }
   },
 
   /**
@@ -58,7 +67,7 @@ Page({
    */
   onShow: function () {
     this.getBookDetail();
-    // this.getBookPage();
+    this.getBookPage();
     this.getCollect();
   },
   // 滑动图片
@@ -123,7 +132,7 @@ Page({
         lanaugae: str,
         lanIdx: id
       });
-    } else if (id == 2) {//家长录制
+    } else if (id == 3) {//家长录制
       str = '家长录制';
       this.setData({
         lanaugae: str,
@@ -158,11 +167,17 @@ Page({
       }
       url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
     } else if (this.data.lanIdx == 3){//家长录制
-      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioOther) {
+      let audo = "";
+      (this.data.audios).map((item) => {
+        if (item.bookPageId == this.data.bookDetail.pageList[this.data.currentIdx].bookPageId) {
+          audo = item.audioUrlOther[0]
+        }
+      })
+      if (audo.length == 0) {
         wx.showToast({ title: "家长录制音频不存在", icon: 'none', duration: 1500});
         return;
       }
-      url = this.data.bookDetail.pageList[this.data.currentIdx].audioOther[0]
+      url = audo
     }
     
     innerAudioContext.src = url
@@ -201,17 +216,17 @@ Page({
       }
     }, false);
   },
-  //绘本书页
+  //获取自定义音频文件
   getBookPage: function () {
     var that = this;
     http.postRequest({
       baseType: 2,
-      url: "bookPage/query",
-      params: {bookId:that.data.bookId},
+      url: "bookPage/query/customizeAudio",
+      params: {bookId: that.data.bookId, userId: app.globalData.userInfo.userId,page:1,size:9999},
       msg: "加载中...",
       success: res => {
         this.setData({
-          bookPage: res.data
+          audios: res.data.content
         });
       }
     }, false);
@@ -309,6 +324,12 @@ Page({
       }
     }
   },
+  //开始录音
+  startAudio:function(){
+    this.setData({
+      isAudio: true
+    })
+  },
   //手指按下
   touchdown: function () {
     console.log("手指按下了...")
@@ -358,25 +379,34 @@ Page({
     recorderManager.onStop((res) => {
       console.log('recorder stop', res)
       this.setData({
-        tempFilePath: res
+        tempFilePath: res.tempFilePath
       });
-      wx.showModal({
-        title: '提示',
-        content: '上传后将会覆盖其他家长录制的版本，确认上传？',
-        confirmText: '上传',
-        confirmColor: '#00d2ff',
-        success: function (res) {
-          if (res.confirm) {
-            this.uploadVideo();
-          }
-        }
-      })
     })
+  },
+  //重新录音
+  resetVideo:function(){
+    that.setData({
+      tempFilePath: ''
+    });
+  },
+  //试听录音
+  testVideo: function () {
+    if (this.data.tempFilePath.length == 0) {
+      wx.showToast({ title: '请先录制音频', icon: 'none', duration: 1500 });
+      return;
+    }
+    wx.showToast({ title: this.data.tempFilePath, icon: 'none', duration: 1500 });
+    innerAudioContext.src = this.data.tempFilePath
+    innerAudioContext.play();
   },
   /**上传录制mp3文件*/
   uploadVideo: function () {
     var that = this;
-    http.uploadFile(that.data.tempFilePath.tempFilePath, {
+    if (this.data.tempFilePath.length==0){
+      wx.showToast({ title: '请先录制音频', icon: 'none', duration: 1500 });
+      return;
+    }
+    http.uploadFile(that.data.tempFilePath, {
       success: function (res) {
         that.setData({
           video: res.data
@@ -397,6 +427,13 @@ Page({
       msg: "操作中...",
       success: res => {
         wx.showToast({title: '上传成功', icon: 'info', duration: 1500});
+        this.setData({
+          isAudio: false
+        })
+        innerAudioContext.stop();
+        this.getBookDetail();
+        this.getBookPage();
+        this.getCollect();
       }
     }, true);
   }
