@@ -6,6 +6,8 @@ const app = getApp();
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 
+var { Client, Message } = require('../../../utils/paho-mqtt.js')
+
 Page({
 
   /**
@@ -26,6 +28,7 @@ Page({
     keyBoard:true,
     j: 1,//帧动画初始图片
     isSpeaking: false,//是否正在说话
+    client: null
   },
 
   /**
@@ -35,6 +38,8 @@ Page({
     this.setData({
       userId: app.globalData.userInfo.userId
     })
+
+    this.doConnect();
   },
   
   /**
@@ -49,6 +54,86 @@ Page({
     this.getFamilyMembers();
     this.getChatList();
   },
+  //MQTT连接服务器
+  doConnect: function () {
+    var that = this;
+    if (that.data.client && that.data.client.isConnected()) {
+      wx.showToast({
+        title: '不要重复连接'
+      })
+      return
+    }//app.globalData.userInfo.userId
+    var client = new Client('wss://www.yaojia.com/mqtt', 'wechat-' + app.globalData.userInfo.userId);
+
+    client.connect({
+      useSSL: true,
+      cleanSession: true,
+      keepAliveInterval: 5,
+      onSuccess: function () {
+        // wx.showToast({
+        //   title: '连接成功'
+        // })
+
+        that.data.client = client
+
+        client.onMessageArrived = function (msg) {
+          if (typeof that.data.onMessageArrived === 'function') {
+            return that.data.onMessageArrived(msg)
+          }
+
+          that.setData({
+            page: 1
+          });
+          that.getChatList();
+          console.log(msg);
+          // wx.showModal({
+          //   title: msg.destinationName,
+          //   content: msg.payloadString
+          // })
+        }
+
+        client.onConnectionLost = function (responseObject) {
+          if (typeof that.data.onConnectionLost === 'function') {
+            return that.data.onConnectionLost(responseObject)
+          }
+          if (responseObject.errorCode !== 0) {
+            console.log("onConnectionLost:" + responseObject.errorMessage);
+          }
+        }
+
+        that.doSubscribe();
+      }
+    });
+  },
+   // 订阅
+  doSubscribe: function () {
+    this.subscribe('/user/' + app.globalData.userInfo.userId, {qos: 1})
+  },
+  subscribe: function (filter, subscribeOptions) {
+    var client = this.data.client;
+    if (client && client.isConnected()) {
+      // wx.showToast({
+      //   title: '订阅成功'
+      // })
+      return client.subscribe(filter, subscribeOptions);
+    }
+    // wx.showToast({
+    //   title: '订阅失败',
+    //   icon: 'success',
+    //   duration: 2000
+    // })
+  },
+  setOnMessageArrived: function (onMessageArrived) {
+    if (typeof onMessageArrived === 'function') {
+      this.data.onMessageArrived = onMessageArrived
+    }
+  },
+  setOnConnectionLost: function (onConnectionLost) {
+    if (typeof onConnectionLost === 'function') {
+      this.data.onConnectionLost = onConnectionLost
+    }
+  },
+
   //切换语音/键盘
   changeVoice:function(){
     this.setData({

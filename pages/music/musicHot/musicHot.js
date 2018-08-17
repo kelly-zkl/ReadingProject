@@ -20,6 +20,24 @@ Page({
     this.setData({
       imgWidth: (app.globalData.device.windowWidth - 48) / 2
     });
+
+    // http.postRequest({
+    //   baseType: 3,
+    //   url: "getuserid.do",
+    //   params: {
+    //     // apiKey: "146b1f5e3e544427886841123c274e6d", secert: "8fN99ym0W240sbQa"
+    //     data: {uniqueId: app.globalData.userInfo.deviceId},
+    //     key: "146b1f5e3e544427886841123c274e6d",
+    //     timestamp: new Date().getTime()
+    //   },
+    //   msg: "操作中...",
+    //   success: res => {
+    //     // wx.showToast({ title: '成功加入家庭组', icon: 'info', duration: 1500 })
+    //   }
+    // }, false);
+    // var url = 'http://iot-ai.tuling123.com/jump/app/source?apiKey=146b1f5e3e544427886841123c274e6d&uid=216412113&client='
+    //   + app.globalData.device.platform;
+    // console.log(url);
   },
 
   /**

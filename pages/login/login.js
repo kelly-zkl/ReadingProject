@@ -50,7 +50,7 @@ Page({
         })
       },
       fail: function (res) {//登录
-        that.login();
+        // that.login();
       }
     })
   },

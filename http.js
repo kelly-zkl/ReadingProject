@@ -18,6 +18,8 @@ const request = (method, requestHandler, isShowLoading) => {
     var baseUrl = 'https://www.yaojia.com/educate-device-web/';
   } else if (requestHandler.baseType == 2){//绘本模块接口
     var baseUrl = 'https://www.yaojia.com/educate-book-web/';
+  } else if (requestHandler.baseType == 3) {//听一听模块
+    var baseUrl = 'https://m.baxueshe.com/';
   }
   console.log("url = " + requestHandler.url);
   console.log(param);
