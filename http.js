@@ -19,7 +19,7 @@ const request = (method, requestHandler, isShowLoading) => {
   } else if (requestHandler.baseType == 2){//绘本模块接口
     var baseUrl = 'https://www.yaojia.com/educate-book-web/';
   } else if (requestHandler.baseType == 3) {//听一听模块
-    var baseUrl = 'https://m.baxueshe.com/';
+    var baseUrl = 'http://api.turingos.cn/';
   }
   console.log("url = " + requestHandler.url);
   console.log(param);
@@ -39,7 +39,7 @@ const request = (method, requestHandler, isShowLoading) => {
           requestHandler.success(res.data);
         }else{
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg:'请求失败',
             icon: 'none',
             duration: 1500
           });
