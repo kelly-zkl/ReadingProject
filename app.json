@@ -55,26 +55,22 @@
         "text": "小叮当",
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_selected.png"
-      },
-      {
-        "pagePath": "pages/music/musicHot/musicHot",
+      }, {
+        "pagePath": "pages/music/musicList/musicList",
         "text": "听一听",
         "iconPath": "images/icon_listen.png",
         "selectedIconPath": "images/icon_listen_selected.png"
-      },
-      {
-        "pagePath": "pages/chat/chatRoom/chatRoom",
+      }, {
+        "pagePath": "pages/chat/familyChat/familyChat",
         "text": "悄悄话",
         "iconPath": "images/icon_chat.png",
         "selectedIconPath": "images/icon_chat.png"
-      },
-      {
+      }, {
         "pagePath": "pages/book/bookHot/bookHot",
         "text": "绘本城",
         "iconPath": "images/icon_books.png",
         "selectedIconPath": "images/icon_books_selected.png"
-      },
-      {
+      }, {
         "pagePath": "pages/user/userCenter/userCenter",
         "text": "我的",
         "iconPath": "images/icon_mine.png",

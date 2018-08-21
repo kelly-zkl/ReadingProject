@@ -1,1 +1,24 @@
 /* pages/common/search/search.wxss */
+
+.weui-grid__label.left{
+  text-align: left;
+  margin-left: 20rpx;
+  white-space: pre-wrap
+}
+.weui-grid__label.txt-13{
+  margin-top: 0
+}
+.b.weui-flex__item{
+  -webkit-box-flex:none;
+  -webkit-flex:none;
+  flex:none;
+}
+.b.weui-flex__item:nth-child(3n+1){
+  margin-left: 5px
+}
+.b.weui-flex__item:nth-child(3n+2){
+  margin: 0
+}
+.b.weui-flex__item:nth-child(3n){
+  margin-right: 5px
+}

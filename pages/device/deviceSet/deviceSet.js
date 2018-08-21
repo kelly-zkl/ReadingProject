@@ -11,7 +11,8 @@ Page({
   data: {
     deviceW: 0,
     admin:false,
-    members:[]
+    members:[],
+    apiKey: 'a0eb0c3dded04e638047f6fe00b71fa7'
   },
 
   /**
@@ -60,6 +61,7 @@ Page({
   },
   // 设备解绑
   unBindDevice:function(){
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '解绑后，当前用户将无法管理设备',
@@ -79,9 +81,22 @@ Page({
               }, 1500)
             }
           }, true);
+          //图灵设备解绑
+          that.unbindApp();
         }
       }
     })
+  },
+  //绑定图灵设备
+  unbindApp() {
+    var that = this;
+    http.postRequest({
+      baseType: 3,
+      url: "app-author/unbind",
+      params: {apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId},
+      success: res => {
+      }
+    }, false);
   },
   // 获取宝宝详情
   getBabyDetail: function () {

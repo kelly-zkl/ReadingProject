@@ -15,7 +15,7 @@
         </view>
       </view>
     </view>
-    <view class='weui-flex' style="background:#fff;padding:15px 20px">
+    <!-- <view class='weui-flex' style="background:#fff;padding:15px 20px">
       <view class='weui-flex__item' bindtap='gotoMyMusics'>
         <text class='text-book'>收藏\n专辑</text>
       </view>
@@ -28,6 +28,16 @@
       <view class='weui-flex__item txt-num' bindtap='gotoMyBooks'>
         <view class='txt-num' style='text-align:left'>{{bookFavoCount}}</view>
       </view>
+    </view> -->
+    <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
+      <navigator url="/pages/user/myBooks/myBooks" class="weui-cell weui-cell_access"
+        hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <image src="../../../images/icon_collect.png" class="cell-icon-size"/>
+        </view>
+        <view class="weui-cell__bd weui-cell_primary">我的收藏</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{bookFavoCount}}</view>
+      </navigator>
     </view>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="/pages/user/myFamily/myFamily" class="weui-cell weui-cell_access"

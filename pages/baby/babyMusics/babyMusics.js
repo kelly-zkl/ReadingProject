@@ -1,7 +1,11 @@
 
+// 图灵 apiKey: "a0eb0c3dded04e638047f6fe00b71fa7", secert: "v64B25a98x2FH417"
 var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
 var http = require("../../../http.js");
 const app = getApp();
+
+var aes = require('../../../utils/aes.js')
+var md5 = require('../../../utils/md5.js')
 
 const innerAudioContext = wx.createInnerAudioContext();
 
@@ -22,6 +26,8 @@ Page({
     size: 10,
     startX: 0, //开始坐标
     startY: 0,
+    apiKey: 'a0eb0c3dded04e638047f6fe00b71fa7',
+    secert: 'v64B25a98x2FH417',
   },
 
   /**

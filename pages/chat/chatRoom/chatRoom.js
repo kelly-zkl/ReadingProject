@@ -39,9 +39,12 @@ Page({
       userId: app.globalData.userInfo.userId
     })
 
+    wx.setNavigationBarTitle({
+      title: app.globalData.baby.nickname+'的家庭群聊'
+    })
+
     this.doConnect();
   },
-  
   /**
    * 生命周期函数--监听页面显示
    */
@@ -358,6 +361,9 @@ Page({
    */
   onUnload: function () {
     innerAudioContext.destroy();
+    wx.reLaunch({
+      url: '/pages/home/homePage/homePage'
+    })
   }
 })
 

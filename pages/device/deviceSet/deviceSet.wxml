@@ -8,7 +8,7 @@
             style='width:{{deviceW*0.78}}px;height:{{deviceW}}px' mode='aspectFill'/>
         </view>
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
+          <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname+'的小叮当'}}</view>
           <view class="weui-media-box__desc txt-color-white" style='margin-top:5px'>当前位置</view>
         </view>
       </view>

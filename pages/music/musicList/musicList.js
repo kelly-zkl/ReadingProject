@@ -35,10 +35,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      page: 1
+    // this.setData({
+    //   page: 1
+    // })
+    // this.getMusics();
+    wx.navigateTo({
+      url: '/pages/music/musicHot/musicHot'
     })
-    this.getMusics();
   },
   /***/
   tabClick: function (e) {

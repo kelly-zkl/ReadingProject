@@ -1,4 +1,4 @@
-<view class='page'>
+<!-- <view class='page'>
   <view class='page__bd'>
     <view class='weui-flex'>
       <block wx:for="{{members}}" wx:key="*this">
@@ -15,4 +15,4 @@
   <view class="weui-footer weui-footer_fixed-bottom" style="padding:30rpx;background:#fff;border-top:1rpx #f2f2f2 solid">
     <view class="btn-save" bindtap='bindDevice' hover-class="btn-active">添加设备</view>
   </view>
-</view>
+</view> -->

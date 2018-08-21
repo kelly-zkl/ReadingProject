@@ -22,8 +22,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    var url = 'https://m.baxueshe.com/tuling/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+
     this.setData({
-      imgWidth: (app.globalData.device.windowWidth - 48) / 2
+      imgWidth: (app.globalData.device.windowWidth - 48) / 2,
+      musicUrl: url
     });
   },
 
@@ -32,36 +36,30 @@ Page({
    */
   onShow: function () {
     // this.getMusics();
-    var timStap = new Date().getTime();
+    var timStap = new Date().getTime()+"";
     var md5Key = this.data.secert + timStap + this.data.apiKey;
     var aeskey = md5.hexMD5(md5Key);
 
     var key = aes.enc.Utf8.parse(aeskey);
     var iv = aes.enc.Utf8.parse([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
 
-    var param = {uniqueId: app.globalData.userInfo.deviceId};
-    var data = aes.encrypt(param, key, iv)
+    var param = {uniqueId:app.globalData.userInfo.deviceId};
+    var data = aes.encrypt(param.toString, key, iv)
 
-    console.log("md5Key", md5Key);
-    console.log("aeskey", aeskey);
-    console.log("key", key);
-    console.log("iv", iv);
-    console.log("data", data);
+    // http.postRequest({
+    //   baseType: 4,
+    //   url: "getuserid.do",
+    //   params: { data: data, key: this.data.apiKey, timestamp: timStap},
+    //   msg: "操作中...",
+    //   success: res => {
+    //   }
+    // }, false);
+    this.bindDevice();
+  },
 
-    http.postRequest({
-      baseType: 3,
-      url: "getuserid.do",
-      params: {data: data, key: this.data.apiKey, timestamp: timStap},
-      msg: "操作中...",
-      success: res => {
-        // wx.showToast({ title: '成功加入家庭组', icon: 'info', duration: 1500 })
-      }
-    }, false);
-    var url = 'http://iot-ai.tuling123.com/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=216412113&client='
-      + app.globalData.device.platform;
-    console.log(url);
-    this.setData({
-      musicUrl: url
+  onUnload(){
+    wx.reLaunch({
+      url: '/pages/home/homePage/homePage'
     })
   },
 
@@ -93,4 +91,23 @@ Page({
       }
     }, false);
   },
+
+  //绑定设备
+  bindDevice(){
+    var that = this;
+    http.postRequest({
+      baseType: 3,
+      url: "app-author/bind",
+      params: {
+        apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId,
+        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.baby.avatar},
+      success: res => {
+        var url = 'https://m.baxueshe.com/tuling/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+
+        this.setData({
+          musicUrl: url
+        });
+      }
+    }, false);
+  }
 })

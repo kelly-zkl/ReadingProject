@@ -12,6 +12,7 @@ var requestHandler = {
 }
 const request = (method, requestHandler, isShowLoading) => {
   var param = requestHandler.params;
+  var contentType ='application/json'
   if (requestHandler.baseType == 0){//用户中心接口
     var baseUrl = 'https://www.yaojia.com/educate-ucenter-web/';
   } else if (requestHandler.baseType == 1){//设备模块接口
@@ -19,9 +20,10 @@ const request = (method, requestHandler, isShowLoading) => {
   } else if (requestHandler.baseType == 2){//绘本模块接口
     var baseUrl = 'https://www.yaojia.com/educate-book-web/';
   } else if (requestHandler.baseType == 3) {//听一听模块
-    var baseUrl = 'http://api.turingos.cn/';
+    var baseUrl = 'https://m.baxueshe.com/tuling/';//https://m.baxueshe.com/tuling/
+    contentType = 'application/x-www-form-urlencoded';
   }
-  console.log("url = " + requestHandler.url);
+  console.log("url = " + baseUrl+requestHandler.url);
   console.log(param);
   isShowLoading && wx.showLoading && wx.showLoading({ title: requestHandler.msg})  
   return new Promise((resolve, reject) => {
@@ -30,7 +32,7 @@ const request = (method, requestHandler, isShowLoading) => {
       method:method,
       data:param,
       header: {
-        'content-type': 'application/json'
+        'content-type': contentType
       },
       success: function (res) {//请求成功
         isShowLoading && wx.hideLoading && wx.hideLoading();
@@ -39,7 +41,7 @@ const request = (method, requestHandler, isShowLoading) => {
           requestHandler.success(res.data);
         }else{
           wx.showToast({
-            title: res.data.msg ? res.data.msg:'请求失败',
+            title: res.data.msg,
             icon: 'none',
             duration: 1500
           });
