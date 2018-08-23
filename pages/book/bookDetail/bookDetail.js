@@ -12,13 +12,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      'http://img.zcool.cn/community/01d881579dc3620000018c1b430c4b.JPG@3000w_1l_2o_100sh.jpg',
-      'http://img.zcool.cn/community/010f87596f13e6a8012193a363df45.jpg@1280w_1l_2o_100sh.jpg',
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
     showPopup: false,
     lanaugae:'中文原声',
     lanIdx:2,
@@ -29,7 +22,8 @@ Page({
     j: 1,//帧动画初始图片
     isSpeaking: false,//是否正在说话
     tempFilePath:'',
-    isAudio:false
+    isAudio:false,
+    isPage:true
   },
 
   /**
@@ -53,13 +47,6 @@ Page({
         pause: 0
       })
     })
-
-    // if (this.data.isRecords){
-    //   this.setData({
-    //     lanaugae: '家长录制',
-    //     lanIdx: 3
-    //   });
-    // }
   },
 
   /**
@@ -74,6 +61,7 @@ Page({
   changeImg:function(e){
     console.log(e);
     this.setData({
+      isPage:true,
       currentIdx: e.detail.current,
       currentStr: (e.detail.current + 1) + "/" + this.data.bookDetail.pageList.length
     });
@@ -99,16 +87,6 @@ Page({
       currentIdx: index,
       currentStr: (index + 1) + "/" + this.data.bookDetail.pageList.length
     });
-  },
-
-  imageLoad: function (e) {
-    var res = wx.getSystemInfoSync();
-    var imgwidth = e.detail.width,
-      imgheight = e.detail.height,
-      ratio = imgwidth / imgheight;
-    this.setData({
-      bannerHeight: res.windowWidth / ratio
-    })
   },
   //设置身份
   togglePopup() {
@@ -151,43 +129,60 @@ Page({
       this.collectBook();
     }
   },
+  //获取播放的url
+  getUrl(arr,index){
+    arr.map(function (item) {
+      for (var key in item){
+        if (key == index){
+          console.log(item[key]);
+          innerAudioContext.src = item[key]
+        }
+      }
+    })
+  },
   // 读书暂停/开始
   readBook: function () {
     var url ="";
-    if (this.data.lanIdx==1){//英文
-      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioEn) {
-        wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500});
-        return;
-      } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioEn.length == 0) {
-        wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500 });
-        return;
-      }
-      url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0] 
-    } else if (this.data.lanIdx == 2){//中文
-      if (!this.data.bookDetail.pageList[this.data.currentIdx].audioZh) {
-        wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500});
-        return;
-      } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioZh.length==0){
-        wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500 });
-        return;
-      }
-      url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
-    } else if (this.data.lanIdx == 3){//家长录制
-      let audo = "";
-      (this.data.audios).map((item) => {
-        if (item.bookPageId == this.data.bookDetail.pageList[this.data.currentIdx].bookPageId) {
-          audo = item.audioUrlOther[0]
+    if (this.data.isPage){
+      if (this.data.lanIdx == 1) {//英文
+        if (!this.data.bookDetail.pageList[this.data.currentIdx].audioEn) {
+          wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500});
+          return;
+        } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioEn.length == 0) {
+          wx.showToast({ title: "英文音频不存在", icon: 'none', duration: 1500});
+          return;
         }
-      })
-      if (audo.length == 0) {
-        wx.showToast({ title: "家长录制音频不存在", icon: 'none', duration: 1500});
-        return;
+        this.getUrl(this.data.bookDetail.pageList[this.data.currentIdx].audioEn, 1)
+        // url = this.data.bookDetail.pageList[this.data.currentIdx].audioEn[0]
+      } else if (this.data.lanIdx == 2) {//中文
+        if (!this.data.bookDetail.pageList[this.data.currentIdx].audioZh) {
+          wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500});
+          return;
+        } else if (this.data.bookDetail.pageList[this.data.currentIdx].audioZh.length == 0) {
+          wx.showToast({ title: "中文音频不存在", icon: 'none', duration: 1500});
+          return;
+        }
+        this.getUrl(this.data.bookDetail.pageList[this.data.currentIdx].audioZh, 1)
+        // url = this.data.bookDetail.pageList[this.data.currentIdx].audioZh[0]
+      } else if (this.data.lanIdx == 3) {//家长录制
+        let audo = "";
+        (this.data.audios).map((item) => {
+          if (item.bookPageId == this.data.bookDetail.pageList[this.data.currentIdx].bookPageId) {
+            audo = item.audioUrlOther[0]
+          }
+        })
+        if (audo.length == 0) {
+          wx.showToast({ title: "家长录制音频不存在", icon: 'none', duration: 1500 });
+          return;
+        }
+        // this.getUrl(audo, 1)
+        innerAudioContext.src = audo
       }
-      url = audo
     }
-    
-    innerAudioContext.src = url
 
+    this.setData({
+      isPage: false
+    });
     if (this.data.pause == 0) {//播放（暂停状态）
       innerAudioContext.play();
       this.setData({
@@ -199,7 +194,7 @@ Page({
         pause: 0
       })
     }
-    console.log(url);
+    console.log(innerAudioContext.src);
     console.log("时长：", innerAudioContext.duration);
     console.log("当前时间：", innerAudioContext.currentTime);
     console.log("缓冲：", innerAudioContext.buffered);

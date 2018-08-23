@@ -36,10 +36,10 @@
         </view>
       </view>
       <view class='weui-flex__item'></view>
-      <view class='btn-small-60 vertical-center' hover-class="btn-active" wx:if="{{!isRecords}}">
+      <!-- <view class='btn-small-60 vertical-center' hover-class="btn-active" wx:if="{{!isRecords}}">
         <view class='weui-grid__label price'>￥{{bookDetail.pricing}}</view>
         <image src="../../../images/icon_shop.png" style='display:inline-block;width:40rpx;height:40rpx'></image>
-      </view>
+      </view> -->
     </view>
     <scroll-view scroll-y class="score-y" style="height: {{scrowHeight}}">
       <view style='padding:0 30rpx'>

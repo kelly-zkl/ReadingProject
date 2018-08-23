@@ -10,7 +10,7 @@ Page({
    */
   data: {
     date:'2018-8',
-    start:0
+    star:0
   },
 
   /**
@@ -24,7 +24,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getStarNum();
   },
 
   /**
@@ -36,23 +36,17 @@ Page({
     })
   },
   // 星星数量变化
-  changeStart:function(){
-    if (this.data.start == 0){
-      this.setData({
-        start:1
-      })
-    } else if (this.data.start == 1) {
-      this.setData({
-        start: 2
-      })
-    } else if (this.data.start == 2) {
-      this.setData({
-        start: 3
-      })
-    } else if (this.data.start == 3) {
-      this.setData({
-        start: 0
-      })
-    }
+  getStarNum:function(){
+    http.postRequest({
+      baseType:2,
+      url: "childBook/finishToday",
+      params: {childId: app.globalData.userInfo.childId},
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          star: res.data.finish
+        });
+      }
+    }, false);
   }
 })

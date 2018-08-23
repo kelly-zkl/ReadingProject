@@ -361,9 +361,9 @@ Page({
    */
   onUnload: function () {
     innerAudioContext.destroy();
-    wx.reLaunch({
-      url: '/pages/home/homePage/homePage'
-    })
+    // wx.reLaunch({
+    //   url: '/pages/home/homePage/homePage'
+    // })
   }
 })
 

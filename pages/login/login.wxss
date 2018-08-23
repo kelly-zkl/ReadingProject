@@ -16,3 +16,7 @@ page{
   border: 2px #fff solid;
   background: linear-gradient( #56EAFF , #31E0FF)
 }
+.btn-save::before,.btn-save::after{
+  border:transparent;
+  background:transparent;
+}

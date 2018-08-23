@@ -8,7 +8,7 @@
     </scroll-view>
     <view class='view-tag' style='margin-bottom:20rpx'>
       <view class='view-tag-title'>宝宝书架</view>
-      <view class='view-tag-more' bindtap='gotoRocords'>我的录音</view>
+      <!-- <view class='view-tag-more' bindtap='gotoRocords'>我的录音</view> -->
     </view>
     <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{books.length>0}}">
       <block wx:for="{{books}}" wx:key="*this">
@@ -17,7 +17,7 @@
           <image src="{{item.book.coverPicture?item.book.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}"
             mode="widthFix" style='width:{{imgWidth}}px;border-radius:8px'></image>
           <view class='weui-grid__label left'>{{item.book.bookName}}</view>
-          <view class='weui-grid__label left txt-color-gray txt-13'>{{item.progress==0?'未读完':item.progress+'遍'}}</view>
+          <!-- <view class='weui-grid__label left txt-color-gray txt-13'>{{item.progress==0?'未读完':item.progress+'遍'}}</view> -->
         </navigator>
       </block>
     </view>

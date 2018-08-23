@@ -1,11 +1,7 @@
 
-// 图灵 apiKey: "a0eb0c3dded04e638047f6fe00b71fa7", secert: "v64B25a98x2FH417"
 var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
 var http = require("../../../http.js");
 const app = getApp();
-
-var aes = require('../../../utils/aes.js')
-var md5 = require('../../../utils/md5.js')
 
 const innerAudioContext = wx.createInnerAudioContext();
 
@@ -16,9 +12,6 @@ Page({
    */
   data: {
     tabs: ["学英语", "听音乐", "讲故事"],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
     down: 0,
     play: 0,
     refresh: false,
@@ -26,8 +19,7 @@ Page({
     size: 10,
     startX: 0, //开始坐标
     startY: 0,
-    apiKey: 'a0eb0c3dded04e638047f6fe00b71fa7',
-    secert: 'v64B25a98x2FH417',
+    idx: 0
   },
 
   /**
@@ -35,9 +27,24 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      sliderLeft: (app.globalData.device.windowWidth / this.data.tabs.length - sliderWidth) / 2,
-      sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex,
       isBind: app.globalData.userInfo.isBind
+    });
+
+    innerAudioContext.onEnded((res) => {
+      this.setData({
+        pause: 0
+      })
+    });
+    innerAudioContext.onWaiting((res) => {
+      console.log("onWaiting", res);
+      wx.showLoading({ title: "加载中..." })
+    });
+    innerAudioContext.onCanplay((res) => {
+      console.log("onCanplay", res);
+      wx.hideLoading();
+    });
+    innerAudioContext.onPlay((res) => {
+      console.log("onPlay", res);
     });
   },
 
@@ -50,46 +57,72 @@ Page({
     })
     this.getMusics();
   },
-  //去绘本城
-  gotoMusics: function () {
-    wx.switchTab({
-      url: '/pages/music/musicHot/musicHot'
-    })
-  },
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
-    if (e.currentTarget.id == 0) {//学英语
-    } else if (e.currentTarget.id == 1) {//听音乐
-    } else if (e.currentTarget.id == 2) {//讲故事
-    }
-  },
-  // 播放音乐
-  playMusic: function () {
-    innerAudioContext.url = url;
-
-    if (this.data.play == 0) {
-      innerAudioContext.play();
+  //暂停/播放音乐
+  pauseStop: function (e) {
+    if (this.data.play == 0) {//播放（暂停状态）
       this.setData({
-        play: 1
+        play: 1,
+        idx: e.currentTarget.id
       })
-    } else {
+      this.playMusic();
+    } else {//暂停（播放状态）
       innerAudioContext.pause();
       this.setData({
         play: 0
       })
     }
   },
+  // 播放音乐
+  playMusic: function (e) {
+    this.setData({
+      play: 1
+    })
+    innerAudioContext.src = this.data.musics[this.data.idx].url;
+    innerAudioContext.startTime = 0;
+
+    innerAudioContext.play();
+
+    console.log(innerAudioContext.src);
+    console.log("时长：", innerAudioContext.duration);
+    console.log("缓冲：", innerAudioContext.buffered);
+    // innerAudioContext.onTimeUpdate((res) => {
+    //   console.log("当前时间：", innerAudioContext.currentTime);
+    // })
+  },
+  //播放上/下一首
+  preNextMusic: function (e) {
+    var pre = e.currentTarget.id;
+    var total = this.data.musics.length;
+    var idx = this.data.idx;
+    if (pre) {//上一首
+      if (idx > 0) {
+        idx = idx - 1;
+      }
+    } else {//下一首
+      if (idx < total - 1) {
+        idx = idx + 1;
+      }
+    }
+    this.setData({
+      idx: idx
+    })
+    this.playMusic();
+  },
+  //播放下一首
+  musicPlay: function (e) {
+    var idx = e.currentTarget.id;
+    this.setData({
+      idx: idx
+    })
+    this.playMusic();
+  },
   //宝宝歌单
   getMusics: function () {
     var that = this;
     http.postRequest({
       baseType: 2,
-      url: "childMusic/query",
-      params: {page:that.data.page, size:that.data.size,childId:app.globalData.userInfo.childId,
-        userId: app.globalData.userInfo.userId},
+      url: "childMusicFavo/query",
+      params: {page:that.data.page, size:that.data.size,childId:app.globalData.userInfo.childId},
       msg: "加载中...",
       success: res => {
         if (that.data.refresh) {
@@ -218,7 +251,7 @@ Page({
         if (res.confirm) {
           http.postRequest({
             baseType: 0,
-            url: "childMusic/delete/" + e.currentTarget.id,
+            url: "childMusicFavo/delete/" + e.currentTarget.id,
             params: {},
             msg: "操作中...",
             success: res => {

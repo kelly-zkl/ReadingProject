@@ -20,7 +20,8 @@ Page({
     var that = this;
 
     that.setData({
-      welbg: base64.welbg
+      welbg: base64.welbg,
+      iconWel: base64.iconWel
     });
 
     var familyId = '';

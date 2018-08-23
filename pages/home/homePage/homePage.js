@@ -12,7 +12,6 @@ Page({
   data: {
     imgWidth:'0px',
     isBind:true,
-    star:0,
     bindW:0,
     unbindW:0,
     neverBind:true,
@@ -27,7 +26,8 @@ Page({
     that.setData({
       imgWidth: app.globalData.homeWidth.imgWidth,
       bg: base64.bg,
-      welbg: base64.welbg
+      welbg: base64.welbg,
+      iconWel: base64.iconWel
     });
 
     // 加入家庭组
@@ -49,28 +49,6 @@ Page({
         url: '/pages/music/musicDetail/musicDetail?id=' + options.albumId
       })
     }
-  },
-  //扫一扫
-  scan: function (e) {
-    wx.scanCode({
-      scanType: ['qrCode'],
-      success: (res) => {
-        console.log(res);
-        wx.showToast({ title: '扫描成功', icon: 'info', duration: 1500 })
-        if (res.result && res.result.indexOf('/pages/') == 0 && res.result.indexOf('familyId') > 0) {
-          var familyId = res.result.substring(res.result.indexOf("=") + 1, res.result.length)
-          console.log(familyId);
-          this.setData({
-            familyId: familyId
-          })
-          this.addMembers();
-        }
-      },
-      fail: (res) => {
-        console.log(res);
-        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 })
-      }
-    })
   },
   // 加入家庭组
   addMembers: function () {
@@ -147,9 +125,10 @@ Page({
           if (res.data.deviceId){//绑定设备
             app.globalData.userInfo["deviceId"] = res.data.deviceId;
 
-            // that.getDeviceStatus();
+            that.getDeviceStatus();
             that.getBabyBooks();
           }
+          that.getMusics();
         }else{//从未绑定过
           neverBind = true;
           isBind = false;
@@ -174,7 +153,6 @@ Page({
       params: { uid: app.globalData.userInfo.uid, deviceId: app.globalData.userInfo.deviceId },
       msg: "加载中...",
       success: res => {
-      
         this.setData({
           device: res.data
         });
@@ -192,6 +170,21 @@ Page({
       success: res => {
         this.setData({
           books: res.data.content
+        });
+      }
+    }, false);
+  },
+  //宝宝歌单
+  getMusics: function () {
+    var that = this;
+    http.postRequest({
+      baseType: 2,
+      url: "childMusicFavo/query",
+      params: { page:1, size: 999999, childId: app.globalData.userInfo.childId },
+      msg: "加载中...",
+      success: res => {
+        this.setData({
+          music: res.data.content ? res.data.content.length:0
         });
       }
     }, false);

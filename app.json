@@ -16,7 +16,6 @@
     "pages/baby/babyBookShelf/babyBookShelf",
     "pages/baby/babyFile/babyFile",
     "pages/baby/babyRecords/babyRecords",
-    "pages/music/musicHot/musicHot",
     "pages/music/musicList/musicList",
     "pages/music/musicDetail/musicDetail",
     "pages/chat/chatRoom/chatRoom",
@@ -36,7 +35,8 @@
     "pages/user/myFamily/myFamily",
     "pages/user/addMember/addMember",
     "pages/common/search/search",
-    "pages/common/chooseBabyMusic/chooseBabyMusic"
+    "pages/common/chooseBabyMusic/chooseBabyMusic",
+    "pages/music/musicHot/musicHot"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -56,15 +56,10 @@
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_selected.png"
       }, {
-        "pagePath": "pages/music/musicList/musicList",
-        "text": "听一听",
-        "iconPath": "images/icon_listen.png",
-        "selectedIconPath": "images/icon_listen_selected.png"
-      }, {
-        "pagePath": "pages/chat/familyChat/familyChat",
+        "pagePath": "pages/chat/chatRoom/chatRoom",
         "text": "悄悄话",
-        "iconPath": "images/icon_chat.png",
-        "selectedIconPath": "images/icon_chat.png"
+        "iconPath": "images/icon_chat1.png",
+        "selectedIconPath": "images/icon_chat2.png"
       }, {
         "pagePath": "pages/book/bookHot/bookHot",
         "text": "绘本城",

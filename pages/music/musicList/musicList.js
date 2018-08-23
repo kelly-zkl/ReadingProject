@@ -29,6 +29,9 @@ Page({
       sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex + 36,
       menuHeight: (app.globalData.device.windowHeight - 60)
     });
+    wx.navigateTo({
+      url: '/pages/music/musicHot/musicHot'
+    })
   },
 
   /**
@@ -39,9 +42,7 @@ Page({
     //   page: 1
     // })
     // this.getMusics();
-    wx.navigateTo({
-      url: '/pages/music/musicHot/musicHot'
-    })
+    
   },
   /***/
   tabClick: function (e) {

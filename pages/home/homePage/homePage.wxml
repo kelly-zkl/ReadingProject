@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd' wx:if="{{neverBind}}" style="background-image:url({{welbg}});background-repeat:no-repeat;background-size:100%;-moz-background-size:100%;background-attachment:fixed">
     <view style="height:100vh">
-      <image src="../../../images/icon_welcome.png" mode="widthFix" style='position:absolute;bottom:0;width:100%'></image>
+      <image src="{{iconWel}}" mode="widthFix" style='position:absolute;bottom:0;width:100%'></image>
       <view class='btn-bind-dev' bindtap='bindDevice' style='position:absolute;bottom:15%;margin:0 25%;width:50%'>添加设备</view>
       <view class='weui-grid__label txt-color-white' catchtap='scan' style='position:absolute;bottom:7%;width:100%'>扫一扫 加入家庭组</view>
     </view>
@@ -9,10 +9,14 @@
   <view class='page__bd' wx:else style="background-image:url({{bg}});background-repeat:no-repeat;background-size:100%;-moz-background-size:100%;background-attachment:fixed">
     <view style='padding:0 10px 10px 10px'>
       <view class='weui-flex'>
+        <view style='height:34px;background:rgba(0,0,0,.15);border-radius:17px;display:flex;align-items:center;padding-right:10px' catchtap='gotoDevice'>
+          <image src="../../../images/icon_girl.png" style='width:28px;height:28px;display:inline-block;margin:3px'></image>
+          <view class='weui-grid__label txt-color-white txt-12' style='height:28px;line-height:28px;display:inline-block;margin:3px 0;text-align:center'>选择宝宝</view>
+        </view>
         <view class='weui-flex__item'>
           <view class='weui-grid__label txt-color-white' bindtap='bindDevice' wx:if="{{!isBind}}"
-              style='height:30px;line-height:30px;background:#00c6f0;margin:0 20px 0 0;border-radius:4px;'>添加设备</view>
-          <view class="weui-flex" style='padding:2px 0;background:#00c6f0;margin-right:20px;border-radius:4px' wx:else>
+              style='height:30px;line-height:30px;background:rgba(0,0,0,.15);margin:2px 0 0 40%;border-radius:4px;'>添加设备</view>
+          <view class="weui-flex" style='padding:2px 10px 2px 0;background:rgba(0,0,0,.1);margin:2px 15px;border-radius:14px' wx:else>
             <view class='weui-flex__item'>
               <image class='weui-grid__icon' src="{{device.battery?device.battery==100?'../../../images/icon_power_100.png':device.battery>=80?'../../../images/icon_power_80.png':device.battery>=60?'../../../images/icon_power_60.png':device.battery>=40?'../../../images/icon_power_40.png':device.battery>=20?'../../../images/icon_power_20.png':'../../../images/icon_power_10.png':'../../../images/icon_power_10.png'}}"></image>
             </view>
@@ -30,11 +34,11 @@
             </view>
           </view>
         </view>
-        <image src="../../../images/btn_change.png" style='width:30px;height:30px;margin-right:10px' catchtap='gotoDevice'></image>
-        <image src="../../../images/icon_user_scan.png" style='width:28px;height:28px;margin-right:10px' catchtap='scan'></image>
-        <image src="../../../images/icon_setting.png" style='width:30px;height:30px' catchtap='gotoSet' wx:if="{{isBind}}"></image>
       </view>
-      <view class="weui-media-box weui-media-box_appmsg" style='padding:14% 0'>
+      <view style='position: absolute;top:0;right:10px;width:34px;height:34px;background:rgba(0,0,0,.15);border-radius:50%' wx:if="{{isBind}}">
+        <image src="../../../images/icon_setting.png" style='width:28px;height:28px;margin:3px' catchtap='gotoSet'></image>
+      </view>
+      <view class="weui-media-box weui-media-box_appmsg" style='padding:15% 0'>
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg bind">
           <image class="weui-media-box__thumb bind" src="{{baby.avatar?baby.avatar:'../../../images/icon_baby.png'}}"
             style='border-radius:50%' mode='aspectFill'/>
@@ -42,6 +46,11 @@
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg bind">
           <view class="weui-media-box__title txt-16 txt-color-white">{{baby.nickname}}</view>
           <view class="weui-media-box__desc txt-color-white txt-12" style='margin-top:5px'>{{isBind?'当前位置':'宝宝还没有关联设备'}}</view>
+          <!-- <view class='weui-cell__ft setting' wx:if="{{isBind}}">
+            <navigator url="/pages/baby/babyBadge/babyBadge">
+              <image src="../../../images/icon_chengzhang.png" style='width:40px;height:40px'></image>
+            </navigator>
+          </view> -->
         </view>
       </view>
     </view>
@@ -63,8 +72,8 @@
               hover-class="weui-cell_active">
               <image src="{{item.book.coverPicture?item.book.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}"
                 style='width:{{imgWidth}};height:{{imgWidth}};margin: 0 6px;border-radius:5px' mode="widthFix"></image>
-              <view class='weui-grid__label txt-14'>{{item.book.bookName}}/系列名</view>
-              <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>{{item.progress==0?'未读完':item.progress+'遍'}}</view>
+              <view class='weui-grid__label txt-14'>{{item.book.bookName}}</view>
+              <!-- <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>{{item.progress==0?'未读完':item.progress+'遍'}}</view> -->
             </navigator>
           </block>
         </view>
@@ -78,37 +87,20 @@
         </view>
       </view>
       <view class='weui-flex' style='padding:10px'>
-        <view class='weui-flex__item bg-white-corner' style='margin-right:5px'>
-          <navigator url="/pages/baby/babyMusics/babyMusics" class="weui-media-box weui-media-box_appmsg"
-            style='padding:10px' hover-class="weui-cell_active">
-            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+        <navigator url="/pages/baby/babyMusics/babyMusics" class='weui-flex__item bg-white-corner weui-media-box weui-media-box_appmsg' 
+        style='margin-right:10px;display: flex;align-items: center;padding:10px' hover-class="weui-cell_active">
+            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" style='margin-left:5px'>
               <image class="weui-media-box__thumb" src="../../../images/icon_baby_musics.png"/>
             </view>
             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-              <view class="weui-media-box__title txt-14">听音乐</view>
-              <view class="weui-media-box__desc" style='margin-top:5px'>需绑定设备</view>
+              <view class="weui-media-box__title txt-14">宝宝歌单</view>
+              <view class="weui-media-box__desc" style='margin-top:5px'>{{music}}</view>
             </view>
-          </navigator>
-        </view>
-        <view class='weui-flex__item bg-white-corner' style='margin-left:5px'>
-          <navigator url="/pages/baby/babyBadge/babyBadge" class="weui-media-box weui-media-box_appmsg"
-            style='padding:10px' hover-class="weui-cell_active">
-            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-              <image class="weui-media-box__thumb" src="../../../images/icon_baby_stars.png"/>
-            </view>
-            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-              <view class="weui-media-box__title txt-14">成长星</view>
-              <view class="weui-media-box__desc" style='display: flex;align-items: center'>
-                <image src="{{star>0?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
-                  class="view-star"></image>
-                <image src="{{star>1?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
-                  class="view-star"></image>
-                <image src="{{star>2?'../../../images/icon_star_selected.png':'../../../images/icon_star.png'}}"
-                  class="view-star"></image>
-              </view>
-            </view>
-          </navigator>
-        </view>
+        </navigator>
+        <navigator class='bg-white-corner' url="/pages/music/musicHot/musicHot" style='padding:7px 20px'>
+          <image class="weui-grid__icon" style="width:50px;height:50px" src="../../../images/icon_listen_home.png"/>
+          <view class='weui-grid__label'>点播音乐</view>
+        </navigator>
       </view>
     </view>
   </view>

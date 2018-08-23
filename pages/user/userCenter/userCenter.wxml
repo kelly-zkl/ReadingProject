@@ -35,7 +35,7 @@
         <view class="weui-cell__hd">
           <image src="../../../images/icon_collect.png" class="cell-icon-size"/>
         </view>
-        <view class="weui-cell__bd weui-cell_primary">我的收藏</view>
+        <view class="weui-cell__bd weui-cell_primary">我的绘本收藏</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">{{bookFavoCount}}</view>
       </navigator>
     </view>
@@ -59,15 +59,6 @@
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
     </view>
-    <!-- <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
-      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <image src="../../../images/icon_account.png" class="cell-icon-size"/>
-        </view>
-        <view class="weui-cell__bd weui-cell_primary">账号安全</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
-    </view> -->
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
       <navigator url="/pages/user/usingHelp/usingHelp" class="weui-cell weui-cell_access"
         hover-class="weui-cell_active">

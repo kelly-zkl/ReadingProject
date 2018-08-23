@@ -33,7 +33,7 @@ Page({
    */
   onShow: function () {
     this.getBabyDetail();
-    // this.getDeviceStatus();
+    this.getDeviceStatus();
     this.getFamilyMembers();
   },
 

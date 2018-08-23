@@ -2,20 +2,20 @@
   <view class='page__bd'>
     <view class='bg-white-shadow-corner'>
       <image src="../../../images/icon_today_start.png" class='start-img' mode="aspectFill"></image>
-      <view class='weui-flex vertical-center' bindtap='changeStart'>
+      <view class='weui-flex vertical-center'>
         <view class='weui-flex__item vertical-center' style='justify-content: center;'>
-          <image src="{{start>0?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+          <image src="{{star>0?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
               class="view-star"></image>
-          <image src="{{start>1?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+          <image src="{{star>1?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
             class="view-star"></image>
-          <image src="{{start>2?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
+          <image src="{{star>2?'../../../images/icon_start_b.png':'../../../images/icon_start_white.png'}}"
             class="view-star"></image>
         </view>
       </view>
-      <view class='weui-grid__label txt-15' style='margin-top:50rpx;color:#FF6483'>{{start==0?'今天还没有读书':start==1?'你很棒！':'恭喜你！'}}</view>
-      <view class='weui-grid__label txt-15' style='color:#FF6483'>{{start==0?'没有获得星星':'今天读完了'+start+'本书'}}</view>
+      <view class='weui-grid__label txt-15' style='margin-top:50rpx;color:#FF6483'>{{star==0?'今天还没有读书':star==1?'你很棒！':'恭喜你！'}}</view>
+      <view class='weui-grid__label txt-15' style='color:#FF6483'>{{star==0?'没有获得星星':'今天读完了'+star+'本书'}}</view>
       <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:30rpx'>
-        {{start==0?'要加油哦！':start==3?'要持之以恒哦~':'再读'+(3-start)+'本书就能获得3颗星星了'}}
+        {{star==0?'要加油哦！':star==3?'要持之以恒哦~':'再读'+(3-star)+'本书就能获得3颗星星了'}}
       </view>
     </view>
     <view class='weui-flex' style='margin:0 30rpx 30rpx 30rpx'>

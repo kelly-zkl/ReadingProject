@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tags:["中文模式","英文模式"],
-    lans:["中文","英文"],
+    tags:["中文模式","英文模式","自定义模式"],
+    lans:["中文","英文","自定义"],
     showPopu: false,
     upNum: 0,
     choose: 0
@@ -27,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.getLanguage();
   },
   //选择语言
   bindChecked: function (e) {
@@ -35,12 +35,18 @@ Page({
     this.setData({
       choose: index
     })
+
+    this.togglePopu();
   },
   // 设置弹框
   togglePopu: function () {
     this.setData({
       showPopu: !this.data.showPopu
     })
+
+    if (!this.data.showPopu){
+      this.getLanguage();
+    }
   },
   // 开始设置
   startChange: function () {
@@ -48,31 +54,60 @@ Page({
     that.setData({
       showPopu: false
     });
-    wx.showLoading({
-      title: this.data.upNum + '%',
-      mask: true
-    })
-    var num = this.data.upNum;
-    var i = setInterval(function () {
-      if (num < 100) {
-        num = num + 10;
-        that.setData({
-          upNum: num
-        });
-        wx.hideLoading();
-        wx.showLoading({
-          title: that.data.upNum + '%',
-          mask: true
-        })
-      } else {
-        clearInterval(i);
-        wx.hideLoading();
-        wx.showToast({
-          title: '切换成功',
-          icon: 'success',
-          duration: 2000
-        })
+
+    var language = (that.data.choose==0?'AUDIO_Z':that.data.choose==1?'AUDIO_EN':that.data.choose==2?'AUDIO_OTHER':'AUDIO_Z');
+
+    http.postRequest({
+      baseType: 0,
+      url: "child/language/set",
+      params: { childId: app.globalData.userInfo.childId, uid: app.globalData.userInfo.uid, language: language},
+      msg: "加载中...",
+      success: res => {
+        wx.showToast({ title: '设置成功', icon: 'success', duration: 1500 });
+        that.getLanguage();
       }
-    }, 1000)
+    }, true);
+    // wx.showLoading({
+    //   title: this.data.upNum + '%',
+    //   mask: true
+    // })
+    // var num = this.data.upNum;
+    // var i = setInterval(function () {
+    //   if (num < 100) {
+    //     num = num + 10;
+    //     that.setData({
+    //       upNum: num
+    //     });
+    //     wx.hideLoading();
+    //     wx.showLoading({
+    //       title: that.data.upNum + '%',
+    //       mask: true
+    //     })
+    //   } else {
+    //     clearInterval(i);
+    //     wx.hideLoading();
+    //     wx.showToast({
+    //       title: '切换成功',
+    //       icon: 'success',
+    //       duration: 2000
+    //     })
+    //   }
+    // }, 1000)
   },
+  //查询设备的语言
+  getLanguage(){
+    http.postRequest({
+      baseType: 0,
+      url: "child/language",
+      params: { childId: app.globalData.userInfo.childId, uid: app.globalData.userInfo.uid},
+      msg: "加载中...",
+      success: res => {
+        var choose = (res.data == 'AUDIO_Z' ? 0 : res.data == 'AUDIO_EN' ? 1 : res.data == 'AUDIO_OTHER'?2:0);
+
+        this.setData({
+          choose: choose
+        });
+      }
+    }, false);
+  }
 })

@@ -42,8 +42,8 @@ page{
 
 .setting{
   position: absolute;
-  top:15px;
-  right:5px;
+  top:30%;
+  right:15px;
   display: flex;
   align-items: center
 }
@@ -56,6 +56,6 @@ page{
 }
 
 .weui-grid__icon{
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
 }

@@ -1,7 +1,7 @@
 <view class="page">
   <view class='page__bd' style="background-image:url({{welbg}});background-repeat:no-repeat;background-size:100%;-moz-background-size:100%;background-attachment:fixed">
     <view style='padding:0;margin:0;height:100vh'>
-      <image src="../../../images/icon_welcome.png" mode="widthFix" style='position:fixed;bottom:0;width:100%'></image>
+      <image src="{{iconWel}}" mode="widthFix" style='position:fixed;bottom:0;width:100%'></image>
       <view wx:if="{{canIUse}}">
         <view class='weui-grid__label txt-color-white' style='padding-top:20%'>HI！</view>
         <view class='weui-grid__label txt-color-white'>欢迎来到英语绘本学习之家</view>

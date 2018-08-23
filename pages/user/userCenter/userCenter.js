@@ -19,11 +19,6 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     });
-
-    var pages = getCurrentPages();
-    var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage = pages[pages.length - 3];  //上2个页面
-    console.log(pages)
   },
 
   /**
@@ -64,6 +59,7 @@ Page({
   //扫一扫
   scan: function (e) {
     wx.scanCode({
+      onlyFromCamera: true,
       scanType: ['qrCode'],
       success: (res) => {
         console.log(res);
@@ -79,7 +75,7 @@ Page({
       },
       fail: (res) => {
         console.log(res);
-        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 })
+        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 });
       }
     })
   },

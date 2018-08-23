@@ -3,9 +3,6 @@ var sliderWidth = 64; // 需要设置slider的宽度，用于计算中间位置
 var http = require("../../../http.js");
 const app = getApp();
 
-var aes = require('../../../utils/aes.js')
-var md5 = require('../../../utils/md5.js')
-
 Page({
 
   /**
@@ -36,31 +33,13 @@ Page({
    */
   onShow: function () {
     // this.getMusics();
-    var timStap = new Date().getTime()+"";
-    var md5Key = this.data.secert + timStap + this.data.apiKey;
-    var aeskey = md5.hexMD5(md5Key);
-
-    var key = aes.enc.Utf8.parse(aeskey);
-    var iv = aes.enc.Utf8.parse([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
-
-    var param = {uniqueId:app.globalData.userInfo.deviceId};
-    var data = aes.encrypt(param.toString, key, iv)
-
-    // http.postRequest({
-    //   baseType: 4,
-    //   url: "getuserid.do",
-    //   params: { data: data, key: this.data.apiKey, timestamp: timStap},
-    //   msg: "操作中...",
-    //   success: res => {
-    //   }
-    // }, false);
     this.bindDevice();
   },
 
   onUnload(){
-    wx.reLaunch({
-      url: '/pages/home/homePage/homePage'
-    })
+    // wx.reLaunch({
+    //   url: '/pages/home/homePage/homePage'
+    // })
   },
 
   /**跳转到音乐列表页*/
