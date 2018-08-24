@@ -221,6 +221,7 @@ Page({
         })
         clearInterval(that.data.interval);
         wx.showToast({ title: '联网成功', icon: 'none', duration: 1500 });
+        that.bindTuling();
         if (that.data.childId==1){//
           if (app.globalData.userInfo.childId && !app.globalData.userInfo.deviceId) {//绑定当前宝宝
             that.setData({
@@ -257,5 +258,20 @@ Page({
         wx.navigateBack()
       }
     }, true);
+  },
+  //图灵绑定设备
+  bindTuling() {
+    var that = this;
+    var deviceId = wx.getStorageSync('deviceId');
+    http.postRequest({
+      baseType: 3,
+      url: "app-author/bind",
+      params: {
+        apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: deviceId,
+        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.userInfo.avatar
+      },
+      success: res => {
+      }
+    }, false);
   }
 })

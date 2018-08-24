@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
 
-    var url = 'https://m.baxueshe.com/tuling/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+    var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
 
     this.setData({
       imgWidth: (app.globalData.device.windowWidth - 48) / 2,
@@ -79,9 +79,9 @@ Page({
       url: "app-author/bind",
       params: {
         apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId,
-        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.baby.avatar},
+        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.userInfo.avatar},
       success: res => {
-        var url = 'https://m.baxueshe.com/tuling/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
 
         this.setData({
           musicUrl: url
