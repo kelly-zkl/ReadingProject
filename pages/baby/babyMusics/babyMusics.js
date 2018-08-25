@@ -11,7 +11,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: ["学英语", "听音乐", "讲故事"],
+    tabs: ["音乐", "故事"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0,
     down: 0,
     play: 0,
     refresh: false,
@@ -27,6 +30,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      sliderLeft: (app.globalData.device.windowWidth / this.data.tabs.length - sliderWidth) / 2,
+      sliderOffset: app.globalData.device.windowWidth / this.data.tabs.length * this.data.activeIndex,
       isBind: app.globalData.userInfo.isBind
     });
 
@@ -55,6 +60,13 @@ Page({
     this.setData({
       page: 1
     })
+    this.getMusics();
+  },
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
     this.getMusics();
   },
   //暂停/播放音乐
@@ -122,7 +134,7 @@ Page({
     http.postRequest({
       baseType: 2,
       url: "childMusicFavo/query",
-      params: {page:that.data.page, size:that.data.size,childId:app.globalData.userInfo.childId},
+      params: { page: that.data.page, size: that.data.size, childId: app.globalData.userInfo.childId, type: (parseInt(that.data.activeIndex))+1},
       msg: "加载中...",
       success: res => {
         if (that.data.refresh) {

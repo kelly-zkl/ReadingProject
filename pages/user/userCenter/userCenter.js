@@ -25,9 +25,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    });
     this.getBabyList();
     this.getFavNum();
   },
@@ -59,7 +56,6 @@ Page({
   //扫一扫
   scan: function (e) {
     wx.scanCode({
-      onlyFromCamera: true,
       scanType: ['qrCode'],
       success: (res) => {
         console.log(res);

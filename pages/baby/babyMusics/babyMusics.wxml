@@ -1,58 +1,71 @@
 <view class='page'>
   <view class='page__bd'>
-    <block wx:if="{{musics.length>0}}">
-      <view class='weui-flex' style='padding:20rpx 30rpx'>
-        <view style='height:50rpx;line-height:50rpx;font-size:14px;text-align:center'>共{{musics.length}}首</view>
-        <view class='weui-flex__item'></view>
-        <!-- <view class='btn-small-60' style='margin-right:30rpx' hover-class="btn-active">下载全部</view> -->
-        <view class='btn-small-60' hover-class="btn-active" wx:if="{{isBind}}" bindtap='pushAll'>推送全部</view>
+     <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+            bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
-      <!--曲目列表  -->
-      <view style='background:#fff'>
-        <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"
-          bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{musics}}" wx:key="*this">
-          <view class="weui-media-box weui-media-box_appmsg content" style='border-bottom:1rpx solid #f2f2f2'
-            hover-class="weui-cell_active">
-            <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-              <image class="weui-media-box__thumb" style='border-radius:30px'
-              src="{{item.music.img?item.music.img:'../../../images/icon_music.png'}}"/>
-            </view>
-            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-              <view class="weui-media-box__title txt-15">{{item.musicName}}</view>
-            </view>
-            <view class='weui-cell__ft'>
-              <!-- <image src="{{down==0?'../../../images/icon_down_music.png':down==1?'../../../images/icon_stop_down.png':'../../../images/icon_down_finish.png'}}"
-                class="cell-icon-size s" bindtap='downloadMusic'/> -->
-              <image src="../../../images/icon_push_music.png" class="cell-icon-size s" wx:if="{{isBind}}"/>
+      <view class="weui-tab__panel">
+        <block wx:if="{{musics.length>0}}">
+          <view class='weui-flex' style='padding:20rpx 30rpx'>
+            <view style='height:50rpx;line-height:50rpx;font-size:14px;text-align:center'>共{{musics.length}}首</view>
+            <view class='weui-flex__item'></view>
+            <!-- <view class='btn-small-60' style='margin-right:30rpx' hover-class="btn-active">下载全部</view> -->
+            <view class='btn-small-60' hover-class="btn-active" wx:if="{{isBind}}" bindtap='pushAll'>推送全部</view>
+          </view>
+          <!--曲目列表  -->
+          <view style='background:#fff'>
+            <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}"
+              bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{musics}}" wx:key="*this">
+              <view class="weui-media-box weui-media-box_appmsg content" style='border-bottom:1rpx solid #f2f2f2'
+                hover-class="weui-cell_active">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" style='border-radius:30px'
+                  src="{{item.music.img?item.music.img:'../../../images/icon_music.png'}}"/>
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title txt-15">{{item.musicName}}</view>
+                </view>
+                <view class='weui-cell__ft'>
+                  <!-- <image src="{{down==0?'../../../images/icon_down_music.png':down==1?'../../../images/icon_stop_down.png':'../../../images/icon_down_finish.png'}}"
+                    class="cell-icon-size s" bindtap='downloadMusic'/> -->
+                  <image src="../../../images/icon_push_music.png" class="cell-icon-size s" wx:if="{{isBind}}"/>
+                </view>
+              </view>
+              <view class="del" catchtap="del" id="{{item.favoId}}">移除歌单</view>
             </view>
           </view>
-          <view class="del" catchtap="del" id="{{item.favoId}}">移除歌单</view>
+        </block>
+        <block wx:else>
+          <view class='weui-flex'>
+            <view class="weui-flex__item" style='padding:100rpx 0 30rpx 0'>
+              <image class="weui-grid__icon" src="../../../images/icon_music_null.png" mode='aspectFill'
+                style='width:240rpx;height:240rpx'/>
+              <view class="weui-grid__label txt-color-active">快让小叮当给宝宝播放音乐吧</view>
+            </view>
+          </view>
+        </block>
+        <!--播放进度及按钮  -->
+        <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;border-top:1rpx #f2f2f2 solid"
+            wx:if="{{musics.length>0}}">
+          <!-- <slider step="5" activeColor="#00d2ff" block-size="12" style='margin:0padding-top:20rpx;' block-color="#00d2ff" backgroundColor='#ccc'/> -->
+          <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
+            <image src="../../../images/icon_pre_music.png" class="cell-icon-size btn" style='margin-right:30px'
+                bindtap='preNextMusic' id="true"/>
+            <image src="{{play==0?'../../../images/icon_pause.png':'../../../images/icon_play.png'}}"
+              style='border-radius:50rpx;height:100rpx;width:100rpx' bindtap='pauseStop' id="{{idx}}"/>
+            <view class='weui-flex__item' style='margin-left:20rpx'>
+              <view class='weui-grid__label txt-14 txt-color-white' style='margin-top:0;text-align:left;line-height:100rpx'>{{musics[idx].name}}</view>
+            </view>
+            <image src="../../../images/icon_next_music.png" class="cell-icon-size btn" bindtap='preNextMusic' id="false"/>
+          </view>
         </view>
-      </view>
-    </block>
-    <block wx:else>
-      <view class='weui-flex'>
-        <view class="weui-flex__item" style='padding:100rpx 0 30rpx 0'>
-          <image class="weui-grid__icon" src="../../../images/icon_music_null.png" mode='aspectFill'
-            style='width:240rpx;height:240rpx'/>
-          <view class="weui-grid__label txt-color-active">快让小叮当给宝宝播放音乐吧</view>
         </view>
-      </view>
-    </block>
-    <!--播放进度及按钮  -->
-    <view class="weui-footer weui-footer_fixed-bottom" style="background:#fff;border-top:1rpx #f2f2f2 solid"
-        wx:if="{{musics.length>0}}">
-      <!-- <slider step="5" activeColor="#00d2ff" block-size="12" style='margin:0padding-top:20rpx;' block-color="#00d2ff" backgroundColor='#ccc'/> -->
-      <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
-        <image src="../../../images/icon_pre_music.png" class="cell-icon-size btn" style='margin-right:30px'
-            bindtap='preNextMusic' id="true"/>
-        <image src="{{play==0?'../../../images/icon_pause.png':'../../../images/icon_play.png'}}"
-          style='border-radius:50rpx;height:100rpx;width:100rpx' bindtap='pauseStop' id="{{idx}}"/>
-        <view class='weui-flex__item' style='margin-left:20rpx'>
-          <view class='weui-grid__label txt-14 txt-color-white' style='margin-top:0;text-align:left;line-height:100rpx'>{{musics[idx].name}}</view>
-        </view>
-        <image src="../../../images/icon_next_music.png" class="cell-icon-size btn" bindtap='preNextMusic' id="false"/>
-      </view>
     </view>
   </view>
 </view>

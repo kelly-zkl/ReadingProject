@@ -53,7 +53,7 @@ Page({
       msg: "加载中...",
       success: res => {
         this.setData({
-          tags: [{num: res.data.bookCount+"本"}, {num: res.data.readCount+"遍"},{num:"0分"}],
+          tags: [{ num: res.data.bookCount + "本", show: true }, { num: res.data.readCount + "遍", show: true }, { num: "0分", show: false}],
         });
       }
     }, false);
