@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    apiKey:'a0eb0c3dded04e638047f6fe00b71fa7',
-    secert:'v64B25a98x2FH417',
+    apiKey:'2056caf029a640168f28bd1d04f4725a',
+    secert:'6586ziuO23logm2F',
     tags: [{name: "全部", url: "../../../images/icon_all.png"}, {name: "学英语", url: "../../../images/icon_english.png"},
       {name: "听音乐", url: "../../../images/icon_music_tab.png"}, {name: "讲故事", url: "../../../images/icon_story.png"}]
   },
@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
 
-    var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+    var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=' + this.data.apiKey+'&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
 
     this.setData({
       imgWidth: (app.globalData.device.windowWidth - 48) / 2,
@@ -81,7 +81,7 @@ Page({
         apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId,
         name: app.globalData.userInfo.nickname, imageUrl: app.globalData.userInfo.avatar},
       success: res => {
-        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=a0eb0c3dded04e638047f6fe00b71fa7&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=apiKey=' + this.data.apiKey +'&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
 
         this.setData({
           musicUrl: url

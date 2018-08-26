@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    apiKey: '2056caf029a640168f28bd1d04f4725a',
     showPopu:false,
     showList:false,
     wifiInfo: {ssid:'',pwd:'',optId:''},
