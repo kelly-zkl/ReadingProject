@@ -59,3 +59,18 @@ page{
   width: 24px;
   height: 24px;
 }
+
+.b.weui-flex__item{
+  -webkit-box-flex:none;
+  -webkit-flex:none;
+  flex:none;
+}
+.b.weui-flex__item:nth-child(3n+1){
+  margin-left: 10px
+}
+.b.weui-flex__item:nth-child(3n+2){
+  margin: 0
+}
+.b.weui-flex__item:nth-child(3n){
+  margin-right: 10px
+}

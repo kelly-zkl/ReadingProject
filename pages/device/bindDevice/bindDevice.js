@@ -2,6 +2,10 @@
 const app = getApp();
 var http = require("../../../http.js");
 var drawQrcode = require('../../../utils/qrcode.js');
+// var ChirpConnect = require('../../../utils/chirp-v3.min.js');
+
+const innerAudioContext = wx.createInnerAudioContext();
+var chirp;
 
 Page({
 
@@ -9,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    apiKey: '2056caf029a640168f28bd1d04f4725a',
+    apiKey: 'a50878851bee4fb1acb3aa3bb1d80a78',
     showPopu:false,
     showList:false,
     wifiInfo: {ssid:'',pwd:'',optId:''},
@@ -28,6 +32,17 @@ Page({
     that.setData({
       childId: options.id ? options.id : 1
     });
+
+    console.log('Chirp');
+    // chirp = new ChirpConnect('e2eB7afcdf640d356f049c525', innerAudioContext);
+
+    // with example payload 1,2,3,4
+    // chirp.send(new Uint8Array([1, 2, 3, 4]), (err) => {
+    //   if (err) { console.log(err) }
+    //   else {
+    //     console.log('Data sent successfully');
+    //   }
+    // });
   },
 
   /**
@@ -274,5 +289,8 @@ Page({
       success: res => {
       }
     }, false);
+  },
+  onUnload: function () {
+    innerAudioContext.destroy();
   }
 })

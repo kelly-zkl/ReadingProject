@@ -89,7 +89,7 @@ Page({
     this.setData({
       play: 1
     })
-    innerAudioContext.src = this.data.musics[this.data.idx].url;
+    innerAudioContext.src = this.data.musics[this.data.idx].musicUrl;
     innerAudioContext.startTime = 0;
 
     innerAudioContext.play();
@@ -106,7 +106,9 @@ Page({
     var pre = e.currentTarget.id;
     var total = this.data.musics.length;
     var idx = this.data.idx;
-    if (pre) {//上一首
+    console.log(pre);
+    console.log(total);
+    if (pre=='true') {//上一首
       if (idx > 0) {
         idx = idx - 1;
       }
@@ -118,6 +120,7 @@ Page({
     this.setData({
       idx: idx
     })
+    console.log(idx);
     this.playMusic();
   },
   //播放下一首
@@ -126,6 +129,7 @@ Page({
     this.setData({
       idx: idx
     })
+    console.log(idx);
     this.playMusic();
   },
   //宝宝歌单
@@ -134,7 +138,7 @@ Page({
     http.postRequest({
       baseType: 2,
       url: "childMusicFavo/query",
-      params: { page: that.data.page, size: that.data.size, childId: app.globalData.userInfo.childId, type: (parseInt(that.data.activeIndex))+1},
+      params: { page: that.data.page, size: that.data.size, childId: app.globalData.userInfo.childId },//type: (parseInt(that.data.activeIndex))+1
       msg: "加载中...",
       success: res => {
         if (that.data.refresh) {
@@ -262,9 +266,9 @@ Page({
       success: function (res) {
         if (res.confirm) {
           http.postRequest({
-            baseType: 0,
-            url: "childMusicFavo/delete/" + e.currentTarget.id,
-            params: {},
+            baseType: 2,
+            url: "childMusicFavo/delete",
+            params: [e.currentTarget.id],
             msg: "操作中...",
             success: res => {
               wx.showToast({ title: '移除成功', icon: 'none', duration: 1500 })

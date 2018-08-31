@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    apiKey:'2056caf029a640168f28bd1d04f4725a',
-    secert:'6586ziuO23logm2F',
+    apiKey:'a50878851bee4fb1acb3aa3bb1d80a78',
+    secert:'0v0kC0a902lN449U',
     tags: [{name: "全部", url: "../../../images/icon_all.png"}, {name: "学英语", url: "../../../images/icon_english.png"},
       {name: "听音乐", url: "../../../images/icon_music_tab.png"}, {name: "讲故事", url: "../../../images/icon_story.png"}]
   },

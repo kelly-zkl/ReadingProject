@@ -37,10 +37,13 @@ Page({
       isBind: app.globalData.userInfo.isBind,
       isRecords: options.type ? options.type:false
     });
-
+    
+    innerAudioContext.onWaiting((res) => {
+      console.log("onWaiting", res);
+      wx.showLoading({ title: "加载中..." })
+    });
     innerAudioContext.onTimeUpdate((res) => {
       console.log("缓冲",res)
-      wx.showToast({ title: "缓冲中...", icon: 'info', duration: 1500 })
     })
     innerAudioContext.onEnded((res) => {
       this.setData({
@@ -102,20 +105,26 @@ Page({
       str = '英文原声';
       this.setData({
         lanaugae: str,
-        lanIdx: id
+        lanIdx: id,
+        isPage:true
       });
+      that.readBook();
     } else if (id == 2) {//中文原声
       str = '中文原声';
       this.setData({
         lanaugae: str,
-        lanIdx: id
+        lanIdx: id,
+        isPage: true
       });
+      that.readBook();
     } else if (id == 3) {//家长录制
       str = '家长录制';
       this.setData({
         lanaugae: str,
-        lanIdx: id
+        lanIdx: id,
+        isPage: true
       });
+      that.readBook();
     }
     this.setData({
       showPopup: false
@@ -210,10 +219,14 @@ Page({
       success: res => {
         wx.setNavigationBarTitle({title: res.data.bookName})
         this.setData({
-          bookDetail: res.data,
-          currentIdx: 0,
-          currentStr: res.data.pageList?(1 + "/" + res.data.pageList.length):"0/0",
+          bookDetail: res.data
         });
+        if (this.data.currentStr.length == 0 || this.data.currentStr == "0/0"){
+          this.setData({
+            currentIdx: 0,
+            currentStr: res.data.pageList ? (1 + "/" + res.data.pageList.length) : "0/0"
+          });
+        }
       }
     }, false);
   },

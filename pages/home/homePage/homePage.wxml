@@ -66,12 +66,12 @@
             <view class="weui-cell__ft">查看</view>
           </navigator>
         </view>
-        <view class='weui-flex' style='padding:0 10px 20rpx 10px' wx:if="{{books.length>0}}">
+        <view class='weui-flex' style='flex-wrap:wrap;flex-direction:row' wx:if="{{books.length>0}}">
           <block wx:for="{{books}}" wx:key="*this">
-            <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}&type=true" class='weui-flex__item' style='padding:30rpx 0 0 0'
+            <navigator url="/pages/book/bookDetail/bookDetail?id={{item.book.bookId}}&type=true" class='b weui-flex__item' style='padding:30rpx 5px;width:{{imgWidth}}px'
               hover-class="weui-cell_active">
               <image src="{{item.book.coverPicture?item.book.coverPicture+'?x-oss-process=image/resize,m_fill,h_200,w_200':'../../../images/icon_book.png'}}"
-                style='width:{{imgWidth}};height:{{imgWidth}};margin: 0 6px;border-radius:5px' mode="widthFix"></image>
+                style='width:{{imgWidth}};height:{{imgWidth}};border-radius:5px' mode="widthFix"></image>
               <view class='weui-grid__label txt-14'>{{item.book.bookName}}</view>
               <!-- <view class='weui-grid__label txt-color-gray' style='text-align:left;margin-left:6px;margin-top:0'>{{item.progress==0?'未读完':item.progress+'遍'}}</view> -->
             </navigator>

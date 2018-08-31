@@ -110,7 +110,10 @@ Page({
   },
    // 订阅
   doSubscribe: function () {
-    this.subscribe('/user/' + app.globalData.userInfo.userId, {qos: 1})
+    this.subscribe('/user/' + app.globalData.userInfo.userId, {qos: 1});
+    if (app.globalData.userInfo.familyId){
+      this.subscribe('/group/' + app.globalData.userInfo.familyId, { qos: 1 });
+    }
   },
   subscribe: function (filter, subscribeOptions) {
     var client = this.data.client;

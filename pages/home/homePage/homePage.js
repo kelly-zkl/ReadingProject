@@ -110,8 +110,6 @@ Page({
       success: res => {
         app.globalData.baby = res.data;
 
-        app.globalData.userInfo["admin"] = (res.data.creator == app.globalData.userInfo.userId);
-
         var neverBind = true;
         var isBind = res.data.bindState == "binding" ? true : res.data.bindState == "unbind"?false:false;
         var baby = {};
@@ -120,6 +118,7 @@ Page({
         if(res.data){//已经绑定过
           neverBind = false;
           baby = res.data;
+          app.globalData.userInfo["admin"] = (res.data.creator == app.globalData.userInfo.userId);
           app.globalData.userInfo["childId"] = res.data.childId;
           app.globalData.userInfo["familyId"] = res.data.familyId
           if (res.data.deviceId){//绑定设备

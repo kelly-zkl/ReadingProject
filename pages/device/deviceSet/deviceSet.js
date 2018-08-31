@@ -12,7 +12,7 @@ Page({
     deviceW: 0,
     admin:false,
     members:[],
-    apiKey: '2056caf029a640168f28bd1d04f4725a'
+    apiKey: 'a50878851bee4fb1acb3aa3bb1d80a78'
   },
 
   /**
