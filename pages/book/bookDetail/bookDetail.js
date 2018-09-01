@@ -437,7 +437,7 @@ Page({
       url: "bookPage/create/customizeAudio",
       params: {
         bookId: that.data.bookId, userId: app.globalData.userInfo.userId, audioUrlOther: [that.data.video],
-        bookPageId: that.data.bookDetail.pageList[that.data.currentIdx].bookPageId},
+        bookPageId: that.data.bookDetail.pageList[that.data.currentIdx].bookPageId, childId: app.globalData.userInfo.childId},
       msg: "操作中...",
       success: res => {
         wx.showToast({title: '上传成功', icon: 'info', duration: 1500});
