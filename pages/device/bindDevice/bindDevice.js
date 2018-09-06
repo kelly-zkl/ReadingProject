@@ -238,7 +238,7 @@ Page({
         clearInterval(that.data.interval);
         wx.showToast({ title: '联网成功', icon: 'none', duration: 1500 });
         that.bindTuling();
-        if (that.data.childId==1){//
+        if (that.data.childId==1){//新建设备
           if (app.globalData.userInfo.childId && !app.globalData.userInfo.deviceId) {//绑定当前宝宝
             that.setData({
               childId: app.globalData.userInfo.childId
@@ -252,7 +252,9 @@ Page({
             }, 1500)
           }
         }else{//选定宝宝绑定设备
-          that.bindDevice();
+          if (!app.globalData.userInfo.deviceId) {//当前宝宝没有绑定设备
+            that.bindDevice();
+          }
         }
       }
     }, false);
