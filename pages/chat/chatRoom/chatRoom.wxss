@@ -13,6 +13,11 @@
 .weui-flex.b{
   border-bottom: 1rpx #f2f2f2 solid
 }
+.weui-flex__item input{
+  border: 1rpx #00d2ff solid;
+  border-radius: 4px;
+  padding: 0 20rpx
+}
 .weui-grid__label{
   margin-top: 0;
 }

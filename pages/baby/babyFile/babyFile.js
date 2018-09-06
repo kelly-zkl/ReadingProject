@@ -179,7 +179,9 @@ Page({
         },
         success: res => {
           wx.showToast({ title: '保存成功', icon: 'none', duration: 1500 })
-          wx.navigateBack()
+          wx.navigateBack({
+            delta: 3
+          })
         }
       }, true);
     }else{
@@ -194,7 +196,9 @@ Page({
         msg: '修改中...',
         success: res => {
           wx.showToast({ title: '修改成功', icon: 'none', duration: 1500 })
-          wx.navigateBack()
+          wx.navigateBack({
+            delta: 2
+          })
         }
       }, true);
     }

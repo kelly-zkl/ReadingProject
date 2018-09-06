@@ -50,8 +50,8 @@
     <view class="weui-footer weui-footer_fixed-bottom" style="border-top:1rpx #f2f2f2 solid" wx:if="{{!isAudio}}">
       <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
         <image src="{{pause==0?'../../../images/icon_pause.png':'../../../images/icon_play.png'}}"
-          style='height:100rpx;width:100rpx' bindtap='readBook'/>
-        <view class='weui-flex__item'>
+          style='height:100rpx;width:100rpx' bindtap='readBook' wx:if="{{!isRecords}}"/>
+        <view class='weui-flex__item' wx:if="{{!isRecords}}">
           <view class='weui-grid__label circle vertical-center' bindtap='togglePopup'>
             <view class='weui-grid__label price txt-15'>{{lanaugae}}</view>
             <image src="../../../images/icon_change.png" style='display:inline-block;width:50rpx;height:50rpx'></image>
@@ -60,25 +60,37 @@
         <image src="../../../images/icon_push.png" class="cell-icon-size s" style='margin:15rpx 30rpx 15rpx 0' bindtap='pushToDevice'
           wx:if="{{isBind&&!isRecords}}"/>
         <image src="../../../images/icon_add.png" class="cell-icon-size s" style='margin:15rpx 0' bindtap='addToBaby' wx:if="{{!isRecords}}"/>
-        <view class="btn-record" bindtap='startAudio' wx:if="{{isRecords}}">
-          <image src="../../../images/icon_record.png" style="width:60rpx;height:60rpx;margin:15rpx"/>
+        <view class='weui-flex__item' wx:if="{{isRecords}}" style="display:flex;justify-content:center;margin:4rpx">
+          <view class="btn-record" bindtap='startAudio' style="height:80rpx;width:250rpx;display:flex;justify-content:center;align-items:center">
+            <image src="../../../images/icon_record.png" style="display:inline-block;width:60rpx;height:60rpx;margin:10rpx"/>
+            <view class='txt-color-active' style='display:inline-block;height:80rpx;line-height:80rpx;text-align:center'>开始录制</view>
+          </view>
         </view>
       </view>
     </view>
     <!--录制音频-->
     <view class="weui-footer weui-footer_fixed-bottom" style="border-top:1rpx #f2f2f2 solid" wx:if="{{isAudio}}">
       <view style='padding:10rpx 30rpx;background: linear-gradient(to right, #00d2ff , #00eaff)' class='weui-flex'>
-        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
-          <view class='weui-grid__label video vertical-center txt-15' bindtap='resetVideo' style='margin-right:20rpx'>重录</view>
-          <view class='weui-grid__label video vertical-center txt-15' bindtap='testVideo'>试听</view>
+        <view class='weui-flex__item' style="display:flex;justify-content:space-around">
+          <view bindtap='resetVideo'>
+            <image src='../../../images/icon_rec_return.png' class='weui-grid__icon' style='width:50rpx;height:50rpx'></image>
+            <view class='weui-grid__label txt-color-white' style='margin-top:0'>重录</view>
+          </view>
+          <view bindtap='testVideo'>
+            <image src='../../../images/icon_rec_lis.png' class='weui-grid__icon' style='width:50rpx;height:50rpx'></image>
+            <view class='weui-grid__label txt-color-white' style='margin-top:0'>试听</view>
+          </view>
         </view>
         <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
           <view class="btn-record {{isSpeaking?'spk':''}}" bindtouchstart="touchdown" bindtouchend="touchup">
             <image src="../../../images/icon_record.png" style="width:60rpx;height:60rpx;margin:15rpx"/>
           </view>
         </view>
-        <view class='weui-flex__item' style="display:flex;justify-content:center;align-items:center">
-          <view class='weui-grid__label video vertical-center txt-15' bindtap='uploadVideo'>完成录制</view>
+        <view class='weui-flex__item' style="display:flex;justify-content:flex-end">
+          <view bindtap='uploadVideo'>
+            <image src='../../../images/icon_rec_fin.png' class='weui-grid__icon' style='width:50rpx;height:50rpx'></image>
+            <view class='weui-grid__label txt-color-white' style='margin-top:0'>完成</view>
+          </view>
         </view>       
       </view>
     </view>

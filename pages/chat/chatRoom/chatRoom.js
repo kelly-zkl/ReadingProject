@@ -16,7 +16,7 @@ Page({
   data: {
     refresh: false,
     page: 1,
-    size: 10,
+    size: 25,
     content:'',
     video:'',
     baby:{},
@@ -24,7 +24,7 @@ Page({
     friendHeadUrl: '',
     textMessage: '',
     chatItems: [],
-    scrollTopTimeStamp: 0,
+    scrollTopVal:0,
     keyBoard:true,
     j: 1,//帧动画初始图片
     isSpeaking: false,//是否正在说话
@@ -36,7 +36,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userId: app.globalData.userInfo.userId
+      toView: 'toView',
+      userId: app.globalData.userInfo.userId,
+      scrowHeight: app.globalData.device.windowHeight - 150
     })
 
     wx.setNavigationBarTitle({
@@ -294,11 +296,17 @@ Page({
 
         if (that.data.page <= 1) {
           that.setData({
-            msgs: res.data.content
+            msgs: res.data.content,
+            toView: 'toView'
+          })
+          that.setData({
+            scrollTopVal: that.data.msgs.length * 70 + 70
           })
         } else {
           that.setData({
-            msgs: that.data.msgs.concat(res.data.content)
+            msgs: that.data.msgs.concat(res.data.content),
+            toView: 'view' + that.data.msgs[0].messageId,
+            scrollTopVal: 0
           })
         }
       }
@@ -318,7 +326,7 @@ Page({
         uid: app.globalData.userInfo.uid, groupId: app.globalData.userInfo.familyId, receiveId: app.globalData.userInfo.childId,
         receiveType: "child", attachType: "video", attachUrl: that.data.video };
     }else{
-      wx.showToast({ title: '发送内容不能为空', icon: 'none', duration: 1500 });
+      wx.showToast({ title: '发送内容不能为空', icon: 'none', duration: 1500});
       return;
     }
 
@@ -340,20 +348,21 @@ Page({
   /**
    * 下拉刷新
    */
-  onPullDownRefresh() {
-    wx.showNavigationBarLoading();
-    this.setData({
-      refresh: true,
-      page: 1
-    });
+  // onPullDownRefresh() {
+    // wx.showNavigationBarLoading();
+  //   this.setData({
+  //     refresh: true,
+  //     page: 1
+  //   });
 
-    this.getFamilyMembers();
-    this.getChatList();
-  },
+  //   this.getFamilyMembers();
+  //   this.getChatList();
+  // },
   /** 
-   * 页面上拉触底事件的处理函数 
+   * 页面上拉触底事件的处理函数onReachBottom 
    */
-  onReachBottom: function () {
+  bindScrollTop: function (e) {
+    console.log(e);
     this.setData({
       page: this.data.page + 1
     });

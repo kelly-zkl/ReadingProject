@@ -55,7 +55,7 @@ Page({
       showPopu: false
     });
 
-    var language = (that.data.choose==0?'AUDIO_Z':that.data.choose==1?'AUDIO_EN':that.data.choose==2?'AUDIO_OTHER':'AUDIO_Z');
+    var language = (that.data.choose == 0 ? 'AUDIO_ZH' : that.data.choose == 1 ? 'AUDIO_EN' : that.data.choose == 2 ? 'AUDIO_OTHER' :'AUDIO_ZH');
 
     http.postRequest({
       baseType: 0,
@@ -67,32 +67,6 @@ Page({
         that.getLanguage();
       }
     }, true);
-    // wx.showLoading({
-    //   title: this.data.upNum + '%',
-    //   mask: true
-    // })
-    // var num = this.data.upNum;
-    // var i = setInterval(function () {
-    //   if (num < 100) {
-    //     num = num + 10;
-    //     that.setData({
-    //       upNum: num
-    //     });
-    //     wx.hideLoading();
-    //     wx.showLoading({
-    //       title: that.data.upNum + '%',
-    //       mask: true
-    //     })
-    //   } else {
-    //     clearInterval(i);
-    //     wx.hideLoading();
-    //     wx.showToast({
-    //       title: '切换成功',
-    //       icon: 'success',
-    //       duration: 2000
-    //     })
-    //   }
-    // }, 1000)
   },
   //查询设备的语言
   getLanguage(){
@@ -102,7 +76,7 @@ Page({
       params: { childId: app.globalData.userInfo.childId, uid: app.globalData.userInfo.uid},
       msg: "加载中...",
       success: res => {
-        var choose = (res.data == 'AUDIO_Z' ? 0 : res.data == 'AUDIO_EN' ? 1 : res.data == 'AUDIO_OTHER'?2:0);
+        var choose = (res.data == 'AUDIO_ZH' ? 0 : res.data == 'AUDIO_EN' ? 1 : res.data == 'AUDIO_OTHER'?2:0);
 
         this.setData({
           choose: choose

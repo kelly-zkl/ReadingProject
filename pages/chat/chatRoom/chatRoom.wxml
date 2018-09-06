@@ -15,40 +15,43 @@
         <view class='weui-grid__label txt-color-gray txt-13' style='margin-top:0'>更多</view>
       </view>
     </view>
-    <block wx:for="{{msgs}}" wx:key="*this">
-      <view class='weui-grid__label txt-color-gray txt-12'>{{item.sendTime}}</view>
-      <view wx:if="{{item.senderId != userId}}">
-        <view class="youMessage">
-          <view class="youview">
-            <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
-            <view class="m">
-              <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
-              <image wx:else class="mes" src="../../../images/icon_voice_other.png" bindtap='play' id="{{item.attachUrl}}"
-                style='width:40rpx;height:40rpx'></image>
-              <view class="arrow"></view>
+    <scroll-view scroll-y="true" style="height: {{scrowHeight}}px" scroll-into-view="{{toView}}" scroll-top="{{scrollTopVal}}"
+      bindscrolltoupper="bindScrollTop">
+      <block wx:for="{{msgs}}" wx:key="*this" wx:for-index="index">
+        <view class='weui-grid__label txt-color-gray txt-12' id="{{index==0?'view'+item.messageId:''}}">{{item.sendTime}}</view>
+        <view wx:if="{{item.senderId != userId}}">
+          <view class="youMessage">
+            <view class="youview">
+              <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
+              <view class="m">
+                <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
+                <image wx:else class="mes" src="../../../images/icon_voice_other.png" bindtap='play' id="{{item.attachUrl}}"
+                  style='width:40rpx;height:40rpx'></image>
+                <view class="arrow"></view>
+              </view>
             </view>
+            <view class="yk"></view>
           </view>
-          <view class="yk"></view>
         </view>
-      </view>
-      <view wx:else>
-        <view class="myMessage">
-          <view class="myview">
-            <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
-            <view class="m">
-              <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
-              <image wx:else class="mes" src="../../../images/icon_voice_myself.png" bindtap='play' id="{{item.attachUrl}}"
-                style='width:40rpx;height:40rpx'></image>
-              <view class="arrow"></view>
+        <view wx:else>
+          <view class="myMessage">
+            <view class="myview">
+              <image class="userinfo-avatar" src="{{item.senderAvatar}}" background-size="cover"></image>
+              <view class="m">
+                <text class="mes" wx:if="{{item.content}}">{{item.content}}</text>
+                <image wx:else class="mes" src="../../../images/icon_voice_myself.png" bindtap='play' id="{{item.attachUrl}}"
+                  style='width:40rpx;height:40rpx'></image>
+                <view class="arrow"></view>
+              </view>
             </view>
+            <view class="yk"></view>
           </view>
-          <view class="yk"></view>
         </view>
-      </view>
-    </block>
+      </block>
+    </scroll-view>
   </view>
   <view class="weui-footer weui-footer_fixed-bottom" style="padding:15rpx 30rpx;background:#fff;border-top:1rpx #f2f2f2 solid">
-    <view class='weui-flex'>
+    <view class='weui-flex' id="toView">
       <image src="{{keyBoard?'../../../images/voice.png':'../../../images/keyboard.png'}}" 
         style='width:70rpx;height:70rpx;margin-right:30rpx' bindtap='changeVoice'></image>
       <view class='weui-flex__item' wx:if="{{keyBoard}}">

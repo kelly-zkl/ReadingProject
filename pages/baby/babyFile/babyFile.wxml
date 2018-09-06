@@ -34,7 +34,7 @@
           <view class="weui-cell__hd">
             <view class="weui-label">地区</view>
           </view>
-          <view class="weui-cell__bd">{{province}} {{city}} {{county}}</view>
+          <view class="weui-cell__bd" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{province}} {{city}} {{county}}</view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </view>
         <template is="areaData" data="{{...item}}"/>

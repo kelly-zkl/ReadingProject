@@ -42,7 +42,6 @@ Page({
     });
     innerAudioContext.onWaiting((res) => {
       console.log("onWaiting", res);
-      wx.showLoading({ title: "加载中..." })
     });
     innerAudioContext.onCanplay((res) => {
       console.log("onCanplay", res);

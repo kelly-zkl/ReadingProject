@@ -19,13 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=' + this.data.apiKey+'&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
-
-    this.setData({
-      imgWidth: (app.globalData.device.windowWidth - 48) / 2,
-      musicUrl: url
-    });
   },
 
   /**
@@ -78,10 +71,10 @@ Page({
       baseType: 3,
       url: "app-author/bind",
       params: {
-        apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId,
-        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.userInfo.avatar},
+        apiKey: that.data.apiKey, uid: app.globalData.baby.childId, deviceId: app.globalData.baby.deviceId,
+        name: app.globalData.baby.nickname+"的小叮当", imageUrl: app.globalData.baby.avatar},
       success: res => {
-        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=apiKey=' + this.data.apiKey +'&uid=' + app.globalData.userInfo.userId + '&client=' + app.globalData.device.platform;
+        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=' + this.data.apiKey + '&uid=' + app.globalData.baby.childId + '&client=' + app.globalData.device.platform;
 
         this.setData({
           musicUrl: url

@@ -63,6 +63,7 @@ Page({
       msg: "操作中...",
       success: res => {
         wx.showToast({ title: '成功加入家庭组', icon: 'info', duration: 1500 })
+        that.getSelectBaby();
       }
     }, true);
   },
@@ -71,7 +72,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getSelectBaby();
+    if (!this.data.familyId){
+      this.getSelectBaby();
+    }
   },
   /**跳转到设备设置页面*/
   gotoSet:function(){
@@ -96,8 +99,26 @@ Page({
     })
   },
   /**扫码添加家庭成员*/
-  scanCode:function(){
-  
+  scan: function (e) {
+    wx.scanCode({
+      scanType: ['qrCode'],
+      success: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描成功', icon: 'info', duration: 1500 })
+        if (res.result && res.result.indexOf('/pages/') == 0 && res.result.indexOf('familyId') > 0) {
+          var familyId = res.result.substring(res.result.indexOf("=") + 1, res.result.length)
+          console.log(familyId);
+          this.setData({
+            familyId: familyId
+          })
+          this.addMembers();
+        }
+      },
+      fail: (res) => {
+        console.log(res);
+        wx.showToast({ title: '扫描失败', icon: 'info', duration: 1500 });
+      }
+    })
   },
   //获取当前选择的设备--》baby
   getSelectBaby:function(){
@@ -108,19 +129,22 @@ Page({
       params: {uid: app.globalData.userInfo.uid },
       msg: "加载中...",
       success: res => {
-        app.globalData.baby = res.data;
-
         var neverBind = true;
-        var isBind = res.data.bindState == "binding" ? true : res.data.bindState == "unbind"?false:false;
+        var isBind = false;
         var baby = {};
-        app.globalData.userInfo["isBind"] = isBind;
 
         if(res.data){//已经绑定过
           neverBind = false;
           baby = res.data;
+
+          app.globalData.baby = res.data;
+
           app.globalData.userInfo["admin"] = (res.data.creator == app.globalData.userInfo.userId);
           app.globalData.userInfo["childId"] = res.data.childId;
           app.globalData.userInfo["familyId"] = res.data.familyId
+          
+          isBind = (res.data.bindState?res.data.bindState == "binding" ? true : res.data.bindState == "unbind" ? false : false:false);
+
           if (res.data.deviceId){//绑定设备
             app.globalData.userInfo["deviceId"] = res.data.deviceId;
 

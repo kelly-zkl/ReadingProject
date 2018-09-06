@@ -22,6 +22,7 @@ Page({
     var that = this;
 
     that.setData({
+      childId: app.globalData.baby.childId,
       deviceW: app.globalData.homeWidth.bindW,
       admin: app.globalData.userInfo.admin,
       flxWidth: (app.globalData.device.windowWidth - 30) / 4
@@ -87,13 +88,13 @@ Page({
       }
     })
   },
-  //绑定图灵设备
+  //解绑图灵设备
   unbindApp() {
     var that = this;
     http.postRequest({
       baseType: 3,
       url: "app-author/unbind",
-      params: {apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: app.globalData.userInfo.deviceId},
+      params: { apiKey: that.data.apiKey, uid: app.globalData.baby.childId, deviceId: app.globalData.baby.deviceId},
       success: res => {
       }
     }, false);

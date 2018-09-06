@@ -271,7 +271,9 @@ Page({
       },
       success: res => {
         wx.showToast({ title: '绑定成功', icon: 'none', duration: 1500 })
-        wx.navigateBack()
+        wx.navigateBack({
+          delta: 2
+        })
       }
     }, true);
   },
@@ -283,8 +285,8 @@ Page({
       baseType: 3,
       url: "app-author/bind",
       params: {
-        apiKey: that.data.apiKey, uid: app.globalData.userInfo.userId, deviceId: deviceId,
-        name: app.globalData.userInfo.nickname, imageUrl: app.globalData.userInfo.avatar
+        apiKey: that.data.apiKey, uid: app.globalData.baby.childId, deviceId: app.globalData.baby.deviceId,
+        name: app.globalData.baby.nickname + "的小叮当", imageUrl: app.globalData.baby.avatar
       },
       success: res => {
       }

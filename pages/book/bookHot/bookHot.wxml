@@ -1,8 +1,8 @@
 <view class='page'>
   <view class='page__bd'>
     <view class="weui-search-bar vertical-center" style="background:#f2f2f2">
-      <image src="../../../images/icon_classify.png" style="width:32px;height:32px;margin-right:8px" bindtap='toggleLeftPopup'
-        mode="widthFix"/>
+      <!-- <image src="../../../images/icon_classify.png" style="width:32px;height:32px;margin-right:8px" bindtap='toggleLeftPopup'
+        mode="widthFix"/> -->
       <view class="weui-search-bar__form" bindtap='gotoSearch'>
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
@@ -13,8 +13,8 @@
           <view class="weui-search-bar__text">搜索</view>
         </label>
       </view>
-      <image src="../../../images/icon_scan.png" style="width:32px;height:32px;margin-left:8px" bindtap='scan'
-        mode="widthFix"/>
+      <!-- <image src="../../../images/icon_scan.png" style="width:32px;height:32px;margin-left:8px" bindtap='scan'
+        mode="widthFix"/> -->
     </view>
     <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular
       indicator-active-color="#fff" indicator-color="rgba(0, 0, 0, .7)">
@@ -74,7 +74,7 @@
       </view>
     </view>
     <!--热播榜  -->
-    <view style='margin-bottom:15rpx'>
+    <!-- <view style='margin-bottom:15rpx'>
       <view class='view-tag'>
         <view class='view-tag-title'>热播榜</view>
         <view class='view-tag-more' bindtap='gotoList' id="0">更多</view>
@@ -114,7 +114,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
   </view>
   <!--左侧弹框  -->
   <view class="popup-example--left zan-popup zan-popup--left {{ showLeftPopup ? 'zan-popup--show' : ''}}">

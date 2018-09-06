@@ -37,11 +37,11 @@ const request = (method, requestHandler, isShowLoading) => {
       success: function (res) {//请求成功
         isShowLoading && wx.hideLoading && wx.hideLoading();
         console.log(res.data);
-        if (res.data.code == '000000'){
+        if (res.data.code == '000000' || requestHandler.url =='app-author/bind'){
           requestHandler.success(res.data);
         }else{
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg:'',
             icon: 'none',
             duration: 1500
           });

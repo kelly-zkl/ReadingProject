@@ -60,14 +60,14 @@
       </navigator>
     </view>
     <view class="weui-cells weui-cells_in-small-appmsg txt-14" style='margin-top:20rpx'>
-      <navigator url="/pages/user/usingHelp/usingHelp" class="weui-cell weui-cell_access"
+      <!-- <navigator url="/pages/user/usingHelp/usingHelp" class="weui-cell weui-cell_access"
         hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../../images/icon_help.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">使用帮助</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
+      </navigator> -->
       <navigator url="/pages/user/feedBack/feedBack" class="weui-cell weui-cell_access"
         hover-class="weui-cell_active">
         <view class="weui-cell__hd">
@@ -76,14 +76,14 @@
         <view class="weui-cell__bd weui-cell_primary">投诉建议</view>
         <view class="weui-cell__ft weui-cell__ft_in-access txt-12">您的建议能让我们做的更好</view>
       </navigator>
-      <navigator url="/pages/user/aboutUs/aboutUs" class="weui-cell weui-cell_access"
+      <!-- <navigator url="/pages/user/aboutUs/aboutUs" class="weui-cell weui-cell_access"
         hover-class="weui-cell_active">
         <view class="weui-cell__hd">
           <image src="../../../images/icon_about.png" class="cell-icon-size"/>
         </view>
         <view class="weui-cell__bd weui-cell_primary">关于我们</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-      </navigator>
+      </navigator> -->
     </view>
   </view>
 </view>

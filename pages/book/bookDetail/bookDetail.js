@@ -35,12 +35,12 @@ Page({
       currentStr: (this.data.currentIdx) + "/" + 0,
       bookId: options.id,
       isBind: app.globalData.userInfo.isBind,
-      isRecords: options.type ? options.type:false
+      isRecords: options.type ? options.type:false,
+      lanIdx: options.type ? 3 : 2
     });
     
     innerAudioContext.onWaiting((res) => {
       console.log("onWaiting", res);
-      wx.showLoading({ title: "加载中..." })
     });
     innerAudioContext.onTimeUpdate((res) => {
       console.log("缓冲",res)
@@ -399,19 +399,20 @@ Page({
   },
   //重新录音
   resetVideo:function(){
-    that.setData({
-      tempFilePath: ''
+    this.setData({
+      tempFilePath: '',
+      isAudio:false
     });
   },
   //试听录音
   testVideo: function () {
     if (this.data.tempFilePath.length == 0) {
-      wx.showToast({ title: '请先录制音频', icon: 'none', duration: 1500 });
-      return;
+      // wx.showToast({ title: '请先录制音频', icon: 'none', duration: 1500 });
+      this.readBook();
+    }else{
+      innerAudioContext.src = this.data.tempFilePath
+      innerAudioContext.play();
     }
-    wx.showToast({ title: this.data.tempFilePath, icon: 'none', duration: 1500 });
-    innerAudioContext.src = this.data.tempFilePath
-    innerAudioContext.play();
   },
   /**上传录制mp3文件*/
   uploadVideo: function () {
