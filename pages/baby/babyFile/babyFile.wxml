@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='page__bd' style='padding-top:30rpx'>
     <view class='bg-white-corner'>
-      <image src="{{thumbUrl?thumbUrl:'../../../images/icon_baby.png'}}" class='baby-img' mode="aspectFill" bindtap="togglePopup"></image>
+      <image src="{{thumbUrl?thumbUrl:'../../../images/icon_baby.png'}}" class='baby-img' mode="aspectFill" bindtap="chooseImage"></image>
       <view class='weui-flex' style='margin-top:40rpx'>
         <view class='weui-flex__item' style='display: flex;justify-content:center'>
           <view class='baby-girl {{sex==2?"active":""}}' bindtap='sexChange' id="2">女宝</view>
@@ -40,15 +40,6 @@
         <template is="areaData" data="{{...item}}"/>
       </view>
       <view class='btn-save' bindtap='saveData' style='margin: 50rpx 0 20rpx 0' hover-class="btn-active">保存</view>
-    </view>
-  </view>
-  <!--选择图片  -->
-  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" catchtap="togglePopup"></view>
-    <view class="zan-popup__container">
-      <view class='weui-grid__label' id="1" bindtap="popuChange" style="padding:20rpx">从相册选择图片</view>
-      <view class='weui-grid__label' id="2" bindtap="popuChange" style="padding:20rpx;border-top:1rpx #f2f2f2 solid">拍摄图片</view>
-      <view class='weui-grid__label' id="3" bindtap="popuChange" style="padding:20rpx;border-top:20rpx #f2f2f2 solid">取消</view>
     </view>
   </view>
 </view>

@@ -15,7 +15,6 @@ Page({
     item: {
       show: show
     },
-    showPopup: false,
     date: "1970-01-01",
     sex:2,
     childId:'',
@@ -94,40 +93,12 @@ Page({
     model.updateAreaData(this, 1, e);
     item = this.data.item;
   },
-
-  //选择上传图片
-  togglePopup() {
-    this.setData({
-      showPopup: !this.data.showPopup
-    });
-  },
-  popuChange: function (e) {
-    var that = this;
-    var id = e.currentTarget.id;
-    if (id == 1) {
-      that.setData({
-        picType: ["album", "camera"],
-        showPopup: false
-      });
-      that.chooseImage();
-    } else if (id == 2) {
-      that.setData({
-        picType: ["camera"],
-        showPopup: false
-      });
-      that.chooseImage();
-    }else{
-      that.setData({
-        showPopup: false
-      });
-    }
-  },
   chooseImage: function (e) {
     var that = this;
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: that.data.picType, // 可以指定来源是相册还是相机，默认二者都有
+      sourceType: ["album", "camera"], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
