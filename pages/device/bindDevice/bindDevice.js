@@ -2,10 +2,8 @@
 const app = getApp();
 var http = require("../../../http.js");
 var drawQrcode = require('../../../utils/qrcode.js');
-// var ChirpConnect = require('../../../utils/chirp-v3.min.js');
 
 const innerAudioContext = wx.createInnerAudioContext();
-var chirp;
 
 Page({
 
@@ -14,6 +12,8 @@ Page({
    */
   data: {
     apiKey: 'a50878851bee4fb1acb3aa3bb1d80a78',
+    charpKey:'e2eB7afcdf640d356f049c525',
+    charpSecret:'5EA766feB0DEC0D1feFAEcF4355b3A9DaE2B51F6ACc4ad0Fd3',
     showPopu:false,
     showList:false,
     wifiInfo: {ssid:'',pwd:'',optId:''},
@@ -33,16 +33,9 @@ Page({
       childId: options.id ? options.id : 1
     });
 
-    console.log('Chirp');
-    // chirp = new ChirpConnect('e2eB7afcdf640d356f049c525', innerAudioContext);
-
-    // with example payload 1,2,3,4
-    // chirp.send(new Uint8Array([1, 2, 3, 4]), (err) => {
-    //   if (err) { console.log(err) }
-    //   else {
-    //     console.log('Data sent successfully');
-    //   }
-    // });
+    innerAudioContext.onEnded((res) => {
+      
+    });
   },
 
   /**
@@ -124,12 +117,20 @@ Page({
     // if (this.data.wifi.secure){
     if (this.data.wifiName.length > 0 && this.data.pwd.length > 0){
       var timeStamp = app.globalData.userInfo.uid + '.' + new Date().getTime();
-      var info = { ssid: this.data.wifiName, pwd: this.data.pwd, optId: timeStamp}
+      var info = {ssid:this.data.wifiName,pwd:this.data.pwd,optId:timeStamp }
         this.setData({
           wifiInfo: info,
           timeStamp: timeStamp
         })
-        this.createQrCode();
+        // this.createQrCode();
+        console.log(info);
+      console.log(this.strTo16(JSON.stringify(info)));
+      var url = 'https://' + this.data.charpKey + ':' + this.data.charpSecret + '@audio.chirp.io/v3/standard/'+this.strTo16(JSON.stringify(this.data.wifiInfo))+'.wav';
+      console.log(url);
+      innerAudioContext.src=url;
+      innerAudioContext.loop = true;//是否循环播放，默认为 false
+      innerAudioContext.obeyMuteSwitch = false;//是否遵循系统静音开关，默认为 true。当此参数为 false 时，即使用户打开了静音开关，也能继续发出声音
+      innerAudioContext.play();
       }else{
         wx.showToast({ title: '请输入wifi/密码', icon: 'none', duration: 1500 });
       }
@@ -232,6 +233,7 @@ Page({
       msg: "加载中...",
       success: res => {
         wx.setStorageSync('deviceId', res.data.deviceId)
+        innerAudioContext.stop();
         that.setData({
           showPopu: false
         })
@@ -298,5 +300,15 @@ Page({
   },
   onUnload: function () {
     innerAudioContext.destroy();
+  },
+  //字符串转成16进制的字符串
+  strTo16: function(value) {
+    value = value.replace(/\s*/g, "");
+    var hexCharCode = [];
+    for (var i = 0; i < value.length; i++) {
+      var ch = value.charCodeAt(i);
+      hexCharCode.push(ch.toString(16));
+    }
+    return hexCharCode.join("");
   }
 })
