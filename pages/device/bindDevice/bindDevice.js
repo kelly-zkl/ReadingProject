@@ -131,65 +131,66 @@ Page({
     // if (this.data.wifi.secure){
     if (this.data.wifiName.length > 0 && this.data.pwd.length > 0){
       var timeStamp = new Date().getTime();
-      var info = {ssid:this.data.wifiName,pwd:this.data.pwd,optId:timeStamp }
+      var info = { ssid: this.data.wifiName, pwd: this.data.pwd, optId: app.globalData.userInfo.uid + '.' + timeStamp}
         this.setData({
           wifiInfo: info,
           timeStamp: app.globalData.userInfo.uid + '.' + timeStamp
         })
-        // this.createQrCode();
-      let urls=[];
-      let baseUrl = 'https://' + this.data.charpKey + ':' + this.data.charpSecret + '@m.baxueshe.com/audio/';
-      if (this.data.wifiName.length <= 8){
-        let w1 = 'w1' + this.data.wifiName.substring(0, this.data.wifiName.length);
-        urls.push(baseUrl + this.strTo16(w1)+'.mp3');
-      } else if (this.data.wifiName.length <= 16){
-        let w1 = 'w1' + this.data.wifiName.substring(0, 8);
-        let w2 = 'w2' + this.data.wifiName.substring(8, this.data.wifiName.length);
-        urls.push(baseUrl + this.strTo16(w1) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w2) + '.mp3');
-      } else if (this.data.wifiName.length <= 24){
-        let w1 = 'w1' + this.data.wifiName.substring(0, 8);
-        let w2 = 'w2' + this.data.wifiName.substring(8, 16);
-        let w3 = 'w3' + this.data.wifiName.substring(16, this.data.wifiName.length);
-        urls.push(baseUrl + this.strTo16(w1) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w2) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w3) + '.mp3');
-      } else if (this.data.wifiName.length <= 32){
-        let w1 = 'w1' + this.data.wifiName.substring(0, 8);
-        let w2 = 'w2' + this.data.wifiName.substring(8, 16);
-        let w3 = 'w3' + this.data.wifiName.substring(16,24);
-        let w4 = 'w4' + this.data.wifiName.substring(24, this.data.wifiName.length);
-        urls.push(baseUrl + this.strTo16(w1) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w2) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w3) + '.mp3');
-        urls.push(baseUrl + this.strTo16(w4) + '.mp3');
-      }
-      if (this.data.pwd.length <= 8) {
-        let p1 = 'p1' + this.data.pwd.substring(0, this.data.pwd.length);
-        urls.push(baseUrl + this.strTo16(p1) + '.mp3');
-      } else if (this.data.pwd.length <= 16) {
-        let p1 = 'p1' + this.data.pwd.substring(0, 8);
-        let p2 = 'p2' + this.data.pwd.substring(8, this.data.pwd.length);
-        urls.push(baseUrl + this.strTo16(p1) + '.mp3');
-        urls.push(baseUrl + this.strTo16(p2) + '.mp3');
-      }
-      let uid = app.globalData.userInfo.uid;
-      let u1 = 'u1' + uid.substring(0, 12);
-      let u2 = 'u2' + uid.substring(12, uid.length);
-      let t = 't' + timeStamp;
-      urls.push(baseUrl + this.strTo16(u1) + '.mp3');
-      urls.push(baseUrl + this.strTo16(u2) + '.mp3');
-      urls.push(baseUrl + this.strTo16(t) + '.mp3');
+      console.log(info);
+        this.createQrCode();
+      // let urls=[];
+      // let baseUrl = 'https://' + this.data.charpKey + ':' + this.data.charpSecret + '@m.baxueshe.com/audio/';
+      // if (this.data.wifiName.length <= 8){
+      //   let w1 = 'w1' + this.data.wifiName.substring(0, this.data.wifiName.length);
+      //   urls.push(baseUrl + this.strTo16(w1)+'.mp3');
+      // } else if (this.data.wifiName.length <= 16){
+      //   let w1 = 'w1' + this.data.wifiName.substring(0, 8);
+      //   let w2 = 'w2' + this.data.wifiName.substring(8, this.data.wifiName.length);
+      //   urls.push(baseUrl + this.strTo16(w1) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w2) + '.mp3');
+      // } else if (this.data.wifiName.length <= 24){
+      //   let w1 = 'w1' + this.data.wifiName.substring(0, 8);
+      //   let w2 = 'w2' + this.data.wifiName.substring(8, 16);
+      //   let w3 = 'w3' + this.data.wifiName.substring(16, this.data.wifiName.length);
+      //   urls.push(baseUrl + this.strTo16(w1) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w2) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w3) + '.mp3');
+      // } else if (this.data.wifiName.length <= 32){
+      //   let w1 = 'w1' + this.data.wifiName.substring(0, 8);
+      //   let w2 = 'w2' + this.data.wifiName.substring(8, 16);
+      //   let w3 = 'w3' + this.data.wifiName.substring(16,24);
+      //   let w4 = 'w4' + this.data.wifiName.substring(24, this.data.wifiName.length);
+      //   urls.push(baseUrl + this.strTo16(w1) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w2) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w3) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(w4) + '.mp3');
+      // }
+      // if (this.data.pwd.length <= 8) {
+      //   let p1 = 'p1' + this.data.pwd.substring(0, this.data.pwd.length);
+      //   urls.push(baseUrl + this.strTo16(p1) + '.mp3');
+      // } else if (this.data.pwd.length <= 16) {
+      //   let p1 = 'p1' + this.data.pwd.substring(0, 8);
+      //   let p2 = 'p2' + this.data.pwd.substring(8, this.data.pwd.length);
+      //   urls.push(baseUrl + this.strTo16(p1) + '.mp3');
+      //   urls.push(baseUrl + this.strTo16(p2) + '.mp3');
+      // }
+      // let uid = app.globalData.userInfo.uid;
+      // let u1 = 'u1' + uid.substring(0, 12);
+      // let u2 = 'u2' + uid.substring(12, uid.length);
+      // let t = 't' + timeStamp;
+      // urls.push(baseUrl + this.strTo16(u1) + '.mp3');
+      // urls.push(baseUrl + this.strTo16(u2) + '.mp3');
+      // urls.push(baseUrl + this.strTo16(t) + '.mp3');
 
-      console.log(urls);
-      this.setData({
-        audioUrls: urls
-      })
+      // console.log(urls);
+      // this.setData({
+      //   audioUrls: urls
+      // })
       
-      innerAudioContext.src = urls[this.data.audioIndex];
-      innerAudioContext.obeyMuteSwitch = false;//是否遵循系统静音开关，默认为 true。当此参数为 false 时，即使用户打开了静音开关，也能继续发出声音
-      innerAudioContext.play();
-      console.log(innerAudioContext.src);
+      // innerAudioContext.src = urls[this.data.audioIndex];
+      // innerAudioContext.obeyMuteSwitch = false;//是否遵循系统静音开关，默认为 true。当此参数为 false 时，即使用户打开了静音开关，也能继续发出声音
+      // innerAudioContext.play();
+      // console.log(innerAudioContext.src);
       }else{
         wx.showToast({ title: '请输入wifi/密码', icon: 'none', duration: 1500 });
       }
@@ -300,7 +301,7 @@ Page({
         wx.showToast({ title: '联网成功', icon: 'none', duration: 1500 });
         
         if (that.data.childId==1){//新建设备
-          if (app.globalData.userInfo.childId && !app.globalData.userInfo.deviceId) {//绑定当前宝宝
+          if (app.globalData.userInfo.childId && !app.globalData.userInfo.isBind) {//绑定当前宝宝
             that.setData({
               childId: app.globalData.userInfo.childId
             })
@@ -313,7 +314,7 @@ Page({
             }, 1500)
           }
         }else{//选定宝宝绑定设备
-          if (!app.globalData.userInfo.deviceId) {//当前宝宝没有绑定设备
+          if (!app.globalData.userInfo.isBind) {//当前宝宝没有绑定设备
             that.bindDevice();
           }
         }

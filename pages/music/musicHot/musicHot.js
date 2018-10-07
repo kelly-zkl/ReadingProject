@@ -26,7 +26,14 @@ Page({
    */
   onShow: function () {
     // this.getMusics();
-    this.bindDevice();
+    if (app.globalData.userInfo.isBind) {//当前宝宝绑定设备
+      this.bindDevice();
+    }else{
+      wx.showToast({ title: '请绑定设备', icon: 'none', duration: 1000 });
+      setTimeout(function () {
+        wx.navigateBack()
+      }, 1000)
+    }
   },
 
   onUnload(){
