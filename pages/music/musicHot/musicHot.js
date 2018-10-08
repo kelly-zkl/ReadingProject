@@ -81,11 +81,18 @@ Page({
         apiKey: that.data.apiKey, uid: app.globalData.baby.childId, deviceId: app.globalData.baby.deviceId,
         name: app.globalData.baby.nickname+"的小叮当", imageUrl: app.globalData.baby.avatar},
       success: res => {
-        var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=' + this.data.apiKey + '&uid=' + app.globalData.baby.childId + '&client=' + app.globalData.device.platform;
+        if (res.code != 41009 && res.code != 0){
+          wx.showToast({ title: res.desc, icon: 'none', duration: 1000 });
+          setTimeout(function () {
+            wx.navigateBack()
+          }, 1000)
+        }else{
+          var url = 'https://iot-ai.tuling123.com/jump/app/source?apiKey=' + this.data.apiKey + '&uid=' + app.globalData.baby.childId + '&client=' + app.globalData.device.platform;
 
-        this.setData({
-          musicUrl: url
-        });
+          this.setData({
+            musicUrl: url
+          });
+        }
       }
     }, false);
   }

@@ -334,14 +334,9 @@ Page({
         deviceId: deviceId, uid: app.globalData.userInfo.uid, childId: that.data.childId
       },
       success: res => {
-        wx.showToast({ title: '绑定成功', icon: 'none', duration: 1500 })
-        wx.navigateBack({
-          delta: 2
-        })
+        that.bindTuling();
       }
     }, true);
-
-    that.bindTuling();
   },
   //图灵绑定设备
   bindTuling() {
@@ -355,6 +350,16 @@ Page({
         name: app.globalData.baby.nickname + "的小叮当", imageUrl: app.globalData.baby.avatar
       },
       success: res => {
+        if (res.code == 41009 && res.code == 0) {
+          wx.showToast({ title: '绑定成功', icon: 'none', duration: 1500 })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 2
+            })
+          },2000);
+        }else{
+          wx.showToast({ title: res.desc, icon: 'none', duration: 1500 });
+        }
       }
     }, false);
   },
