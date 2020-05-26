@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/login/login",
     "pages/home/homePage/homePage",
     "pages/device/bindDevice/bindDevice",
@@ -38,11 +38,11 @@
     "pages/common/chooseBabyMusic/chooseBabyMusic",
     "pages/music/musicHot/musicHot"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#00d2ff",
     "navigationBarTitleText": "慧读机器人",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#999999",
@@ -55,17 +55,20 @@
         "text": "小叮当",
         "iconPath": "images/icon_home.png",
         "selectedIconPath": "images/icon_home_selected.png"
-      }, {
+      },
+      {
         "pagePath": "pages/chat/chatRoom/chatRoom",
         "text": "悄悄话",
         "iconPath": "images/icon_chat1.png",
         "selectedIconPath": "images/icon_chat2.png"
-      }, {
+      },
+      {
         "pagePath": "pages/book/bookHot/bookHot",
         "text": "绘本城",
         "iconPath": "images/icon_books.png",
         "selectedIconPath": "images/icon_books_selected.png"
-      }, {
+      },
+      {
         "pagePath": "pages/user/userCenter/userCenter",
         "text": "我的",
         "iconPath": "images/icon_mine.png",
@@ -79,5 +82,6 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "debug": true
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
 }

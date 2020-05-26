@@ -2,7 +2,7 @@
  * http请求
  * */
 // const baseUrl = "https://www.yaojia.com/GlofApi/";
-const baseUrl = "https://www.yaojia.com/educate-ucenter-web/";
+const baseUrl = "https://api.baxueshe.com/educate-ucenter-web/";
 var requestHandler = {
   baseType:0,
   url:"",
@@ -14,11 +14,11 @@ const request = (method, requestHandler, isShowLoading) => {
   var param = requestHandler.params;
   var contentType ='application/json'
   if (requestHandler.baseType == 0){//用户中心接口
-    var baseUrl = 'https://www.yaojia.com/educate-ucenter-web/';
+    var baseUrl = 'https://api.baxueshe.com/educate-ucenter-web/';
   } else if (requestHandler.baseType == 1){//设备模块接口
-    var baseUrl = 'https://www.yaojia.com/educate-device-web/';
+    var baseUrl = 'https://api.baxueshe.com/educate-device-web/';
   } else if (requestHandler.baseType == 2){//绘本模块接口
-    var baseUrl = 'https://www.yaojia.com/educate-book-web/';
+    var baseUrl = 'https://api.baxueshe.com/educate-book-web/';
   } else if (requestHandler.baseType == 3) {//听一听模块
     var baseUrl = 'https://m.baxueshe.com/tuling/';//https://m.baxueshe.com/tuling/
     contentType = 'application/x-www-form-urlencoded';

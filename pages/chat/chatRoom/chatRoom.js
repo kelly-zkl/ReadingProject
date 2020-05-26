@@ -78,6 +78,7 @@ Page({
         // wx.showToast({
         //   title: '连接成功'
         // })
+        console.log('连接成功');
 
         that.data.client = client
 
@@ -123,6 +124,7 @@ Page({
       // wx.showToast({
       //   title: '订阅成功'
       // })
+      console.log('订阅成功');
       return client.subscribe(filter, subscribeOptions);
     }
     // wx.showToast({
